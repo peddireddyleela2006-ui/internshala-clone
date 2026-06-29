@@ -43,7 +43,7 @@ const index = () => {
     
         try {
           setisloading(true);
-          const res = await axios.post("http://localhost:5000/api/internship", formadata);
+          const res = await axios.post("https://internshala-clone-zril.onrender.com/api/internship", formadata);
           toast.success("internship posted successfully");
           router.push('/adminpanel')
     
