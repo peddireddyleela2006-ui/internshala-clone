@@ -1,0 +1,292 @@
+{
+  "navbar": {
+    "internships": "Stages",
+    "jobs": "Emplois",
+    "login": "Continuer avec Google",
+    "admin": "Administrateur",
+    "language": "Langue",
+    "search": "Rechercher des opportunités...",
+    "Logout": "Se déconnecter"
+  },
+  "home": {
+    "hero": {
+      "title": "Faites de la carrière de vos rêves une réalité.",
+      "subtitle": "Découvrez ici les stages et les offres d'emploi les plus en vogue.🔥"
+    },
+    "slider": {
+      "slide1": "Commencez votre parcours professionnel",
+      "slide2": "Apprenez auprès des meilleurs",
+      "slide3": "Développez vos compétences",
+      "slide4": "Connectez-vous aux meilleures entreprises"
+    },
+    "category": {
+      "intern_category": "Derniers stages",
+      "job_category": "Dernières offres d'emploi",
+      "cat": "CATÉGORIES POPULAIRES:",
+      "hire_msg": "Recrutement en cours",
+      "internships": "Stage",
+      "jobs": "Emploi",
+      "details": "Voir les détails"
+    },
+    "stats": {
+  "companiesHiring": "entreprises qui recrutent",
+  "newOpenings": "nouvelles offres chaque jour",
+  "activeStudents": "étudiants actifs",
+  "learners": "apprenants"
+}
+  },
+  "intern": {
+    "Filters": "Filtres",
+    "clear": "Tout effacer",
+    "Category": "Catégorie",
+    "Location": "Emplacement",
+    "WFH": "Télétravail",
+    "PT": "Temps partiel",
+    "income": "Indemnité mensuelle (₹)",
+    "SF": "Afficher les filtres",
+    "Internshipsfound": "Stages trouvés",
+    "ActivelyHiring": "Recrutement en cours",
+    "StartDate": "Date de début",
+    "Stipend": "Indemnité",
+    "Internship": "Stage",
+    "Postedrecently": "Publié récemment",
+    "ViewDetails": "Voir les détails"
+  },
+  "job": {
+    "Filters": "Filtres",
+    "clear": "Tout effacer",
+    "Category": "Catégorie",
+    "Experience": "Expérience",
+    "Location": "Emplacement",
+    "WFH": "Télétravail",
+    "PT": "Temps partiel",
+    "income": "Salaire annuel (₹ en lakhs)",
+    "SF": "Afficher les filtres",
+    "Jobsfound": "Offres d'emploi trouvées",
+    "ActivelyHiring": "Recrutement en cours",
+    "StartDate": "Date de début",
+    "Stipend": "Indemnité",
+    "Internship": "Stage",
+    "Postedrecently": "Publié récemment",
+    "ViewDetails": "Voir les détails"
+  },
+  "detail_intern": {
+    "ActivelyHiring": "Recrutement en cours",
+    "Postedon": "Publié le",
+    "About": "À propos",
+    "Visitcompanywebsite": "Visiter le site web de l'entreprise",
+    "AbouttheInternship": "À propos du stage",
+    "Whocanapply": "Qui peut postuler",
+    "AdditionalInformation": "Informations complémentaires",
+    "NumberofOpenings": "Nombre de postes à pourvoir",
+    "ApplyNow": "Postuler maintenant",
+    "Applyto": "Postuler à",
+    "YourResume": "Votre CV",
+    "Resume_sel": "Votre CV actuel sera joint à votre candidature",
+    "CL": "Lettre de motivation",
+    "intern_sel": "Pourquoi devriez-vous être sélectionné pour ce stage ?",
+    "YourAvailability": "Vos disponibilités",
+    "SubmitApplication": "Soumettre la candidature",
+    "SignUp": "Inscrivez-vous pour postuler"
+  },
+  "detail_job": {
+    "ActivelyHiring": "Recrutement en cours",
+    "Postedon": "Publié le",
+    "About": "À propos",
+    "Visitcompanywebsite": "Visiter le site web de l'entreprise",
+    "AbouttheInternship": "À propos du Emploi",
+    "Whocanapply": "Qui peut postuler",
+    "AdditionalInformation": "Informations complémentaires",
+    "NumberofOpenings": "Nombre de postes à pourvoir",
+    "ApplyNow": "Postuler maintenant",
+    "Applyto": "Postuler à",
+    "YourResume": "Votre CV",
+    "Resume_sel": "Votre CV actuel sera joint à votre candidature",
+    "CL": "Lettre de motivation",
+    "intern_sel": "Pourquoi devriez-vous être sélectionné pour ce Emploi ?",
+    "YourAvailability": "Vos disponibilités",
+    "SubmitApplication": "Soumettre la candidature",
+    "SignUp": "Inscrivez-vous pour postuler"
+  },
+  "profile": {
+    "ActiveApplications": "Candidatures actives",
+    "AcceptedApplications": "Candidatures acceptées",
+    "ViewApplications": "Voir les candidatures"
+  },
+  "application": {
+    "MyApplications": "Mes candidatures",
+    "subtitle": "Suivez et gérez toutes vos candidatures à des emplois et des stages",
+    "All": "Toutes",
+    "Pending": "En attente",
+    "Approved": "Approuvées",
+    "Rejected": "Rejetées",
+    "TotalApplications": "Nombre total de candidatures",
+    "Company&Category": "Entreprise et catégorie",
+    "Applicant": "Candidat",
+    "AppliedDate": "Date de candidature",
+    "Status": "Statut"
+  },
+  "admin": {
+    "AdminLogin": "Connexion administrateur",
+    "subt": "Accédez au tableau de bord d'administration pour gérer les stages et les candidatures",
+    "Username": "Nom d'utilisateur",
+    "Password": "Mot de passe",
+    "Signingin": "Connexion en cours",
+    "Signin": "Se connecter"
+  },
+  "adminpanel": {
+    "title": "Tableau de bord administrateur",
+    "subt": "Gérez vos offres d'emploi, stages et candidatures",
+    "stats": {
+      "totalApplications": "Nombre total de candidatures",
+      "activeJobs": "Offres d'emploi actives",
+      "activeInternships": "Stages actifs",
+      "conversionRate": "Taux de conversion"
+    },
+    "menu": {
+      "viewApplications": {
+        "title": "Voir les candidatures",
+        "description": "Consultez et gérez toutes les candidatures des candidats"
+      },
+      "postJob": {
+        "title": "Publier une offre d'emploi",
+        "description": "Créez et publiez de nouvelles offres d'emploi"
+      },
+      "postInternship": {
+        "title": "Publier un stage",
+        "description": "Créez et gérez les postes de stage"
+      },
+      "manageUsers": {
+        "title": "Gérer les utilisateurs",
+        "description": "Consultez et gérez les comptes utilisateurs"
+      },
+      "analytics": {
+        "title": "Analyses",
+        "description": "Consultez des rapports et des statistiques détaillés"
+      },
+      "settings": {
+        "title": "Paramètres",
+        "description": "Configurez les préférences du système"
+      }
+    }
+  },
+  "postintern": {
+    "title": "Publier un nouveau stage",
+    "subt": "Créez une nouvelle opportunité de stage pour les étudiants",
+    "Title": "Titre",
+    "CompanyName": "Nom de l'entreprise",
+    "Location": "Emplacement",
+    "Category": "Catégorie",
+    "AboutCompany": "À propos de l'entreprise",
+    "AboutInternship": "À propos du stage",
+    "WhoCanApply": "Qui peut postuler",
+    "Perks": "Avantages",
+    "NumberofOpenings": "Nombre de postes à pourvoir",
+    "Stipend": "Indemnité",
+    "StartDate": "Date de début",
+    "AdditionalInformation": "Informations complémentaires",
+    "PostingInternship": "Publication du stage en cours",
+    "PostInternship": "Publier le stage",
+    "internshipname": "Ex. : Stagiaire Développeur Front-end",
+    "companyname": "Ex. : Tech Solutions Inc.",
+    "place": "Ex. : Mumbai, Inde",
+    "c": "Ex. : Développement logiciel",
+    "eg_comp": "Décrivez votre entreprise...",
+    "describeinternship": "Décrivez le poste de stage...",
+    "placewca": "Critères d'éligibilité...",
+    "perklist": "Listez les avantages...",
+    "num": "Ex. : 5",
+    "sal": "Ex. : ₹15 000/mois",
+    "add": "Toute information complémentaire..."
+  },
+  "postjob": {
+    "title": "Publier une nouvelle offre d'emploi",
+    "subt": "Créez une nouvelle opportunité d'emploi pour les étudiants",
+    "Title": "Titre",
+    "CompanyName": "Nom de l'entreprise",
+    "Location": "Emplacement",
+    "Category": "Catégorie",
+    "Experience": "Expérience",
+    "AboutCompany": "À propos de l'entreprise",
+    "AboutInternship": "À propos de l'emploi",
+    "WhoCanApply": "Qui peut postuler",
+    "Perks": "Avantages",
+    "NumberofOpenings": "Nombre de postes à pourvoir",
+    "Stipend": "CTC",
+    "StartDate": "Date de début",
+    "AdditionalInformation": "Informations complémentaires",
+    "PostingInternship": "Publication de l'offre d'emploi en cours",
+    "PostInternship": "Publier l'offre d'emploi",
+    "jobname": "Ex. : Développeur Front-end",
+    "companyname": "Ex. : Tech Solutions Inc.",
+    "place": "Ex. : Mumbai, Inde",
+    "c": "Ex. : Développement logiciel",
+    "eg_comp": "Décrivez votre entreprise...",
+    "describejob": "Décrivez le poste...",
+    "placewca": "Critères d'éligibilité...",
+    "perklist": "Listez les avantages...",
+    "num": "Ex. : 5",
+    "sal": "Ex. : 10 LPA",
+    "add": "Toute information complémentaire...",
+    "exp": "Ex. : Jeune diplômé"
+  },
+  "footer": {
+    "brand": {
+      "name": "InternArea",
+      "description": "Mettre en relation les étudiants avec des opportunités de stages et d'emploi auprès des meilleures entreprises du monde."
+    },
+    "internships": {
+      "title": "Stages",
+      "software": "Développement logiciel",
+      "web": "Développement Web",
+      "dataScience": "Science des données",
+      "marketing": "Marketing",
+      "finance": "Finance",
+      "hr": "Ressources humaines"
+    },
+    "jobs": {
+      "title": "Emplois",
+      "frontend": "Développeur Front-end",
+      "backend": "Développeur Back-end",
+      "fullstack": "Développeur Full Stack",
+      "designer": "Designer UI/UX",
+      "analyst": "Analyste de données",
+      "devops": "Ingénieur DevOps"
+    },
+    "company": {
+      "title": "Entreprise",
+      "about": "À propos de nous",
+      "careers": "Carrières",
+      "contact": "Nous contacter",
+      "privacy": "Politique de confidentialité",
+      "terms": "Conditions générales"
+    },
+    "support": {
+      "title": "Assistance",
+      "help": "Centre d'aide",
+      "faq": "FAQ",
+      "report": "Signaler un problème",
+      "sitemap": "Plan du site",
+      "community": "Communauté"
+    },
+    "android": "Obtenir l'application Android",
+    "copyright": "© 2026 InternArea. Tous droits réservés."
+  },
+  "toast": {
+    "loginSuccess": "Connexion réussie",
+    "loginFailed": "Échec de la connexion",
+    "applicationSubmitted": "Candidature soumise avec succès",
+    "applicationFailed": "Échec de l'envoi de la candidature",
+    "jobPosted": "Offre d'emploi publiée avec succès",
+    "jobPostFailed": "Échec de la publication de l'offre d'emploi",
+    "internshipPosted": "Stage publié avec succès",
+    "internshipPostFailed": "Échec de la publication du stage",
+    "otpSent": "OTP envoyé avec succès",
+    "otpVerified": "OTP vérifié avec succès",
+    "invalidOtp": "OTP invalide",
+    "fillInAllDetails": "Veuillez remplir tous les champs",
+    "Invalid": "Identifiants invalides",
+    "FillCoverLetter": "Veuillez remplir la lettre de motivation avant de soumettre votre candidature",
+    "availability": "Veuillez indiquer vos disponibilités"
+  }
+}
