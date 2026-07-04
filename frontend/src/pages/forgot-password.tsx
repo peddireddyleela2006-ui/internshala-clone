@@ -26,7 +26,7 @@ export default function ForgotPassword() {
         : { phone: identifier };
 
       const response = await fetch(
-        "http://localhost:5000/api/forgot-password",
+        "https://internshala-clone-zril.onrender.com/api/forgot-password",
         {
           method: "POST",
           headers: {

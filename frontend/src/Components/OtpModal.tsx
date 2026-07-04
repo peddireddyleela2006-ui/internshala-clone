@@ -18,7 +18,7 @@ export default function OtpModal({
   const verifyOtp = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/otp/verify-otp",
+        "https://internshala-clone-zril.onrender.com/api/otp/verify-otp",
         {
           method: "POST",
           headers: {
