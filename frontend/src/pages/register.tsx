@@ -48,7 +48,7 @@ const Register = () => {
       await updateProfile(userCredential.user, {
         displayName: name,
       });
-      await fetch("http://localhost:5000/api/users/register", {
+      await fetch("https://internshala-clone-zril.onrender.com/api/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
