@@ -35,7 +35,11 @@ const Login = () => {
 
       router.push("/");
     } catch (error: any) {
-      toast.error(error.message);
+      console.log("Firebase Login Error:", error);
+      console.log("Error Code:", error.code);
+      console.log("Error Message:", error.message);
+
+      toast.error(`${error.code}: ${error.message}`);
     }
   };
 

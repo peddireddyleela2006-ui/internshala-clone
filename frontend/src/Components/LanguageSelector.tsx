@@ -62,7 +62,7 @@ export default function LanguageSelector() {
       console.log("Sending OTP to:", user.email);
 
       const response = await fetch(
-        "https://internshala-clone-zril.onrender.com/api/otp/send-otp",
+        "http://localhost:5000/api/otp/send-otp",
         {
           method: "POST",
           headers: {

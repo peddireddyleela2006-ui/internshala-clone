@@ -9,15 +9,28 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendEmail = async ({ to, subject, text }) => {
-  const info = await transporter.sendMail({
-    from: process.env.EMAIL,
-    to,
-    subject,
-    text,
-  });
+  console.log("EMAIL:", process.env.EMAIL);
+  console.log("EMAIL_PASS exists:", !!process.env.EMAIL_PASS);
 
-  console.log("Sending email to:", to);
-  console.log("Email sent:", info.response);
+  try {
+    console.log("Verifying transporter...");
+    await transporter.verify();
+    console.log("Transport verified");
+
+    console.log("Sending email...");
+
+    const info = await transporter.sendMail({
+      from: process.env.EMAIL,
+      to,
+      subject,
+      text,
+    });
+
+    console.log("Email sent:", info.response);
+  } catch (err) {
+    console.error("Email Error:", err);
+    throw err;
+  }
 };
 
 module.exports = sendEmail;

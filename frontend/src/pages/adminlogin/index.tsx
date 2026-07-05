@@ -30,7 +30,7 @@ const index = () => {
 
     try {
       setisloading(true);
-      const res = await axios.post("https://internshala-clone-zril.onrender.com/api/admin/adminlogin", formadata);
+      const res = await axios.post("http://localhost:5000/api/admin/adminlogin", formadata);
       if (res.data.success) {
         toast.success("toast.loginSuccess");
         router.push("/adminpanel");
