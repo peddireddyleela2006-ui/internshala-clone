@@ -46,11 +46,9 @@ const index = () => {
     
         try {
           setisloading(true);
-<<<<<<< HEAD
-          const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/internship`, formadata);
-=======
+
           const res = await axios.post(`https://internshala-clone-zril.onrender.com/api/internship`, formadata);
->>>>>>> 37906f8 (job details)
+
           toast.success(t("toast.internshipPosted"));
           router.push('/adminpanel')
     

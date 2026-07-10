@@ -130,11 +130,9 @@ const index = () => {
   useEffect(() => {
     const fetchdata = async () => {
       try {
-<<<<<<< HEAD
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/job`)
-=======
+
         const res = await axios.get(`https://internshala-clone-zril.onrender.com/api/job`)
->>>>>>> 37906f8 (job details)
+
         setjob(res.data)
         setfilteredjobs(res.data)
       } catch (error) {
