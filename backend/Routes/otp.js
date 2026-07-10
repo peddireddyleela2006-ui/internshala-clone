@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const transporter = require("../config/transporter");
+const resend = require("../config/resend");
 const Otp = require("../Model/Otp");
 
 router.post("/send-otp", async (req, res) => {
@@ -31,16 +31,16 @@ router.post("/send-otp", async (req, res) => {
     });
 
     // Send the email
-    await transporter.sendMail({
-      from: process.env.EMAIL,
+    await resend.emails.send({
+      from: "onboarding@resend.dev",
       to: email,
       subject: "French Language Verification OTP",
       html: `
-        <h2>French Language Verification</h2>
-        <p>Your OTP is:</p>
-        <h1>${otp}</h1>
-        <p>This OTP is valid for 5 minutes.</p>
-      `,
+    <h2>French Language Verification</h2>
+    <p>Your OTP is:</p>
+    <h1>${otp}</h1>
+    <p>This OTP is valid for 5 minutes.</p>
+  `,
     });
 
     return res.json({
