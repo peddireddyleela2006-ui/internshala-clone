@@ -66,7 +66,11 @@ const index = () => {
     useEffect(() => {
         const fetchdata = async () => {
             try {
+<<<<<<< HEAD
                 const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}BLIC_API_URL}/api/application`);
+=======
+                const res = await axios.get(`https://internshala-clone-zril.onrender.com/api/application`);
+>>>>>>> 37906f8 (job details)
                 setdata(res.data);
             } catch (error) {
                 console.log(error);

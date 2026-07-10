@@ -73,7 +73,9 @@ const index = () => {
   useEffect(() => {
     const fetchdata = async () => {
       try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/internship/${id}`)
+
+        const res = await axios.get(`https://internshala-clone-zril.onrender.com/api/internship/${id}`)
+
         setinternship(res.data)
         // setfilteredInternships(res.data)
       } catch (error) {
@@ -114,7 +116,9 @@ const index = () => {
         Application: id,
         availability
       }
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/application`, applicationdata);
+
+      await axios.post(`https://internshala-clone-zril.onrender.com/api/application`, applicationdata);
+
       toast.success(t("toast.applicationSubmitted"));
       router.push("/internship")
     } catch (error) {

@@ -47,7 +47,11 @@ const index = () => {
 
     try {
       setisloading(true);
+<<<<<<< HEAD
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/job`, formData);
+=======
+      const res = await axios.post(`https://internshala-clone-zril.onrender.com/api/job`, formData);
+>>>>>>> 37906f8 (job details)
       toast.success(t("toast.jobPosted"));
       router.push('/adminpanel')
 

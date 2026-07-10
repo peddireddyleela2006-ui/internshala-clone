@@ -30,7 +30,11 @@ const index = () => {
 
     try {
       setisloading(true);
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}BLIC_API_URL}/api/admin/adminlogin`, formadata);
+
+      
+      const res = await axios.post(`https://internshala-clone-zril.onrender.com/api/admin/adminlogin`, formadata);
+      console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
+
       if (res.data.success) {
         toast.success(t("toast.loginSuccess"));
         router.push("/adminpanel");

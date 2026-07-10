@@ -54,17 +54,19 @@ const getStatusColor = (status: any) => {
 const index = () => {
     const [searchTerm, setsearchTerm] = useState("");
     const [filter, setFilter] = useState("all");
-    //const user=useSelector(selectuser)
-    const user = {
-        name: "Rahul",
-        email: "xyz@gmail.com"
-    }
+    const user=useSelector(selectuser)
+    // const user = {
+    //     name: "Rahul",
+    //     email: "xyz@gmail.com"
+    // }
 
     const [data, setdata] = useState<any>([]);
       useEffect(() => {
         const fetchdata = async () => {
           try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}BLIC_API_URL}/api/application`);
+
+            const res = await axios.get(`https://internshala-clone-zril.onrender.com/api/application`);
+
             setdata(res.data);
           } catch (error) {
             console.log(error);
@@ -87,7 +89,9 @@ const index = () => {
 
     const handleacceptandreject = async (id:any,action:any) =>{
         try {
-            const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/application/${id}`,{action});
+
+            const res = await axios.put(`https://internshala-clone-zril.onrender.com/api/application/${id}`,{action});
+
             const updateapplication = data.map((app:any)=>app._id === id ? res.data.data:app)
             setdata(updateapplication);
             toast.success("Updated successfully");

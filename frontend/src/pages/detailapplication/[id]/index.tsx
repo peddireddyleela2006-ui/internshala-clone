@@ -15,7 +15,9 @@ const index = () => {
         const fetchdata = async () => {
             try {
                 setloading(true)
-                const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/application/${id}`);
+
+                const res = await axios.get(`https://internshala-clone-zril.onrender.com/api/application/${id}`);
+
                 setdata(res.data);
             } catch (error) {
                 console.log(error);
