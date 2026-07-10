@@ -4,7 +4,7 @@ import { Calendar, CheckCircle2, Mail, Tag, User, XCircle } from 'lucide-react';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
+//import { useTranslation } from 'react-i18next';
 
 interface User {
     name: string;
@@ -48,7 +48,7 @@ const getStatusColor = (status: any) => {
     }
 };
 const index = () => {
-    const { t, i18n } = useTranslation();
+    //const { t, i18n } = useTranslation();
 
     const [searchTerm, setsearchTerm] = useState("");
     const [filter, setFilter] = useState("all");
@@ -66,7 +66,7 @@ const index = () => {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const res = await axios.get("https://internshala-clone-zril.onrender.com/api/application");
+                const res = await axios.get("http://localhost:5000/api/application");
                 setdata(res.data);
             } catch (error) {
                 console.log(error);
@@ -92,9 +92,9 @@ const index = () => {
                 <div className="bg-white rounded-lg shadow-sm">
                     {/* Header */}
                     <div className="border-b border-gray-200 px-6 py-4">
-                        <h1 className="text-2xl font-bold text-gray-900"> {t("application.MyApplications")} </h1>
+                        <h1 className="text-2xl font-bold text-gray-900"> {("application.MyApplications")} </h1>
                         <p className="mt-1 text-sm text-gray-500">
-                            {t("application.subtitle")}
+                            {("application.subtitle")}
                         </p>
                     </div>
 
@@ -121,7 +121,7 @@ const index = () => {
                                         : "bg-gray-100 text-gray-800"
                                         }`}
                                 >
-                                    {t("application.All")}
+                                    {("application.All")}
                                 </button>
                                 <button
                                     onClick={() => setFilter("pending")}
@@ -130,7 +130,7 @@ const index = () => {
                                         : "bg-gray-100 text-gray-800"
                                         }`}
                                 >
-                                    {t("application.Pending")}
+                                    {("application.Pending")}
                                 </button>
                                 <button
                                     onClick={() => setFilter("approved")}
@@ -139,7 +139,7 @@ const index = () => {
                                         : "bg-gray-100 text-gray-800"
                                         }`}
                                 >
-                                    {t("application.Approved")}
+                                    {("application.Approved")}
                                 </button>
                                 <button
                                     onClick={() => setFilter("rejected")}
@@ -148,13 +148,13 @@ const index = () => {
                                         : "bg-gray-100 text-gray-800"
                                         }`}
                                 >
-                                    {t("application.Rejected")}
+                                    {("application.Rejected")}
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div className="text-black text-xl p-4">
-                        {t("application.TotalApplications")}: {filteredapplications.length}
+                        {("application.TotalApplications")}: {filteredapplications.length}
                     </div>
                     {/* Applications List */}
                     <div className="overflow-x-auto">
@@ -165,25 +165,25 @@ const index = () => {
                                         scope="col"
                                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
-                                        {t("application.Company&Category")}
+                                        {("application.Company&Category")}
                                     </th>
                                     <th
                                         scope="col"
                                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
-                                        {t("application.Applicant")}
+                                        {("application.Applicant")}
                                     </th>
                                     <th
                                         scope="col"
                                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
-                                        {t("application.AppliedDate")}
+                                        {("application.AppliedDate")}
                                     </th>
                                     <th
                                         scope="col"
                                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
-                                        {t("application.Status")}
+                                        {("application.Status")}
                                     </th>
                                 </tr>
                             </thead>

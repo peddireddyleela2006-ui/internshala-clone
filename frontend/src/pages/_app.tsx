@@ -1,15 +1,15 @@
 import Footer from "@/Components/Footer";
 import Navbar from "@/Components/Navbar";
 import "@/styles/globals.css";
-import "@/i18n";
 import type { AppProps } from "next/app";
 import { store } from "../store/store";
 import { Provider, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { auth } from "@/firebase/firebase";
 import { login, logout } from "@/Feature/Userslice";
-import { ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "@/i18n";
 export default function App({ Component, pageProps }: AppProps) {
   function AuthListener() {
     const dispatch = useDispatch();

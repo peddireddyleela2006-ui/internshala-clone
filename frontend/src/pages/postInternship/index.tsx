@@ -3,10 +3,10 @@ import { Briefcase, Calendar, DollarSign, Info, MapPin, Tags, User, Users } from
 import { useRouter } from 'next/router';
 import React, { useState } from 'react'
 import { toast } from 'react-toastify';
-import { useTranslation } from 'react-i18next';
+//import { useTranslation } from 'react-i18next';
 
 const index = () => {
-  const { t, i18n } = useTranslation();
+  //const { t, i18n } = useTranslation();
     const [formadata, setformadata] = useState({
         title: "",
         company: "",
@@ -46,7 +46,7 @@ const index = () => {
     
         try {
           setisloading(true);
-          const res = await axios.post("https://internshala-clone-zril.onrender.com/api/internship", formadata);
+          const res = await axios.post("http://localhost:5000/api/internship", formadata);
           toast.success("toast.internshipPosted");
           router.push('/adminpanel')
     
@@ -74,10 +74,10 @@ const index = () => {
         <div className="bg-white rounded-lg shadow-sm p-6">
           <div className="mb-8">
             <h1 className="text-2xl font-bold text-gray-900">
-              {t("postintern.title")}
+              {("postintern.title")}
             </h1>
             <p className="mt-2 text-sm text-gray-600">
-              {t("postintern.subt")}
+              {("postintern.subt")}
             </p>
           </div>
 
@@ -89,7 +89,7 @@ const index = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     <div className="flex items-center mb-1">
                       {/* <Briefcase className="h-4 w-4 mr-1" /> */}
-                      {t("postintern.Title")}*
+                      {("postintern.Title")}*
                     </div>
                   </label>
                   <input
@@ -98,7 +98,7 @@ const index = () => {
                     value={formadata.title}
                     onChange={handlechange}
                     className="text-black  mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    placeholder={t("postintern.internshipname")}
+                    placeholder={("postintern.internshipname")}
                   />
                 </div>
 
@@ -106,7 +106,7 @@ const index = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     <div className="flex items-center mb-1">
                       {/* <Building2 className="h-4 w-4 mr-1" /> */}
-                      {t("postintern.CompanyName")}*
+                      {("postintern.CompanyName")}*
                     </div>
                   </label>
                   <input
@@ -115,7 +115,7 @@ const index = () => {
                     value={formadata.company}
                     onChange={handlechange}
                     className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    placeholder={t("postintern.companyname")}
+                    placeholder={("postintern.companyname")}
                   />
                 </div>
               </div>
@@ -125,7 +125,7 @@ const index = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     <div className="flex items-center mb-1">
                       <MapPin className="h-4 w-4 mr-1" />
-                      {t("postintern.Location")}*
+                      {("postintern.Location")}*
                     </div>
                   </label>
                   <input
@@ -134,7 +134,7 @@ const index = () => {
                     value={formadata.location}
                     onChange={handlechange}
                     className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    placeholder={t("postintern.place")}
+                    placeholder={("postintern.place")}
                   />
                 </div>
 
@@ -142,7 +142,7 @@ const index = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     <div className="flex items-center mb-1">
                       <Tags className="h-4 w-4 mr-1" />
-                      {t("postintern.Category")}*
+                      {("postintern.Category")}*
                     </div>
                   </label>
                   <input
@@ -151,7 +151,7 @@ const index = () => {
                     value={formadata.category}
                     onChange={handlechange}
                     className=" text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    placeholder={t("postintern.c")}
+                    placeholder={("postintern.c")}
                   />
                 </div>
               </div>
@@ -163,7 +163,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Info className="h-4 w-4 mr-1" />
-                    {t("postintern.AboutCompany")}*
+                    {("postintern.AboutCompany")}*
                   </div>
                 </label>
                 <textarea
@@ -172,7 +172,7 @@ const index = () => {
                   onChange={handlechange}
                   rows={4}
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={t("postintern.eg_comp")}
+                  placeholder={("postintern.eg_comp")}
                 />
               </div>
 
@@ -180,7 +180,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Briefcase className="h-4 w-4 mr-1" />
-                    {t("postintern.AboutInternship")}*
+                    {("postintern.AboutInternship")}*
                   </div>
                 </label>
                 <textarea
@@ -189,7 +189,7 @@ const index = () => {
                   onChange={handlechange}
                   rows={4}
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={t("postintern.describeinternship")}
+                  placeholder={("postintern.describeinternship")}
                 />
               </div>
             </div>
@@ -200,7 +200,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Users className="h-4 w-4 mr-1" />
-                    {t("postintern.WhoCanApply")}*
+                    {("postintern.WhoCanApply")}*
                   </div>
                 </label>
                 <textarea
@@ -209,7 +209,7 @@ const index = () => {
                   onChange={handlechange}
                   rows={3}
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={t("postintern.placewca")}
+                  placeholder={("postintern.placewca")}
                 />
               </div>
 
@@ -217,7 +217,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Info className="h-4 w-4 mr-1" />
-                    {t("postintern.Perks")}*
+                    {("postintern.Perks")}*
                   </div>
                 </label>
                 <textarea
@@ -226,7 +226,7 @@ const index = () => {
                   onChange={handlechange}
                   rows={3}
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={t("postintern.perklist")}
+                  placeholder={("postintern.perklist")}
                 />
               </div>
             </div>
@@ -237,7 +237,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Users className="h-4 w-4 mr-1" />
-                    {t("postintern.NumberofOpenings")}*
+                    {("postintern.NumberofOpenings")}*
                   </div>
                 </label>
                 <input
@@ -247,7 +247,7 @@ const index = () => {
                   onChange={handlechange}
                   min="1"
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={t("postintern.num")}
+                  placeholder={("postintern.num")}
                 />
               </div>
 
@@ -255,7 +255,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <DollarSign className="h-4 w-4 mr-1" />
-                    {t("postintern.Stipend")}*
+                    {("postintern.Stipend")}*
                   </div>
                 </label>
                 <input
@@ -264,7 +264,7 @@ const index = () => {
                   value={formadata.stipend}
                   onChange={handlechange}
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={t("postintern.sal")}
+                  placeholder={("postintern.sal")}
                 />
               </div>
 
@@ -272,7 +272,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Calendar className="h-4 w-4 mr-1" />
-                    {t("postintern.StartDate")}*
+                    {("postintern.StartDate")}*
                   </div>
                 </label>
                 <input
@@ -288,7 +288,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Info className="h-4 w-4 mr-1" />
-                    {t("postintern.AdditionalInformation")}*
+                    {("postintern.AdditionalInformation")}*
                   </div>
                 </label>
                 <textarea
@@ -297,7 +297,7 @@ const index = () => {
                   onChange={handlechange}
                   rows={3}
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={t("postintern.add")}
+                  placeholder={("postintern.add")}
                 />
               </div>
             </div>
@@ -311,10 +311,10 @@ const index = () => {
                  {isloading ? (
                   <div className="flex items-center">
                     <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white mr-2"></div>
-                    {t("postintern.PostingInternship")}...
+                    {("postintern.PostingInternship")}...
                   </div>
                 ) : (
-                  <p>{t("postintern.PostInternship")}</p>
+                  <p>{("postintern.PostInternship")}</p>
                  ) 
                 }
               </button>

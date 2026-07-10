@@ -18,7 +18,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { selectuser } from "@/Feature/Userslice";
-import { useTranslation } from 'react-i18next';
+//import { useTranslation } from 'react-i18next';
 
 // const filteredJobs = [
 //   {
@@ -121,7 +121,7 @@ import { useTranslation } from 'react-i18next';
 //   },
 // ];
 const index = () => {
-    const { t, i18n } = useTranslation();
+    //const { t, i18n } = useTranslation();
   
   const router = useRouter();
   const { id } = router.query;
@@ -129,7 +129,7 @@ const index = () => {
   useEffect(() => {
     const fetchdata = async () => {
       try {
-        const res = await axios.get(`https://internshala-clone-zril.onrender.com/api/job/${id}`)
+        const res = await axios.get(`http://localhost:5000/api/job/${id}`)
         setjob(res.data)
         // setfilteredInternships(res.data)
       } catch (error) {
@@ -169,7 +169,7 @@ const index = () => {
         Application: id,
         availability
       }
-      await axios.post("https://internshala-clone-zril.onrender.com/api/application", applicationdata);
+      await axios.post("http://localhost:5000/api/application", applicationdata);
       toast.success("toast.applicationSubmitted");
       router.push("/job")
 
@@ -188,7 +188,7 @@ const index = () => {
         <div className="p-6 border-b">
           <div className="flex items-center space-x-2 text-blue-600 mb-4">
             <ArrowUpRight className="h-5 w-5" />
-            <span className="font-medium">{t("detail_job.ActivelyHiring")}</span>
+            <span className="font-medium">{("detail_job.ActivelyHiring")}</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             {jobdata.title}
@@ -211,21 +211,21 @@ const index = () => {
           <div className="mt-4 flex items-center space-x-2">
             <Clock className="h-4 w-4 text-green-500" />
             <span className="text-green-500 text-sm">
-              {t("detail_job.Postedon")}  {jobdata.createdAt}
+              {("detail_job.Postedon")}  {jobdata.createdAt}
             </span>
           </div>
         </div>
         {/* Company Section */}
         <div className="p-6 border-b">
           <h2 className="text-xl font-bold text-gray-900 mb-4">
-            {t("detail_job.About")} {jobdata.company}
+            {("detail_job.About")} {jobdata.company}
           </h2>
           <div className="flex items-center space-x-2 mb-4">
             <a
               href="#"
               className="text-blue-600 hover:text-blue-700 flex items-center space-x-1"
             >
-              <span>{t("detail_job.Visitcompanywebsite")}</span>
+              <span>{("detail_job.Visitcompanywebsite")}</span>
               <ExternalLink className="h-4 w-4" />
             </a>
           </div>
@@ -234,12 +234,12 @@ const index = () => {
         {/* job Details Section */}
         <div className="p-6 border-b">
           <h2 className="text-xl font-bold text-gray-900 mb-4">
-            {t("detail_job.AbouttheInternship")}
+            {("detail_job.AbouttheInternship")}
           </h2>
           <p className="text-gray-600 mb-6">{jobdata.aboutJob}</p>
 
           <h3 className="text-lg font-semibold text-gray-900 mb-2">
-            {t("detail_job.Whocanapply")}
+            {("detail_job.Whocanapply")}
           </h3>
           <p className="text-gray-600 mb-6">{jobdata.whoCanApply}</p>
 
@@ -247,12 +247,12 @@ const index = () => {
           <p className="text-gray-600 mb-6">{jobdata.perks}</p>
 
           <h3 className="text-lg font-semibold text-gray-900 mb-2">
-            {t("detail_job.AdditionalInformation")}
+            {("detail_job.AdditionalInformation")}
           </h3>
           <p className="text-gray-600 mb-6">{jobdata.AdditionalInfo}</p>
 
           <h3 className="text-lg font-semibold text-gray-900 mb-2">
-            {t("detail_job.NumberofOpenings")}
+            {("detail_job.NumberofOpenings")}
           </h3>
           <p className="text-gray-600">{jobdata.numberOfOpening}</p>
         </div>
@@ -262,7 +262,7 @@ const index = () => {
             onClick={() => setIsModalOpen(true)}
             className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-150"
           >
-           {t("detail_job.ApplyNow")}
+           {("detail_job.ApplyNow")}
           </button>
         </div>
       </div>
@@ -274,7 +274,7 @@ const index = () => {
             <div className="p-6 border-b">
               <div className="flex justify-between items-center">
                 <h2 className="text-2xl font-bold text-gray-900">
-                  {t("detail_job.Applyto")} {jobdata.company}
+                  {("detail_job.Applyto")} {jobdata.company}
                 </h2>
                 <button
                   onClick={() => setIsModalOpen(false)}
@@ -288,18 +288,18 @@ const index = () => {
               {/* Resume Section */}
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {t("detail_job.YourResume")}
+                  {("detail_job.YourResume")}
                 </h3>
                 <p className="text-gray-600">
-                  {t("detail_job.Resume_sel")}
+                  {("detail_job.Resume_sel")}
                 </p>
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {t("detial_intern.CL")}
+                  {("detial_intern.CL")}
                 </h3>
                 <p className="text-gray-600 mb-2">
-                  {t("detail_job.intern_sel")}
+                  {("detail_job.intern_sel")}
                 </p>
                 <textarea
                   value={coverLetter}
@@ -310,7 +310,7 @@ const index = () => {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {t("detail_job.YourAvailability")}
+                  {("detail_job.YourAvailability")}
                 </h3>
                 <div className="space-y-3">
                   {[
@@ -340,14 +340,14 @@ const index = () => {
                     className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
                     onClick={handlesubmitapplication}
                   >
-                    {t("detail_job.SubmitApplication")}
+                    {("detail_job.SubmitApplication")}
                   </button>
                 ) : (
                   <Link
                     href={`/`}
                     className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
                   >
-                    {t("detail_job.SignUp")}
+                    {("detail_job.SignUp")}
                   </Link>
                 )}
               </div>

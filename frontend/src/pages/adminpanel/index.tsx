@@ -4,10 +4,10 @@
 import { Mail, Briefcase, Send, Users, BarChart, Settings } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react'
-import { useTranslation } from 'react-i18next';
+//import { useTranslation } from 'react-i18next';
 
 const index = () => {
-  const { t, i18n } = useTranslation();
+  // const { t, i18n } = useTranslation();
 
   const stats = [
   {
@@ -90,9 +90,9 @@ const index = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900"> {t("adminpanel.title")} </h1>
+          <h1 className="text-2xl font-bold text-gray-900"> {("adminpanel.title")} </h1>
           <p className="mt-1 text-sm text-gray-500">
-            {t("adminpanel.subt")}
+            {("adminpanel.subt")}
           </p>
         </div>
 
@@ -107,7 +107,7 @@ const index = () => {
                 <div className="flex items-center">
                   <div className="flex-1">
                     <p className="text-sm font-medium text-gray-500 truncate">
-                      {t(stat.labelKey)}
+                      {(stat.labelKey)}
                     </p>
                     <p className="mt-1 text-3xl font-semibold text-gray-900">
                       {stat.value}
@@ -138,10 +138,10 @@ const index = () => {
                   </div>
                   <div className="ml-4">
                     <h3 className="text-lg font-medium text-gray-900">
-                      {t(item.titleKey)}
+                      {(item.titleKey)}
                     </h3>
                     <p className="mt-1 text-sm text-gray-500">
-                      {t(item.descriptionKey)}
+                      {(item.descriptionKey)}
                     </p>
                   </div>
                 </div>
