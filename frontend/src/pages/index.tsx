@@ -140,8 +140,9 @@ export default function SvgSlider() {
     const fetchdata = async () => {
       try {
         const [internshipres, jobres] = await Promise.all([
-          axios.get("http://localhost:5000/api/internship"),
-          axios.get("http://localhost:5000/api/job"),
+          axios.get("https://internshala-clone-zril.onrender.com/api/internship"),
+          axios.get("https://internshala-clone-zril.onrender.com/api/job")
+
         ]);
         setinternship(internshipres.data);
         setjob(jobres.data);
@@ -367,7 +368,7 @@ export default function SvgSlider() {
                     {t("home.category.jobs")}
                   </span>
                   <Link
-                    href={`/detailjob?q=${job._id}`}
+                    href={`/detailjob/${job._id}`}
                     className="text-blue-600 hover:text-blue-700 flex items-center gap-1"
                   >
                     {t("home.category.details")}

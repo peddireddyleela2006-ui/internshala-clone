@@ -1,5 +1,3 @@
-//this is for routing part
-
 
 import { Mail, Briefcase, Send, Users, BarChart, Settings } from 'lucide-react';
 import Link from 'next/link';
@@ -107,7 +105,7 @@ const index = () => {
                 <div className="flex items-center">
                   <div className="flex-1">
                     <p className="text-sm font-medium text-gray-500 truncate">
-                      {(stat.labelKey)}
+                      {t(stat.labelKey)}
                     </p>
                     <p className="mt-1 text-3xl font-semibold text-gray-900">
                       {stat.value}
@@ -138,10 +136,10 @@ const index = () => {
                   </div>
                   <div className="ml-4">
                     <h3 className="text-lg font-medium text-gray-900">
-                      {(item.titleKey)}
+                      {t(item.titleKey)}
                     </h3>
                     <p className="mt-1 text-sm text-gray-500">
-                      {(item.descriptionKey)}
+                      {t(item.descriptionKey)}
                     </p>
                   </div>
                 </div>
