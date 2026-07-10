@@ -30,7 +30,7 @@ const index = () => {
 
     try {
       setisloading(true);
-      const res = await axios.post("http://localhost:5000/api/admin/adminlogin", formadata);
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}BLIC_API_URL}/api/admin/adminlogin`, formadata);
       if (res.data.success) {
         toast.success("toast.loginSuccess");
         router.push("/adminpanel");
