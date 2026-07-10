@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-//import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 // const internships = [
 //   {
@@ -65,7 +65,7 @@ import { toast } from 'react-toastify';
 // ];
 
 const index = () => {
-  //const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const router = useRouter();
   const { id } = router.query;
@@ -97,11 +97,11 @@ const index = () => {
 
   const handlesubmitapplication = async () => {
     if (!coverLetter.trim()) {
-      toast.error("toast.FillCoverLetter");
+      toast.error(t("toast.FillCoverLetter"));
       return;
     }
     if (!availability.trim()) {
-      toast.error("toast.availability");
+      toast.error(t("toast.availability"));
       return;
     }
     try {
@@ -115,11 +115,11 @@ const index = () => {
         availability
       }
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/application`, applicationdata);
-      toast.success("toast.applicationSubmitted");
+      toast.success(t("toast.applicationSubmitted"));
       router.push("/internship")
     } catch (error) {
       console.error(error);
-      toast.error("toast.applicationFailed");
+      toast.error(t("toast.applicationFailed"));
     }
   }
 
@@ -130,7 +130,7 @@ const index = () => {
         <div className="p-6 border-b">
           <div className="flex items-center space-x-2 text-blue-600 mb-4">
             <ArrowUpRight className="h-5 w-5" />
-            <span className="font-medium">{("detail_intern.ActivelyHiring")}</span>
+            <span className="font-medium">{t("detail_intern.ActivelyHiring")}</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             {internshipData.title}
@@ -153,21 +153,21 @@ const index = () => {
           <div className="mt-4 flex items-center space-x-2">
             <Clock className="h-4 w-4 text-green-500" />
             <span className="text-green-500 text-sm">
-              {("detail_intern.Postedon")} {internshipData.createdAt}
+              {t("detail_intern.Postedon")} {internshipData.createdAt}
             </span>
           </div>
         </div>
         {/* Company Section */}
         <div className="p-6 border-b">
           <h2 className="text-xl font-bold text-gray-900 mb-4">
-            {("detail_intern.About")} {internshipData.company}
+            {t("detail_intern.About")} {internshipData.company}
           </h2>
           <div className="flex items-center space-x-2 mb-4">
             <a
               href="#"
               className="text-blue-600 hover:text-blue-700 flex items-center space-x-1"
             >
-              <span>{("detail_intern.Visitcompanywebsite")}</span>
+              <span>{t("detail_intern.Visitcompanywebsite")}</span>
               <ExternalLink className="h-4 w-4" />
             </a>
           </div>
@@ -176,12 +176,12 @@ const index = () => {
         {/* Internship Details Section */}
         <div className="p-6 border-b">
           <h2 className="text-xl font-bold text-gray-900 mb-4">
-            {("detail_intern.AbouttheInternship")}
+            {t("detail_intern.AbouttheInternship")}
           </h2>
           <p className="text-gray-600 mb-6">{internshipData.aboutInternship}</p>
 
           <h3 className="text-lg font-semibold text-gray-900 mb-2">
-            {("detail_intern.Whocanapply")}
+            {t("detail_intern.Whocanapply")}
           </h3>
           <p className="text-gray-600 mb-6">{internshipData.whoCanApply}</p>
 
@@ -189,12 +189,12 @@ const index = () => {
           <p className="text-gray-600 mb-6">{internshipData.perks}</p>
 
           <h3 className="text-lg font-semibold text-gray-900 mb-2">
-            {("detail_intern.AdditionalInformation")}
+            {t("detail_intern.AdditionalInformation")}
           </h3>
           <p className="text-gray-600 mb-6">{internshipData.additionalInfo}</p>
 
           <h3 className="text-lg font-semibold text-gray-900 mb-2">
-            {("detail_intern.NumberofOpenings")}
+            {t("detail_intern.NumberofOpenings")}
           </h3>
           <p className="text-gray-600">{internshipData.numberOfOpenings}</p>
         </div>
@@ -204,7 +204,7 @@ const index = () => {
             onClick={() => setIsModalOpen(true)}
             className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-150"
           >
-            {("detail_intern.ApplyNow")}
+            {t("detail_intern.ApplyNow")}
           </button>
         </div>
       </div>
@@ -216,7 +216,7 @@ const index = () => {
             <div className="p-6 border-b">
               <div className="flex justify-between items-center">
                 <h2 className="text-2xl font-bold text-gray-900">
-                  {("detail_intern.Applyto")} {internshipData.company}
+                  {t("detail_intern.Applyto")} {internshipData.company}
                 </h2>
                 <button
                   onClick={() => setIsModalOpen(false)}
@@ -230,18 +230,18 @@ const index = () => {
               {/* Resume Section */}
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {("detail_intern.YourResume")}
+                  {t("detail_intern.YourResume")}
                 </h3>
                 <p className="text-gray-600">
-                  {("detail_intern.Resume_sel")}
+                  {t("detail_intern.Resume_sel")}
                 </p>
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {("detial_intern.CL")}
+                  {t("detial_intern.CL")}
                 </h3>
                 <p className="text-gray-600 mb-2">
-                  {("detail_intern.intern_sel")}
+                  {t("detail_intern.intern_sel")}
                 </p>
                 <textarea
                   value={coverLetter}
@@ -252,7 +252,7 @@ const index = () => {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {("detail_intern.YourAvailability")}
+                  {t("detail_intern.YourAvailability")}
                 </h3>
                 <div className="space-y-3">
                   {[
@@ -281,14 +281,14 @@ const index = () => {
                   <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
                     onClick={handlesubmitapplication}
                   >
-                    {("detail_intern.SubmitApplication")}
+                    {t("detail_intern.SubmitApplication")}
                   </button>
                 ) : (
                   <Link
                     href={`/`}
                     className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
                   >
-                    {("detail_intern.SignUp")}
+                    {t("detail_intern.SignUp")}
                   </Link>
                 )}
               </div>

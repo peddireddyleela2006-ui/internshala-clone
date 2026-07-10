@@ -14,7 +14,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const index = () => {
-  //const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   // const filteredJobs = [
   //   {
@@ -177,20 +177,20 @@ const index = () => {
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-2">
                 <Filter className="h-5 w-5 text-blue-600" />
-                <span className="font-medium text-black">{("job.Filters")}</span>
+                <span className="font-medium text-black">{t("job.Filters")}</span>
               </div>
               <button
                 onClick={clearFilters}
                 className="text-sm text-blue-600 hover:text-blue-700"
               >
-                {("job.clear")}
+                {t("job.clear")}
               </button>
             </div>
             <div className="space-y-6">
               {/* Profile/Category Filter */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  {("job.Category")}
+                  {t("job.Category")}
                 </label>
                 <input
                   type="text"
@@ -204,7 +204,7 @@ const index = () => {
               {/* Location Filter */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  {("job.Location")}
+                  {t("job.Location")}
                 </label>
                 <input
                   type="text"
@@ -218,7 +218,7 @@ const index = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  {("job.Experience")}
+                  {t("job.Experience")}
                 </label>
                 <input
                   type="text"
@@ -240,7 +240,7 @@ const index = () => {
                     onChange={handlefilterchange}
                     className="h-4 w-4 text-blue-600 rounded "
                   />
-                  <span className="text-gray-700">{("job.WFH")}</span>
+                  <span className="text-gray-700">{t("job.WFH")}</span>
                 </label>
                 <label className="flex items-center space-x-2">
                   <input
@@ -250,14 +250,14 @@ const index = () => {
                     onChange={handlefilterchange}
                     className="h-4 w-4 text-blue-600 rounded"
                   />
-                  <span className="text-gray-700">{("job.PT")}</span>
+                  <span className="text-gray-700">{t("job.PT")}</span>
                 </label>
               </div>
 
               {/* Stipend Range */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  {("job.income")}
+                  {t("job.income")}
                 </label>
                 <input
                   type="range"
@@ -283,12 +283,12 @@ const index = () => {
                 className="w-full flex items-center justify-center space-x-2 bg-white p-3 rounded-lg shadow-sm text-black"
               >
                 <Filter className="h-5 w-5" />
-                <span>{("job.SF")}</span>
+                <span>{t("job.SF")}</span>
               </button>
             </div>
             <div className="bg-white p-4 rounded-lg shadow-sm mb-4">
               <p className="text-center font-medium text-black">
-                {filteredjob.length} {("job.Jobsfound")}
+                {filteredjob.length} {t("job.Jobsfound")}
               </p>
             </div>
             <div className="space-y-4">
@@ -299,7 +299,7 @@ const index = () => {
                 >
                   <div className="flex items-center space-x-2 text-blue-600 mb-4">
                     <ArrowUpRight className="h-5 w-5" />
-                    <span className="font-medium">{("job.ActivelyHiring")}</span>
+                    <span className="font-medium">{t("job.ActivelyHiring")}</span>
                   </div>
                   <h2 className="text-xl font-bold text-gray-900 mb-2">
                     {job.title}
@@ -343,7 +343,7 @@ const index = () => {
                       href={`/detailjob/${job._id}`}
                       className="text-blue-600 hover:text-blue-700 font-medium"
                     >
-                      {("job.ViewDetails")}
+                      {t("job.ViewDetails")}
                     </Link>
                   </div>
                 </div>

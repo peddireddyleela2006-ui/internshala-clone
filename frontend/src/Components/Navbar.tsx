@@ -7,24 +7,24 @@ import { signInWithPopup, signOut } from "firebase/auth";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { selectuser } from "@/Feature/Userslice";
-//import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { Briefcase, GraduationCap } from "lucide-react";
-//import LanguageSelector from "./LanguageSelector";
+import LanguageSelector from "./LanguageSelector";
 interface User {
   name: string;
   email: string;
   photo: string;
 }
 const Navbar = () => {
-  //const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const user = useSelector(selectuser);
   const handlelogin = async () => {
     try {
       await signInWithPopup(auth, provider);
-      toast.success(("toast.loginSuccess"));
+      toast.success(t("toast.loginSuccess"));
     } catch (error) {
       console.error(error);
-      toast.error(("toast.loginFailed"));
+      toast.error(t("toast.loginFailed"));
     }
     // setuser({
     //   name: "Rahul",
@@ -36,13 +36,13 @@ const Navbar = () => {
   const handlelogout = () => {
     signOut(auth);
   };
-  // useEffect(() => {
-  //   const savedLanguage = localStorage.getItem("language");
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem("language");
 
-  //   if (savedLanguage) {
-  //     i18n.changeLanguage(savedLanguage);
-  //   }
-  // }, []);
+    if (savedLanguage) {
+      i18n.changeLanguage(savedLanguage);
+    }
+  }, []);
   return (
     <div className="relative">
       <nav className="bg-white shadow-md">
@@ -56,22 +56,26 @@ const Navbar = () => {
             </div>
             {/* Navigation Links */}
             <div className="hidden md:flex items-center space-x-8">
-              <button className="flex items-center space-x-1 text-gray-700 hover:text-blue-600">
-                <Link href={"/internship"}>
-                  <span>Internships</span>
+
+              <LanguageSelector />
+              <button className=" text-black border border-gray-300 rounded-md px-2 py-1 text-sm flex items-center space-x-1 text-gray-700 font-bold hover:text-blue-600">
+                <Link href={"/internship"} className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+                  <GraduationCap className="w-5 h-5" />
+                  <span>{t("navbar.internships")}</span>
                 </Link>
               </button>
-              <button className="flex items-center space-x-1 text-gray-700 hover:text-blue-600">
-                <Link href={"/job"}>
-                  <span>Jobs</span>
+              <button className="text-black border border-gray-300 rounded-md px-2 py-1 text-sm flex items-center space-x-1 text-gray-700 font-bold hover:text-blue-600">
+                <Link href={"/job"} className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+                  <Briefcase className="w-5 h-5" />
+                  <span>{t("navbar.jobs")}</span>
                 </Link>
               </button>
-              <div className="flex items-center bg-gray-100 rounded-full px-4 py-2">
-                <Search size={16} className="text-gray-400" />
+              <div className="flex items-center border bg-gray-100 rounded-full px-4 py-2">
+                <Search size={16} className="text-gray-400 " />
                 <input
                   type="text"
-                  placeholder="Search opportunities..."
-                  className="ml-2 bg-transparent focus:outline-none text-sm w-48"
+                  placeholder={t("navbar.search")}
+                  className="text-black ml-2 bg-transparent focus:outline-none text-sm w-48"
                 />
               </div>
             </div>
@@ -94,11 +98,17 @@ const Navbar = () => {
                     className="flex items-center w-full px-4 py-2  text-gray-700  hover:bg-gray-200 rounded-lg"
                     onClick={handlelogout}
                   >
-                    Logout
+                    {t("navbar.Logout")}
                   </button>
                 </div>
               ) : (
                 <>
+                  {/* <Link
+                    href="/login"
+                    className=" px-4 py-2 rounded-lg border border-black text-black font-bold hover:bg-blue-200 transition"
+                  >
+                    Login
+                  </Link> */}
                   <button
                     onClick={handlelogin}
                     className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2 flex items-center justify-center space-x-2 hover:bg-gray-50 "
@@ -121,17 +131,14 @@ const Navbar = () => {
                         d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                       />
                     </svg>
-                    <span className="text-gray-700">Continue with google</span>
+                    <span className="text-gray-700">{t("navbar.login")}</span>
                   </button>
-                  {/* <button className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700">
-                    {" "}
-                    <Link href={"/"}>Register</Link>
-                  </button> */}
+
                   <a
                     href="/adminlogin"
                     className="text-gray-600 hover:text-gray-800"
                   >
-                    Admin
+                    {t("navbar.admin")}
                   </a>
                 </>
               )}

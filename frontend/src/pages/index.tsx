@@ -5,7 +5,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-//import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 import {
   ArrowUpRight,
@@ -19,7 +19,7 @@ import axios from "axios";
 //import { t } from "i18next";
 
 export default function SvgSlider() {
-  //const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const categories = [
     { key: "home.categories.bigBrands" },
     { key: "home.categories.workFromHome" },
@@ -140,8 +140,8 @@ export default function SvgSlider() {
     const fetchdata = async () => {
       try {
         const [internshipres, jobres] = await Promise.all([
-          axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/internship`),
-          axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/job`),
+          axios.get("http://localhost:5000/api/internship"),
+          axios.get("http://localhost:5000/api/job"),
         ]);
         setinternship(internshipres.data);
         setjob(jobres.data);
@@ -164,9 +164,9 @@ export default function SvgSlider() {
         {/* hero section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            {("home.hero.title")}
+            {t("home.hero.title")}
           </h1>
-          <p className="text-xl text-gray-600">{("home.hero.subtitle")}</p>
+          <p className="text-xl text-gray-600">{t("home.hero.subtitle")}</p>
         </div>
         {/* Swiper section */}
         <div className="mb-16">
@@ -255,7 +255,7 @@ export default function SvgSlider() {
                   {/* Content */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <h2 className="text-4xl font-bold text-white">
-                      {(slide.titleKey)}
+                      {t(slide.titleKey)}
                     </h2>
                   </div>
                 </div>
@@ -266,11 +266,11 @@ export default function SvgSlider() {
         {/* Category section */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">
-            {("home.category.intern_category")}
+            {t("home.category.intern_category")}
           </h2>
           <div className="flex flex-wrap gap-4">
             <span className="text-gray-700 font-medium">
-              {("home.categories.label")}
+              {t("home.categories.label")}
             </span>
 
             {categories.map((category) => (
@@ -282,7 +282,7 @@ export default function SvgSlider() {
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
               >
-                {(category.key)}
+                {t(category.key)}
               </button>
             ))}
           </div>
@@ -296,7 +296,7 @@ export default function SvgSlider() {
             >
               <div className="flex items-center gap-2 text-blue-600 mb-4">
                 <ArrowUpRight size={20} />
-                <span className="font-medium">{("home.category.hire_msg")}</span>
+                <span className="font-medium">{t("home.category.hire_msg")}</span>
               </div>
               <h3 className="text-lg font-semibold mb-2 text-gray-800">
                 {internship.title}
@@ -318,13 +318,13 @@ export default function SvgSlider() {
               </div>
               <div className="flex items-center justify-between mt-6">
                 <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">
-                  {("home.category.internships")}
+                  {t("home.category.internships")}
                 </span>
                 <Link
                   href={`/detailinternship/${internship._id}`}
                   className="text-blue-600 hover:text-blue-700 flex items-center gap-1"
                 >
-                  {("home.category.details")}
+                  {t("home.category.details")}
                   <ChevronRight size={16} />
                 </Link>
               </div>
@@ -333,7 +333,7 @@ export default function SvgSlider() {
         </div>
         {/* Jobs grid   */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">{("home.category.job_category")}</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">{t("home.category.job_category")}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {filteredJobs.map((job: any, index: any) => (
               <div
@@ -342,7 +342,7 @@ export default function SvgSlider() {
               >
                 <div className="flex items-center gap-2 text-blue-600 mb-4">
                   <ArrowUpRight size={20} />
-                  <span className="font-medium">{("home.category.hire_msg")}</span>
+                  <span className="font-medium">{t("home.category.hire_msg")}</span>
                 </div>
                 <h3 className="text-lg font-semibold mb-2 text-gray-800">
                   {job.title}
@@ -364,13 +364,13 @@ export default function SvgSlider() {
                 </div>
                 <div className="flex items-center justify-between mt-6">
                   <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">
-                    {("home.category.jobs")}
+                    {t("home.category.jobs")}
                   </span>
                   <Link
-                    href={`/detailjob/${job._id}`}
+                    href={`/detailjob?q=${job._id}`}
                     className="text-blue-600 hover:text-blue-700 flex items-center gap-1"
                   >
-                    {("home.category.details")}
+                    {t("home.category.details")}
                     <ChevronRight size={16} />
                   </Link>
                 </div>
@@ -387,7 +387,7 @@ export default function SvgSlider() {
                   {stat.number}
                 </div>
                 <div className="text-gray-600">
-                  {(stat.labelKey)}
+                  {t(stat.labelKey)}
                 </div>
               </div>
             ))}

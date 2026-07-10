@@ -3,10 +3,10 @@ import { Lock, User } from 'lucide-react';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-// //import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const index = () => {
-  // const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [formadata, setformadata] = useState({
     username: "",
     password: ""
@@ -24,7 +24,7 @@ const index = () => {
     e.preventDefault();
 
     if (!formadata.username || !formadata.password) {
-      toast.error("toast.fillInAllDetails");
+      toast.error(t("toast.fillInAllDetails"));
       return;
     }
 
@@ -32,13 +32,13 @@ const index = () => {
       setisloading(true);
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}BLIC_API_URL}/api/admin/adminlogin`, formadata);
       if (res.data.success) {
-        toast.success("toast.loginSuccess");
+        toast.success(t("toast.loginSuccess"));
         router.push("/adminpanel");
       }
 
     } catch (error) {
       console.log(error);
-      toast.error("toast.Invalid")
+      toast.error(t("toast.Invalid"))
     } finally {
       setisloading(false);
     }
@@ -48,10 +48,10 @@ const index = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="text-center text-3xl font-extrabold text-gray-900">
-          {("admin.AdminLogin")}
+          {t("admin.AdminLogin")}
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          {("admin.subt")}
+          {t("admin.subt")}
         </p>
       </div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -63,7 +63,7 @@ const index = () => {
                 htmlFor="username"
                 className="block text-sm font-medium text-gray-700"
               >
-                {("admin.Username")}
+                {t("admin.Username")}
               </label>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -86,7 +86,7 @@ const index = () => {
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700"
               >
-                {("admin.Password")}
+                {t("admin.Password")}
               </label>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -113,10 +113,10 @@ const index = () => {
                 {isloading ? (
                   <div className="flex items-center">
                     <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white mr-2"></div>
-                    {("admin.Signingin")}...
+                    {t("admin.Signingin")}...
                   </div>
                 ) : (
-                  <p>{("admin.Signin")}</p>
+                  <p>{t("admin.Signin")}</p>
                 )
                 }
               </button>

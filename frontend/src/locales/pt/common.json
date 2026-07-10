@@ -1,0 +1,284 @@
+{
+  "navbar": {
+    "internships": "Estágios",
+    "jobs": "Empregos",
+    "login": "Continuar com Google",
+    "admin": "Administrador",
+    "language": "Idioma",
+    "search": "Pesquisar oportunidades...",
+    "Logout": "Sair"
+  },
+  "home": {
+    "hero": {
+      "title": "Transforme a carreira dos seus sonhos em realidade.",
+      "subtitle": "Encontre aqui os estágios e oportunidades de emprego em destaque.🔥"
+    },
+    "slider": {
+      "slide1": "Comece sua jornada profissional",
+      "slide2": "Aprenda com os melhores",
+      "slide3": "Desenvolva suas habilidades",
+      "slide4": "Conecte-se com as melhores empresas"
+    },
+    "categories": {
+      "label": "Categorias Populares",
+      "bigBrands": "Grandes Empresas",
+      "workFromHome": "Trabalho Remoto",
+      "partTime": "Meio Período",
+      "mba": "MBA",
+      "engineering": "Engenharia",
+      "media": "Mídia",
+      "design": "Design",
+      "dataScience": "Ciência de Dados"
+    },
+    "category": {
+      "intern_category": "Últimos estágios",
+      "job_category": "Últimas oportunidades de emprego",
+      "cat": "CATEGORIAS POPULARES:",
+      "hire_msg": "Contratação ativa",
+      "internships": "Estágio",
+      "jobs": "Emprego",
+      "details": "Ver detalhes"
+    },
+    "stats": {
+  "companiesHiring": "empresas contratando",
+  "newOpenings": "novas vagas todos os dias",
+  "activeStudents": "estudantes ativos",
+  "learners": "aprendizes"
+}
+  },
+  "intern": {
+    "Filters": "Filtros",
+    "clear": "Limpar tudo",
+    "Category": "Categoria",
+    "Location": "Localização",
+    "WFH": "Trabalho remoto",
+    "PT": "Meio período",
+    "income": "Bolsa mensal (₹)",
+    "SF": "Mostrar filtros",
+    "Internshipsfound": "Estágios encontrados",
+    "ActivelyHiring": "Contratação ativa",
+    "StartDate": "Data de início",
+    "Stipend": "Bolsa",
+    "Internship": "Estágio",
+    "Postedrecently": "Publicado recentemente",
+    "ViewDetails": "Ver detalhes"
+  },
+  "job": {
+    "Filters": "Filtros",
+    "clear": "Limpar tudo",
+    "Category": "Categoria",
+    "Experience": "Experiência",
+    "Location": "Localização",
+    "WFH": "Trabalho remoto",
+    "PT": "Meio período",
+    "income": "Salário anual (₹ em lakhs)",
+    "SF": "Mostrar filtros",
+    "Jobsfound": "Empregos encontrados",
+    "ActivelyHiring": "Contratação ativa",
+    "StartDate": "Data de início",
+    "Stipend": "Bolsa",
+    "Internship": "Estágio",
+    "Postedrecently": "Publicado recentemente",
+    "ViewDetails": "Ver detalhes"
+  },
+  "detail_intern": {
+    "ActivelyHiring": "Contratação ativa",
+    "Postedon": "Publicado em",
+    "About": "Sobre",
+    "Visitcompanywebsite": "Visitar o site da empresa",
+    "AbouttheInternship": "Sobre o Emprego",
+    "Whocanapply": "Quem pode se candidatar",
+    "AdditionalInformation": "Informações adicionais",
+    "NumberofOpenings": "Número de vagas",
+    "ApplyNow": "Candidatar-se agora",
+    "Applyto": "Candidatar-se a",
+    "YourResume": "Seu currículo",
+    "Resume_sel": "Seu currículo atual será enviado junto com a candidatura",
+    "CL": "Carta de apresentação",
+    "intern_sel": "Por que você deve ser selecionado para este Emprego?",
+    "YourAvailability": "Sua disponibilidade",
+    "SubmitApplication": "Enviar candidatura",
+    "SignUp": "Cadastre-se para se candidatar"
+  },
+  "profile": {
+    "ActiveApplications": "Candidaturas ativas",
+    "AcceptedApplications": "Candidaturas aceitas",
+    "ViewApplications": "Ver candidaturas"
+  },
+  "application": {
+    "MyApplications": "Minhas candidaturas",
+    "subtitle": "Acompanhe e gerencie todas as suas candidaturas a empregos e estágios",
+    "All": "Todas",
+    "Pending": "Pendentes",
+    "Approved": "Aprovadas",
+    "Rejected": "Rejeitadas",
+    "TotalApplications": "Total de candidaturas",
+    "Company&Category": "Empresa e categoria",
+    "Applicant": "Candidato",
+    "AppliedDate": "Data da candidatura",
+    "Status": "Status"
+  },
+  "admin": {
+    "AdminLogin": "Login do administrador",
+    "subt": "Acesse o painel administrativo para gerenciar estágios e candidaturas",
+    "Username": "Nome de usuário",
+    "Password": "Senha",
+    "Signingin": "Entrando",
+    "Signin": "Entrar"
+  },
+  "adminpanel": {
+    "title": "Painel administrativo",
+    "subt": "Gerencie seus empregos, estágios e candidaturas",
+    "stats": {
+      "totalApplications": "Total de candidaturas",
+      "activeJobs": "Empregos ativos",
+      "activeInternships": "Estágios ativos",
+      "conversionRate": "Taxa de conversão"
+    },
+    "menu": {
+      "viewApplications": {
+        "title": "Ver candidaturas",
+        "description": "Visualize e gerencie todas as candidaturas dos candidatos"
+      },
+      "postJob": {
+        "title": "Publicar vaga",
+        "description": "Crie e publique novas oportunidades de emprego"
+      },
+      "postInternship": {
+        "title": "Publicar estágio",
+        "description": "Crie e gerencie vagas de estágio"
+      },
+      "manageUsers": {
+        "title": "Gerenciar usuários",
+        "description": "Visualize e gerencie as contas dos usuários"
+      },
+      "analytics": {
+        "title": "Análises",
+        "description": "Visualize relatórios e estatísticas detalhados"
+      },
+      "settings": {
+        "title": "Configurações",
+        "description": "Configure as preferências do sistema"
+      }
+    }
+  },
+  "postintern": {
+    "title": "Publicar novo estágio",
+    "subt": "Crie uma nova oportunidade de estágio para estudantes",
+    "Title": "Título",
+    "CompanyName": "Nome da empresa",
+    "Location": "Localização",
+    "Category": "Categoria",
+    "AboutCompany": "Sobre a empresa",
+    "AboutInternship": "Sobre o estágio",
+    "WhoCanApply": "Quem pode se candidatar",
+    "Perks": "Benefícios",
+    "NumberofOpenings": "Número de vagas",
+    "Stipend": "Bolsa",
+    "StartDate": "Data de início",
+    "AdditionalInformation": "Informações adicionais",
+    "PostingInternship": "Publicando estágio",
+    "PostInternship": "Publicar estágio",
+    "internshipname": "Ex.: Estagiário de Desenvolvimento Front-end",
+    "companyname": "Ex.: Tech Solutions Inc.",
+    "place": "Ex.: Mumbai, Índia",
+    "c": "Ex.: Desenvolvimento de Software",
+    "eg_comp": "Descreva sua empresa...",
+    "describeinternship": "Descreva a função do estágio...",
+    "placewca": "Critérios de elegibilidade...",
+    "perklist": "Liste os benefícios...",
+    "num": "Ex.: 5",
+    "sal": "Ex.: ₹15.000/mês",
+    "add": "Quaisquer detalhes adicionais...",
+    "exp": "Ex.: Recém-formado"
+  },
+  "postjob": {
+    "title": "Publicar novo emprego",
+    "subt": "Crie uma nova oportunidade de emprego para estudantes",
+    "Title": "Título",
+    "CompanyName": "Nome da empresa",
+    "Location": "Localização",
+    "Category": "Categoria",
+    "Experience": "Experiência",
+    "AboutCompany": "Sobre a empresa",
+    "AboutInternship": "Sobre o emprego",
+    "WhoCanApply": "Quem pode se candidatar",
+    "Perks": "Benefícios",
+    "NumberofOpenings": "Número de vagas",
+    "Stipend": "CTC",
+    "StartDate": "Data de início",
+    "AdditionalInformation": "Informações adicionais",
+    "PostingInternship": "Publicando emprego",
+    "PostInternship": "Publicar emprego",
+    "jobname": "Ex.: Desenvolvedor Front-end",
+    "companyname": "Ex.: Tech Solutions Inc.",
+    "place": "Ex.: Mumbai, Índia",
+    "c": "Ex.: Desenvolvimento de Software",
+    "eg_comp": "Descreva sua empresa...",
+    "describejob": "Descreva a função do cargo...",
+    "placewca": "Critérios de elegibilidade...",
+    "perklist": "Liste os benefícios...",
+    "num": "Ex.: 5",
+    "sal": "Ex.: 10 LPA",
+    "add": "Quaisquer detalhes adicionais..."
+  },
+  "footer": {
+    "brand": {
+      "name": "InternArea",
+      "description": "Conectando estudantes a oportunidades de estágio e emprego nas principais empresas do mundo."
+    },
+    "internships": {
+      "title": "Estágios",
+      "software": "Desenvolvimento de Software",
+      "web": "Desenvolvimento Web",
+      "dataScience": "Ciência de Dados",
+      "marketing": "Marketing",
+      "finance": "Finanças",
+      "hr": "Recursos Humanos"
+    },
+    "jobs": {
+      "title": "Empregos",
+      "frontend": "Desenvolvedor Front-end",
+      "backend": "Desenvolvedor Back-end",
+      "fullstack": "Desenvolvedor Full Stack",
+      "designer": "Designer UI/UX",
+      "analyst": "Analista de Dados",
+      "devops": "Engenheiro DevOps"
+    },
+    "company": {
+      "title": "Empresa",
+      "about": "Sobre nós",
+      "careers": "Carreiras",
+      "contact": "Fale conosco",
+      "privacy": "Política de Privacidade",
+      "terms": "Termos e Condições"
+    },
+    "support": {
+      "title": "Suporte",
+      "help": "Central de Ajuda",
+      "faq": "Perguntas Frequentes",
+      "report": "Relatar um problema",
+      "sitemap": "Mapa do Site",
+      "community": "Comunidade"
+    },
+    "android": "Obter o aplicativo para Android",
+    "copyright": "© 2026 InternArea. Todos os direitos reservados."
+  },
+  "toast": {
+    "loginSuccess": "Login realizado com sucesso",
+    "loginFailed": "Falha no login",
+    "applicationSubmitted": "Candidatura enviada com sucesso",
+    "applicationFailed": "Falha ao enviar a candidatura",
+    "jobPosted": "Vaga publicada com sucesso",
+    "jobPostFailed": "Falha ao publicar a vaga",
+    "internshipPosted": "Estágio publicado com sucesso",
+    "internshipPostFailed": "Falha ao publicar o estágio",
+    "otpSent": "OTP enviado com sucesso",
+    "otpVerified": "OTP verificado com sucesso",
+    "invalidOtp": "OTP inválido",
+    "fillInAllDetails": "Por favor, preencha todos os campos",
+    "Invalid": "Credenciais inválidas",
+    "FillCoverLetter": "Por favor, preencha a carta de apresentação antes de enviar a candidatura",
+    "availability": "Por favor, informe sua disponibilidade"
+  }
+}

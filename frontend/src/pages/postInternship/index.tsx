@@ -3,10 +3,10 @@ import { Briefcase, Calendar, DollarSign, Info, MapPin, Tags, User, Users } from
 import { useRouter } from 'next/router';
 import React, { useState } from 'react'
 import { toast } from 'react-toastify';
-//import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const index = () => {
-  //const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
     const [formadata, setformadata] = useState({
         title: "",
         company: "",
@@ -40,14 +40,14 @@ const index = () => {
         const hasemptyfiels = Object.values(formadata).some(
           value => String(value).trim() === ""
         ); if (hasemptyfiels) {
-          toast.error("toast.fillInAllDetails");
+          toast.error(t("toast.fillInAllDetails"));
           return;
         }
     
         try {
           setisloading(true);
           const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/internship`, formadata);
-          toast.success("toast.internshipPosted");
+          toast.success(t("toast.internshipPosted"));
           router.push('/adminpanel')
     
         } catch (error: any) {
@@ -62,7 +62,7 @@ const index = () => {
             console.log("Error:", error.message);
           }
     
-          toast.error("toast.internshipPostFailed");
+          toast.error(t("toast.internshipPostFailed"));
         } finally {
           setisloading(false);
         }
@@ -74,10 +74,10 @@ const index = () => {
         <div className="bg-white rounded-lg shadow-sm p-6">
           <div className="mb-8">
             <h1 className="text-2xl font-bold text-gray-900">
-              {("postintern.title")}
+              {t("postintern.title")}
             </h1>
             <p className="mt-2 text-sm text-gray-600">
-              {("postintern.subt")}
+              {t("postintern.subt")}
             </p>
           </div>
 
@@ -89,7 +89,7 @@ const index = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     <div className="flex items-center mb-1">
                       {/* <Briefcase className="h-4 w-4 mr-1" /> */}
-                      {("postintern.Title")}*
+                      {t("postintern.Title")}*
                     </div>
                   </label>
                   <input
@@ -98,7 +98,7 @@ const index = () => {
                     value={formadata.title}
                     onChange={handlechange}
                     className="text-black  mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    placeholder={("postintern.internshipname")}
+                    placeholder={t("postintern.internshipname")}
                   />
                 </div>
 
@@ -106,7 +106,7 @@ const index = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     <div className="flex items-center mb-1">
                       {/* <Building2 className="h-4 w-4 mr-1" /> */}
-                      {("postintern.CompanyName")}*
+                      {t("postintern.CompanyName")}*
                     </div>
                   </label>
                   <input
@@ -115,7 +115,7 @@ const index = () => {
                     value={formadata.company}
                     onChange={handlechange}
                     className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    placeholder={("postintern.companyname")}
+                    placeholder={t("postintern.companyname")}
                   />
                 </div>
               </div>
@@ -125,7 +125,7 @@ const index = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     <div className="flex items-center mb-1">
                       <MapPin className="h-4 w-4 mr-1" />
-                      {("postintern.Location")}*
+                      {t("postintern.Location")}*
                     </div>
                   </label>
                   <input
@@ -134,7 +134,7 @@ const index = () => {
                     value={formadata.location}
                     onChange={handlechange}
                     className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    placeholder={("postintern.place")}
+                    placeholder={t("postintern.place")}
                   />
                 </div>
 
@@ -142,7 +142,7 @@ const index = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     <div className="flex items-center mb-1">
                       <Tags className="h-4 w-4 mr-1" />
-                      {("postintern.Category")}*
+                      {t("postintern.Category")}*
                     </div>
                   </label>
                   <input
@@ -151,7 +151,7 @@ const index = () => {
                     value={formadata.category}
                     onChange={handlechange}
                     className=" text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    placeholder={("postintern.c")}
+                    placeholder={t("postintern.c")}
                   />
                 </div>
               </div>
@@ -163,7 +163,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Info className="h-4 w-4 mr-1" />
-                    {("postintern.AboutCompany")}*
+                    {t("postintern.AboutCompany")}*
                   </div>
                 </label>
                 <textarea
@@ -172,7 +172,7 @@ const index = () => {
                   onChange={handlechange}
                   rows={4}
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={("postintern.eg_comp")}
+                  placeholder={t("postintern.eg_comp")}
                 />
               </div>
 
@@ -180,7 +180,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Briefcase className="h-4 w-4 mr-1" />
-                    {("postintern.AboutInternship")}*
+                    {t("postintern.AboutInternship")}*
                   </div>
                 </label>
                 <textarea
@@ -189,7 +189,7 @@ const index = () => {
                   onChange={handlechange}
                   rows={4}
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={("postintern.describeinternship")}
+                  placeholder={t("postintern.describeinternship")}
                 />
               </div>
             </div>
@@ -200,7 +200,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Users className="h-4 w-4 mr-1" />
-                    {("postintern.WhoCanApply")}*
+                    {t("postintern.WhoCanApply")}*
                   </div>
                 </label>
                 <textarea
@@ -209,7 +209,7 @@ const index = () => {
                   onChange={handlechange}
                   rows={3}
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={("postintern.placewca")}
+                  placeholder={t("postintern.placewca")}
                 />
               </div>
 
@@ -217,7 +217,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Info className="h-4 w-4 mr-1" />
-                    {("postintern.Perks")}*
+                    {t("postintern.Perks")}*
                   </div>
                 </label>
                 <textarea
@@ -226,7 +226,7 @@ const index = () => {
                   onChange={handlechange}
                   rows={3}
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={("postintern.perklist")}
+                  placeholder={t("postintern.perklist")}
                 />
               </div>
             </div>
@@ -237,7 +237,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Users className="h-4 w-4 mr-1" />
-                    {("postintern.NumberofOpenings")}*
+                    {t("postintern.NumberofOpenings")}*
                   </div>
                 </label>
                 <input
@@ -247,7 +247,7 @@ const index = () => {
                   onChange={handlechange}
                   min="1"
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={("postintern.num")}
+                  placeholder={t("postintern.num")}
                 />
               </div>
 
@@ -255,7 +255,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <DollarSign className="h-4 w-4 mr-1" />
-                    {("postintern.Stipend")}*
+                    {t("postintern.Stipend")}*
                   </div>
                 </label>
                 <input
@@ -264,7 +264,7 @@ const index = () => {
                   value={formadata.stipend}
                   onChange={handlechange}
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={("postintern.sal")}
+                  placeholder={t("postintern.sal")}
                 />
               </div>
 
@@ -272,7 +272,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Calendar className="h-4 w-4 mr-1" />
-                    {("postintern.StartDate")}*
+                    {t("postintern.StartDate")}*
                   </div>
                 </label>
                 <input
@@ -288,7 +288,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Info className="h-4 w-4 mr-1" />
-                    {("postintern.AdditionalInformation")}*
+                    {t("postintern.AdditionalInformation")}*
                   </div>
                 </label>
                 <textarea
@@ -297,7 +297,7 @@ const index = () => {
                   onChange={handlechange}
                   rows={3}
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={("postintern.add")}
+                  placeholder={t("postintern.add")}
                 />
               </div>
             </div>
@@ -311,10 +311,10 @@ const index = () => {
                  {isloading ? (
                   <div className="flex items-center">
                     <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white mr-2"></div>
-                    {("postintern.PostingInternship")}...
+                    {t("postintern.PostingInternship")}...
                   </div>
                 ) : (
-                  <p>{("postintern.PostInternship")}</p>
+                  <p>{t("postintern.PostInternship")}</p>
                  ) 
                 }
               </button>

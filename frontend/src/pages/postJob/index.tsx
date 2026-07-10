@@ -3,10 +3,10 @@ import { Briefcase, Calendar, DollarSign, Info, MapPin, Tags, User, Users } from
 import { useRouter } from 'next/router';
 import React, { useState } from 'react'
 import { toast } from 'react-toastify';
-//import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const index = () => {
-  //const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [formData, setFormData] = useState({
     title: "",
     company: "",
@@ -41,14 +41,14 @@ const index = () => {
     const hasemptyfiels = Object.values(formData).some(
       value => String(value).trim() === ""
     ); if (hasemptyfiels) {
-      toast.error("toast.fillInAllDetails");
+      toast.error(t("toast.fillInAllDetails"));
       return;
     }
 
     try {
       setisloading(true);
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/job`, formData);
-      toast.success("toast.jobPosted");
+      toast.success(t("toast.jobPosted"));
       router.push('/adminpanel')
 
     } catch (error: any) {
@@ -63,7 +63,7 @@ const index = () => {
         console.log("Error:", error.message);
       }
 
-      toast.error("toast.jobPostFailed");
+      toast.error(t("toast.jobPostFailed"));
     } finally {
       setisloading(false);
     }
@@ -75,10 +75,10 @@ const index = () => {
         <div className="bg-white rounded-lg shadow-sm p-6">
           <div className="mb-8">
             <h1 className="text-2xl font-bold text-gray-900">
-              {("postjob.title")}
+              {t("postjob.title")}
             </h1>
             <p className="mt-2 text-sm text-gray-600">
-              {("postjob.subt")}
+              {t("postjob.subt")}
             </p>
           </div>
 
@@ -90,7 +90,7 @@ const index = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     <div className="flex items-center mb-1">
                       {/* <Briefcase className="h-4 w-4 mr-1" /> */}
-                      {("postjob.Title")}*
+                      {t("postjob.Title")}*
                     </div>
                   </label>
                   <input
@@ -99,7 +99,7 @@ const index = () => {
                     value={formData.title}
                     onChange={handlechange}
                     className="text-black  mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    placeholder={("postjob.jobname")}
+                    placeholder={t("postjob.jobname")}
                   />
                 </div>
 
@@ -107,7 +107,7 @@ const index = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     <div className="flex items-center mb-1">
                       {/* <Building2 className="h-4 w-4 mr-1" /> */}
-                      {("postjob.CompanyName")}*
+                      {t("postjob.CompanyName")}*
                     </div>
                   </label>
                   <input
@@ -116,14 +116,14 @@ const index = () => {
                     value={formData.company}
                     onChange={handlechange}
                     className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    placeholder={("postjob.companyname")}
+                    placeholder={t("postjob.companyname")}
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">
                     <div className="flex items-center mb-1">
                       {/* <Building2 className="h-4 w-4 mr-1" /> */}
-                      {("postjob.Experience")}*
+                      {t("postjob.Experience")}*
                     </div>
                   </label>
                   <input
@@ -131,7 +131,7 @@ const index = () => {
                     name="Experience"
                     value={formData.Experience}
                     onChange={handlechange}
-                    placeholder={("postjob.exp")}
+                    placeholder={t("postjob.exp")}
                     className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                   />
                 </div>
@@ -142,7 +142,7 @@ const index = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     <div className="flex items-center mb-1">
                       <MapPin className="h-4 w-4 mr-1" />
-                      {("postjob.Location")}*
+                      {t("postjob.Location")}*
                     </div>
                   </label>
                   <input
@@ -151,7 +151,7 @@ const index = () => {
                     value={formData.location}
                     onChange={handlechange}
                     className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    placeholder={("postjob.place")}
+                    placeholder={t("postjob.place")}
                   />
                 </div>
 
@@ -159,7 +159,7 @@ const index = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     <div className="flex items-center mb-1">
                       <Tags className="h-4 w-4 mr-1" />
-                      {("postjob.Category")}*
+                      {t("postjob.Category")}*
                     </div>
                   </label>
                   <input
@@ -168,7 +168,7 @@ const index = () => {
                     value={formData.category}
                     onChange={handlechange}
                     className=" text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    placeholder={("postjob.c")}
+                    placeholder={t("postjob.c")}
                   />
                 </div>
               </div>
@@ -180,7 +180,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Info className="h-4 w-4 mr-1" />
-                    {("postjob.AboutCompany")}*
+                    {t("postjob.AboutCompany")}*
                   </div>
                 </label>
                 <textarea
@@ -189,7 +189,7 @@ const index = () => {
                   onChange={handlechange}
                   rows={4}
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={("postjob.eg_comp")}
+                  placeholder={t("postjob.eg_comp")}
                 />
               </div>
 
@@ -197,7 +197,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Briefcase className="h-4 w-4 mr-1" />
-                    {("postjob.AboutInternship")}*
+                    {t("postjob.AboutInternship")}*
                   </div>
                 </label>
                 <textarea
@@ -206,7 +206,7 @@ const index = () => {
                   onChange={handlechange}
                   rows={4}
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={("postjob.describeinternship")}
+                  placeholder={t("postjob.describeinternship")}
                 />
               </div>
             </div>
@@ -217,7 +217,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Users className="h-4 w-4 mr-1" />
-                    {("postjob.WhoCanApply")}*
+                    {t("postjob.WhoCanApply")}*
                   </div>
                 </label>
                 <textarea
@@ -226,7 +226,7 @@ const index = () => {
                   onChange={handlechange}
                   rows={3}
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={("postjob.placewca")}
+                  placeholder={t("postjob.placewca")}
                 />
               </div>
 
@@ -234,7 +234,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Info className="h-4 w-4 mr-1" />
-                    {("postjob.Perks")}*
+                    {t("postjob.Perks")}*
                   </div>
                 </label>
                 <textarea
@@ -243,7 +243,7 @@ const index = () => {
                   onChange={handlechange}
                   rows={3}
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={("postjob.perklist")}
+                  placeholder={t("postjob.perklist")}
                 />
               </div>
             </div>
@@ -254,7 +254,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Users className="h-4 w-4 mr-1" />
-                    {("postjob.NumberofOpenings")}*
+                    {t("postjob.NumberofOpenings")}*
                   </div>
                 </label>
                 <input
@@ -264,7 +264,7 @@ const index = () => {
                   onChange={handlechange}
                   min="1"
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={("postjob.num")}
+                  placeholder={t("postjob.num")}
                 />
               </div>
 
@@ -272,7 +272,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <DollarSign className="h-4 w-4 mr-1" />
-                    {("postjob.CTC")}*
+                    {t("postjob.CTC")}*
                   </div>
                 </label>
                 <input
@@ -281,7 +281,7 @@ const index = () => {
                   value={formData.CTC}
                   onChange={handlechange}
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={("postjob.sal")}
+                  placeholder={t("postjob.sal")}
                 />
               </div>
 
@@ -289,7 +289,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Calendar className="h-4 w-4 mr-1" />
-                    {("postjob.StartDate")}*
+                    {t("postjob.StartDate")}*
                   </div>
                 </label>
                 <input
@@ -305,7 +305,7 @@ const index = () => {
                 <label className="block text-sm font-medium text-gray-700">
                   <div className="flex items-center mb-1">
                     <Info className="h-4 w-4 mr-1" />
-                    {("postjob.AdditionalInformation")}*
+                    {t("postjob.AdditionalInformation")}*
                   </div>
                 </label>
                 <textarea
@@ -314,7 +314,7 @@ const index = () => {
                   onChange={handlechange}
                   rows={3}
                   className="text-black mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder={("postjob.add")}
+                  placeholder={t("postjob.add")}
                 />
               </div>
             </div>
@@ -328,10 +328,10 @@ const index = () => {
                 {isloading ? (
                   <div className="flex items-center">
                     <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white mr-2"></div>
-                    {("postjob.PostingInternship")}...
+                    {t("postjob.PostingInternship")}...
                   </div>
                 ) : (
-                  <p>{("postjob.PostInternship")}</p>
+                  <p>{t("postjob.PostInternship")}</p>
                 )
                 }
               </button>
