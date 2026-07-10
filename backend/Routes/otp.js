@@ -59,5 +59,57 @@ router.post("/send-otp", async (req, res) => {
 router.get("/test", (req, res) => {
   res.send("OTP route is working");
 });
+router.post("/verify-otp", async (req, res) => {
+  try {
+    const { email, otp } = req.body;
+
+    if (!email || !otp) {
+      return res.status(400).json({
+        success: false,
+        message: "Email and OTP are required",
+      });
+    }
+
+    const record = await Otp.findOne({ email });
+
+    if (!record) {
+      return res.status(404).json({
+        success: false,
+        message: "OTP not found",
+      });
+    }
+
+    if (new Date() > record.expiresAt) {
+      await Otp.deleteOne({ email });
+
+      return res.status(400).json({
+        success: false,
+        message: "OTP has expired",
+      });
+    }
+
+    if (record.otp !== otp) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid OTP",
+      });
+    }
+
+    await Otp.deleteOne({ email });
+
+    return res.json({
+      success: true,
+      message: "OTP verified successfully",
+    });
+
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      success: false,
+      message: "OTP verification failed",
+    });
+  }
+});
 
 module.exports = router;

@@ -5,7 +5,7 @@ import { Globe } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { selectuser } from "@/Feature/Userslice";
-//import OtpModal from "./OtpModal";
+import OtpModal from "./OtpModal";
 
 const languages = [
   { code: "en", label: "English", flag: "🇺🇸" },
@@ -62,7 +62,7 @@ export default function LanguageSelector() {
       console.log("Sending OTP to:", user.email);
 
       const response = await fetch(
-        "http://localhost:5000/api/otp/send-otp",
+        `https://internshala-clone-zril.onrender.com/api/otp/send-otp`,
         {
           method: "POST",
           headers: {
@@ -116,7 +116,7 @@ export default function LanguageSelector() {
           ))}
         </div>
       )}
-      {/* <div className="text-black">
+      <div className="text-black">
         {showOtpModal && (
           <OtpModal
 
@@ -129,7 +129,7 @@ export default function LanguageSelector() {
             }}
           />
         )}
-      </div> */}
+      </div>
     </div>
   );
 }
