@@ -6,7 +6,12 @@ const User = require("../Model/User");
 
 router.post("/register", async (req, res) => {
   try {
-    const { name, email, phone, password } = req.body;
+    if (!name || !email) {
+      return res.status(400).json({
+        success: false,
+        message: "Name and email are required",
+      });
+    }
 
     if (!name || !email || !phone || !password) {
       return res.status(400).json({
@@ -26,12 +31,15 @@ router.post("/register", async (req, res) => {
       });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    let hashedPassword = "";
 
+    if (password) {
+      hashedPassword = await bcrypt.hash(password, 10);
+    }
     const user = new User({
       name,
       email,
-      phone,
+      phone: phone || "",
       password: hashedPassword,
     });
 

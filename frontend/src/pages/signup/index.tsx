@@ -105,6 +105,51 @@ const Signup = () => {
             setLoading(false);
         }
     };
+    // const handleGoogleSignup = async () => {
+    //     try {
+    //         setLoading(true);
+
+    //         const result = await signInWithPopup(auth, provider);
+
+    //         const firebaseUser = result.user;
+
+    //         try {
+    //             await axios.post(
+    //                 "https://internshala-clone-zril.onrender.com/api/user/register",
+    //                 {
+    //                     name: firebaseUser.displayName || "",
+    //                     email: firebaseUser.email,
+    //                     phone: "",
+    //                     password: "",
+    //                 }
+    //             );
+    //         } catch (error: any) {
+    //             // Ignore if user already exists
+    //             if (error.response?.data?.message !== "User already exists") {
+    //                 throw error;
+    //             }
+    //         }
+
+    //         dispatch(
+    //             login({
+    //                 uid: firebaseUser.uid,
+    //                 name: firebaseUser.displayName,
+    //                 email: firebaseUser.email,
+    //                 phone: "",
+    //                 photo: firebaseUser.photoURL,
+    //             })
+    //         );
+
+    //         toast.success("Signed in successfully!");
+
+    //         router.push("/");
+    //     } catch (error) {
+    //         console.log(error);
+    //         toast.error("Google Sign-In failed");
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
             <div className="text-black bg-white shadow-xl rounded-xl p-8 w-full max-w-md">
@@ -198,6 +243,8 @@ const Signup = () => {
                 </div>
 
                 <button
+                    type="button"
+                    // onClick={handleGoogleSignup}
                     className="w-full border py-3 rounded-lg hover:bg-gray-100 transition"
                 >
                     Continue with Google

@@ -5,11 +5,12 @@ import { auth, provider } from "../firebase/firebase";
 import { ChevronDown, ChevronUp, Search } from "lucide-react";
 import { signInWithPopup, signOut } from "firebase/auth";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
-import { selectuser } from "@/Feature/Userslice";
+import { useDispatch, useSelector } from "react-redux";
+import { login, logout, selectuser } from "@/Feature/Userslice";
 import { useTranslation } from "react-i18next";
 import { Briefcase, GraduationCap } from "lucide-react";
 import LanguageSelector from "./LanguageSelector";
+import axios from "axios";
 interface User {
   name: string;
   email: string;
@@ -18,23 +19,51 @@ interface User {
 const Navbar = () => {
   const { t, i18n } = useTranslation();
   const user = useSelector(selectuser);
+  const dispatch = useDispatch();
   const handlelogin = async () => {
     try {
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+
+      const firebaseUser = result.user;
+
+      // Try to register the user in MongoDB
+      try {
+        await axios.post(
+          "https://internshala-clone-zril.onrender.com/api/user/register",
+          {
+            name: firebaseUser.displayName || "",
+            email: firebaseUser.email,
+            phone: "",
+            password: "",
+            provider: "google",
+          }
+        );
+      } catch (error: any) {
+        // Ignore if the user already exists
+        if (error.response?.data?.message !== "User already exists") {
+          throw error;
+        }
+      }
+
+      dispatch(
+        login({
+          uid: firebaseUser.uid,
+          name: firebaseUser.displayName,
+          email: firebaseUser.email,
+          photo: firebaseUser.photoURL,
+        })
+      );
+
       toast.success(t("toast.loginSuccess"));
     } catch (error) {
       console.error(error);
       toast.error(t("toast.loginFailed"));
     }
-    // setuser({
-    //   name: "Rahul",
-    //   email: "xyz@gmail.com",
-    //   photo:
-    //     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=faces",
-    // });
   };
-  const handlelogout = () => {
-    signOut(auth);
+  const handlelogout = async () => {
+    await signOut(auth);
+    dispatch(logout());
+    toast.success("Logged out successfully");
   };
   useEffect(() => {
     const savedLanguage = localStorage.getItem("language");
@@ -151,3 +180,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+function dispatch(arg0: any) {
+  throw new Error("Function not implemented.");
+}
