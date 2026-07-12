@@ -24,18 +24,23 @@ function generatePassword(length = 10) {
 
 router.post("/request", async (req, res) => {
   try {
-    const { email } = req.body;
+    const { identifier } = req.body;
 
-    if (!email) {
+    if (!identifier) {
       return res.status(400).json({
         success: false,
-        message: "Email is required",
+        message: "Email or phone is required",
       });
     }
 
 
-    const user = await User.findOne({ email });
-
+    const user = await User.findOne({
+      $or: [
+        { email: identifier },
+        { phone: identifier }
+      ]
+    });
+    const email = user.email;
     if (!user) {
       return res.status(404).json({
         success: false,
@@ -43,7 +48,7 @@ router.post("/request", async (req, res) => {
       });
     }
 
-
+    
     const previousReset = await PasswordReset.findOne({
       email,
     });
@@ -89,17 +94,17 @@ router.post("/request", async (req, res) => {
 
 
     const mailResponse = await resend.emails.send({
-  from: "onboarding@resend.dev",
-  to: email,
-  subject: "Password Reset",
-  html: `
+      from: "onboarding@resend.dev",
+      to: email,
+      subject: "Password Reset",
+      html: `
     <h3>Your password has been reset</h3>
     <p>Your new password is:</p>
     <h2>${newPassword}</h2>
   `,
-});
+    });
 
-console.log("RESEND RESPONSE:", mailResponse);
+    console.log("RESEND RESPONSE:", mailResponse);
 
 
     return res.json({

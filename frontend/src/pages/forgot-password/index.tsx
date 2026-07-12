@@ -4,15 +4,15 @@ import { toast } from "react-toastify";
 import Link from "next/link";
 
 const ForgotPassword = () => {
-  const [email, setEmail] = useState("");
+  const [identifier, setIdentifier] = useState("");
   const [loading, setLoading] = useState(false);
 
 
   const handleReset = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!email) {
-      toast.error("Enter your email");
+    if (!identifier) {
+      toast.error("Enter your email or phone number");
       return;
     }
 
@@ -22,7 +22,7 @@ const ForgotPassword = () => {
       const response = await axios.post(
         "https://internshala-clone-zril.onrender.com/api/passwordreset/request",
         {
-          email,
+          identifier,
         }
       );
 
@@ -60,10 +60,10 @@ const ForgotPassword = () => {
         <form onSubmit={handleReset} className="space-y-4">
 
           <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e)=>setEmail(e.target.value)}
+            type="text"
+            placeholder="Email or Phone Number"
+            value={identifier}
+            onChange={(e) => setIdentifier(e.target.value)}
             className="w-full border rounded-lg px-4 py-3 text-black"
           />
 
@@ -79,7 +79,7 @@ const ForgotPassword = () => {
 
 
         <p className="text-center mt-6">
-          <Link 
+          <Link
             href="/login"
             className="text-blue-600"
           >
