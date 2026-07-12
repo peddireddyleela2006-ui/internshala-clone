@@ -3,14 +3,16 @@ import globe from "../public/globe.svg";
 import Link from "next/link";
 import { auth, provider } from "../firebase/firebase";
 import { ChevronDown, ChevronUp, Search } from "lucide-react";
-import { signInWithPopup, signOut } from "firebase/auth";
+// import { signInWithPopup, signOut } from "firebase/auth";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectuser } from "@/Feature/Userslice";
 import { useTranslation } from "react-i18next";
 import { Briefcase, GraduationCap } from "lucide-react";
 import LanguageSelector from "./LanguageSelector";
-import axios from "axios";
+// import axios from "axios";
+import { googleSignIn } from "@/utils/googleAuth";
+import { signOut } from "firebase/auth";
 interface User {
   name: string;
   email: string;
@@ -22,28 +24,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const handlelogin = async () => {
     try {
-      const result = await signInWithPopup(auth, provider);
-
-      const firebaseUser = result.user;
-
-      // Try to register the user in MongoDB
-      try {
-        await axios.post(
-          "https://internshala-clone-zril.onrender.com/api/user/register",
-          {
-            name: firebaseUser.displayName || "",
-            email: firebaseUser.email,
-            phone: "",
-            password: "",
-            provider: "google",
-          }
-        );
-      } catch (error: any) {
-        // Ignore if the user already exists
-        if (error.response?.data?.message !== "User already exists") {
-          throw error;
-        }
-      }
+      const firebaseUser = await googleSignIn();
 
       dispatch(
         login({
@@ -61,9 +42,14 @@ const Navbar = () => {
     }
   };
   const handlelogout = async () => {
-    await signOut(auth);
-    dispatch(logout());
-    toast.success("Logged out successfully");
+    try {
+      await signOut(auth);
+      dispatch(logout());
+      toast.success("Logged out successfully");
+    } catch (error) {
+      console.error(error);
+      toast.error("Logout failed");
+    }
   };
   useEffect(() => {
     const savedLanguage = localStorage.getItem("language");
