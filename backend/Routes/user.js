@@ -6,6 +6,7 @@ const User = require("../Model/User");
 
 router.post("/register", async (req, res) => {
   try {
+    const { name, email, phone, password, provider } = req.body;
     if (!name || !email) {
       return res.status(400).json({
         success: false,
@@ -13,11 +14,13 @@ router.post("/register", async (req, res) => {
       });
     }
 
-    if (!name || !email || !phone || !password) {
-      return res.status(400).json({
-        success: false,
-        message: "All fields are required",
-      });
+    if (provider !== "google") {
+      if (!phone || !password) {
+        return res.status(400).json({
+          success: false,
+          message: "All fields are required",
+        });
+      }
     }
 
     const existingUser = await User.findOne({

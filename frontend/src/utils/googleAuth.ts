@@ -18,11 +18,14 @@ export const googleSignIn = async () => {
         provider: "google",
       }
     );
-  } catch (error: any) {
-    if (error.response?.data?.message !== "User already exists") {
-      throw error;
-    }
+  }  catch (error: any) {
+  console.log("GOOGLE REGISTER ERROR:", error.response?.data);
+  console.log(error);
+
+  if (error.response?.data?.message !== "User already exists") {
+    throw error;
   }
+}
 
   return firebaseUser;
 };

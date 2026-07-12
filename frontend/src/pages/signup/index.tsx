@@ -77,6 +77,7 @@ const Signup = () => {
                     email: formData.email,
                     phone: formData.phone,
                     password: formData.password,
+                    provider: "email",
                 }
             );
 
@@ -86,6 +87,7 @@ const Signup = () => {
                     name: formData.name,
                     email: formData.email,
                     phone: formData.phone,
+
                 })
             );
 

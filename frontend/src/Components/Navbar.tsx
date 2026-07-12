@@ -24,7 +24,11 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const handlelogin = async () => {
     try {
+      console.log("1");
+
       const firebaseUser = await googleSignIn();
+
+      console.log("2");
 
       dispatch(
         login({
@@ -35,9 +39,13 @@ const Navbar = () => {
         })
       );
 
+      console.log("3");
+
       toast.success(t("toast.loginSuccess"));
+
+      console.log("4");
     } catch (error) {
-      console.error(error);
+      console.log(error);
       toast.error(t("toast.loginFailed"));
     }
   };
