@@ -31,7 +31,8 @@ const Login = () => {
       const result = parser.getResult();
 
       const deviceType = result.device.type;
-
+console.log(result);
+console.log("Device Type:", deviceType);
       if (deviceType === "mobile") {
         const now = new Date();
         const hour = now.getHours();
