@@ -7,6 +7,7 @@ const job = require("./job");
 const application = require("./application");
 const user = require("./user");
 const passwordreset = require("./passwordreset");
+const loginHistory = require("./loginHistory");
 console.log("Password reset route loaded");
 router.use("/admin", admin);
 router.use("/internship", intern);
@@ -14,5 +15,6 @@ router.use("/job", job);
 router.use("/application", application);
 router.use("/user", user);
 router.use("/passwordreset", passwordreset);
+router.use("/loginhistory", loginHistory);
 
 module.exports = router;

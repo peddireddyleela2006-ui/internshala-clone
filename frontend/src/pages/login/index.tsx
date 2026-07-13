@@ -47,7 +47,18 @@ const Login = () => {
           photo: firebaseUser.photoURL || "",
         })
       );
-
+      await fetch(
+        `https://internshala-clone-zril.onrender.com/api/loginhistory/save`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: firebaseUser.email,
+          }),
+        }
+      );
 
       toast.success("Login successful");
 
@@ -82,7 +93,18 @@ const Login = () => {
         })
       );
 
-
+      await fetch(
+        `https://internshala-clone-zril.onrender.com/api/loginhistory/save`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: firebaseUser.email,
+          }),
+        }
+      );
       toast.success("Login successful");
 
       router.push("/");
@@ -120,7 +142,7 @@ const Login = () => {
             type="email"
             placeholder="Email"
             value={email}
-            onChange={(e)=>setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full border rounded-lg px-4 py-3 text-black"
           />
 
@@ -129,7 +151,7 @@ const Login = () => {
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e)=>setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full border rounded-lg px-4 py-3 text-black"
           />
 
