@@ -47,18 +47,22 @@ const Login = () => {
           photo: firebaseUser.photoURL || "",
         })
       );
-      await fetch(
-        `https://internshala-clone-zril.onrender.com/api/loginhistory/save`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: firebaseUser.email,
-          }),
-        }
-      );
+      try {
+        await fetch(
+          `https://internshala-clone-zril.onrender.com/api/loginhistory/save`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: firebaseUser.email,
+            }),
+          }
+        );
+      } catch (err) {
+        console.error("Failed to save login history:", err);
+      }
 
       toast.success("Login successful");
 
@@ -93,18 +97,22 @@ const Login = () => {
         })
       );
 
-      await fetch(
-        `https://internshala-clone-zril.onrender.com/api/loginhistory/save`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: firebaseUser.email,
-          }),
-        }
-      );
+      try {
+        await fetch(
+          `https://internshala-clone-zril.onrender.com/api/loginhistory/save`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: firebaseUser.email,
+            }),
+          }
+        );
+      } catch (err) {
+        console.error("Failed to save login history:", err);
+      }
       toast.success("Login successful");
 
       router.push("/");
