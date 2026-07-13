@@ -4,12 +4,14 @@ interface OtpModalProps {
   email: string;
   onClose: () => void;
   onSuccess: () => void;
+  title?: string;
 }
 
 export default function OtpModal({
   email,
   onClose,
   onSuccess,
+  title = "French Verification",
 }: OtpModalProps) {
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
@@ -56,9 +58,9 @@ export default function OtpModal({
   return (
     <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
       <div className="bg-white rounded-xl p-6 w-96 shadow-xl">
-        <h2 className="text-2xl font-bold mb-4 text-center text-black">
-          French Verification
-        </h2>
+        <h2 className="text-2xl font-bold text-center mb-4 text-black">
+  {title}
+</h2>
 
         <p className="text-gray-600 text-center mb-4">
           Enter the OTP sent to

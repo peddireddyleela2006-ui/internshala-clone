@@ -9,8 +9,8 @@ import { googleSignIn } from "@/utils/googleAuth";
 
 import { useDispatch } from "react-redux";
 import { login } from "@/Feature/Userslice";
-import {UAParser} from "ua-parser-js";
-
+import { UAParser } from "ua-parser-js";
+import OtpModal from "@/Components/OtpModal";
 const Login = () => {
 
   const router = useRouter();
@@ -19,6 +19,8 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [showOtpModal, setShowOtpModal] = useState(false);
+  const [pendingUser, setPendingUser] = useState<any>(null);
 
   const handleLogin = async (
     e: React.FormEvent
@@ -31,8 +33,8 @@ const Login = () => {
       const result = parser.getResult();
 
       const deviceType = result.device.type;
-console.log(result);
-console.log("Device Type:", deviceType);
+      console.log(result);
+      console.log("Device Type:", deviceType);
       if (deviceType === "mobile") {
         const now = new Date();
         const hour = now.getHours();
@@ -55,17 +57,12 @@ console.log("Device Type:", deviceType);
         userCredential.user;
 
 
-      dispatch(
-        login({
-          uid: firebaseUser.uid,
-          email: firebaseUser.email,
-          name: firebaseUser.displayName || "",
-          photo: firebaseUser.photoURL || "",
-        })
-      );
-      try {
+      const browser = result.browser.name;
+
+      if (browser === "Chrome") {
+
         await fetch(
-          `https://internshala-clone-zril.onrender.com/api/loginhistory/save`,
+          "https://internshala-clone-zril.onrender.com/api/otp/send-otp",
           {
             method: "POST",
             headers: {
@@ -76,12 +73,40 @@ console.log("Device Type:", deviceType);
             }),
           }
         );
-      } catch (err) {
-        console.error("Failed to save login history:", err);
+
+        setPendingUser(firebaseUser);
+        setShowOtpModal(true);
+
+        return;
       }
 
-      toast.success("Login successful");
+      // All other browsers login normally
 
+      dispatch(
+        login({
+          uid: firebaseUser.uid,
+          email: firebaseUser.email,
+          name: firebaseUser.displayName || "",
+          photo: firebaseUser.photoURL || "",
+        })
+      );
+
+      try {
+        await fetch(
+          "https://internshala-clone-zril.onrender.com/api/loginhistory/save",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: firebaseUser.email,
+            }),
+          }
+        );
+      } catch { }
+
+      toast.success("Login successful");
       router.push("/");
 
 
@@ -119,18 +144,12 @@ console.log("Device Type:", deviceType);
         await googleSignIn();
 
 
-      dispatch(
-        login({
-          uid: firebaseUser.uid,
-          name: firebaseUser.displayName,
-          email: firebaseUser.email,
-          photo: firebaseUser.photoURL,
-        })
-      );
+      const browser = result.browser.name;
 
-      try {
+      if (browser === "Chrome") {
+
         await fetch(
-          `https://internshala-clone-zril.onrender.com/api/loginhistory/save`,
+          "https://internshala-clone-zril.onrender.com/api/otp/send-otp",
           {
             method: "POST",
             headers: {
@@ -141,11 +160,40 @@ console.log("Device Type:", deviceType);
             }),
           }
         );
-      } catch (err) {
-        console.error("Failed to save login history:", err);
-      }
-      toast.success("Login successful");
 
+        setPendingUser(firebaseUser);
+        setShowOtpModal(true);
+
+        return;
+      }
+
+      // All other browsers login normally
+
+      dispatch(
+        login({
+          uid: firebaseUser.uid,
+          email: firebaseUser.email,
+          name: firebaseUser.displayName || "",
+          photo: firebaseUser.photoURL || "",
+        })
+      );
+
+      try {
+        await fetch(
+          "https://internshala-clone-zril.onrender.com/api/loginhistory/save",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: firebaseUser.email,
+            }),
+          }
+        );
+      } catch { }
+
+      toast.success("Login successful");
       router.push("/");
 
 
@@ -240,7 +288,48 @@ console.log("Device Type:", deviceType);
 
 
       </div>
+      {showOtpModal && pendingUser && (
+        <OtpModal
+          title="Login Verification"
+          email={pendingUser.email}
+          onClose={() => {
+            setShowOtpModal(false);
+            auth.signOut();   // User shouldn't remain logged in
+          }}
+          onSuccess={async () => {
 
+            dispatch(
+              login({
+                uid: pendingUser.uid,
+                email: pendingUser.email,
+                name: pendingUser.displayName || "",
+                photo: pendingUser.photoURL || "",
+              })
+            );
+
+            try {
+              await fetch(
+                "https://internshala-clone-zril.onrender.com/api/loginhistory/save",
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    email: pendingUser.email,
+                  }),
+                }
+              );
+            } catch { }
+
+            setShowOtpModal(false);
+
+            toast.success("Login successful");
+
+            router.push("/");
+          }}
+        />
+      )}
     </div>
 
   );
