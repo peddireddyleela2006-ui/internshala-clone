@@ -31,10 +31,11 @@ router.post("/save", async (req, res) => {
         result.device.type.slice(1);
     }
 
-    const ipAddress =
-      req.headers["x-forwarded-for"] ||
-      req.socket.remoteAddress ||
-      req.ip;
+    const forwarded = req.headers["x-forwarded-for"];
+
+    const ipAddress = forwarded
+      ? forwarded.split(",")[0].trim()
+      : req.socket.remoteAddress || req.ip;
 
     await LoginHistory.create({
       userId: user._id,
