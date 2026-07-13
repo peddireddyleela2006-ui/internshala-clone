@@ -57,5 +57,36 @@ router.post("/save", async (req, res) => {
     });
   }
 });
+router.get("/:email", async (req, res) => {
+  try {
+    const user = await User.findOne({
+      email: req.params.email,
+    });
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    const history = await LoginHistory.find({
+      userId: user._id,
+    }).sort({ loginTime: -1 });
+
+    return res.json({
+      success: true,
+      history,
+    });
+
+  } catch (error) {
+
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+
+  }
+});
 
 module.exports = router;
