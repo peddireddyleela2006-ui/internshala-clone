@@ -9,7 +9,7 @@ import { googleSignIn } from "@/utils/googleAuth";
 
 import { useDispatch } from "react-redux";
 import { login } from "@/Feature/Userslice";
-
+import {UAParser} from "ua-parser-js";
 
 const Login = () => {
 
@@ -27,7 +27,22 @@ const Login = () => {
     e.preventDefault();
 
     try {
+      const parser = new UAParser();
+      const result = parser.getResult();
 
+      const deviceType = result.device.type;
+
+      if (deviceType === "mobile") {
+        const now = new Date();
+        const hour = now.getHours();
+
+        if (hour < 10 || hour >= 13) {
+          toast.error(
+            "Mobile login is allowed only between 10:00 AM and 1:00 PM."
+          );
+          return;
+        }
+      }
       const userCredential =
         await signInWithEmailAndPassword(
           auth,
@@ -83,7 +98,22 @@ const Login = () => {
   const handleGoogleLogin = async () => {
 
     try {
+      const parser = new UAParser();
+      const result = parser.getResult();
 
+      const deviceType = result.device.type;
+
+      if (deviceType === "mobile") {
+        const now = new Date();
+        const hour = now.getHours();
+
+        if (hour < 10 || hour >= 13) {
+          toast.error(
+            "Mobile login is allowed only between 10:00 AM and 1:00 PM."
+          );
+          return;
+        }
+      }
       const firebaseUser =
         await googleSignIn();
 

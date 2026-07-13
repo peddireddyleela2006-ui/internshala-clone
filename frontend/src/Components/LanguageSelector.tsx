@@ -95,7 +95,7 @@ export default function LanguageSelector() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 border px-3 py-2 rounded-md text-black"
+        className="flex items-center gap-2 border px-3 py-2 rounded-md text-black hover:bg-blue-300"
       >
         <Globe size={18} />
         <span>{currentLanguage.flag}</span>
