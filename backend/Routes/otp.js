@@ -6,6 +6,8 @@ const Otp = require("../Model/Otp");
 router.post("/send-otp", async (req, res) => {
   try {
     const { email } = req.body;
+    console.log("OTP request received");
+    console.log("Email:", email);
 
     if (!email) {
       return res.status(400).json({
@@ -29,19 +31,24 @@ router.post("/send-otp", async (req, res) => {
       otp,
       expiresAt,
     });
-
+    console.log("About to send OTP to:", email);
     // Send the email
-    await resend.emails.send({
+    // Send the email
+    console.log("About to send OTP to:", email);
+
+    const response = await resend.emails.send({
       from: "onboarding@resend.dev",
       to: email,
       subject: "French Language Verification OTP",
       html: `
-    <h2>French Language Verification</h2>
-    <p>Your OTP is:</p>
-    <h1>${otp}</h1>
-    <p>This OTP is valid for 5 minutes.</p>
-  `,
+<h2>French Language Verification</h2>
+<p>Your OTP is:</p>
+<h1>${otp}</h1>
+<p>This OTP is valid for 5 minutes.</p>
+`,
     });
+
+    console.log("Resend response:", response);
 
     return res.json({
       success: true,
