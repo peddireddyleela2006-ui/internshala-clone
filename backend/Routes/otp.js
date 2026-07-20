@@ -1,3 +1,4 @@
+const transporter = require("../config/transporter");
 const express = require("express");
 const router = express.Router();
 const resend = require("../config/resend");
@@ -65,6 +66,31 @@ router.post("/send-otp", async (req, res) => {
 });
 router.get("/test", (req, res) => {
   res.send("OTP route is working");
+});
+router.get("/test-email", async (req, res) => {
+  try {
+    const info = await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER, // send to yourself first
+      subject: "Nodemailer Test",
+      text: "Congratulations! Nodemailer is working.",
+    });
+
+    console.log("Email sent:", info);
+
+    res.json({
+      success: true,
+      message: "Test email sent successfully",
+    });
+  } catch (error) {
+    console.error("Email error:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to send test email",
+      error: error.message,
+    });
+  }
 });
 router.post("/verify-otp", async (req, res) => {
   try {
