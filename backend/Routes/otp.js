@@ -145,4 +145,28 @@ router.post("/verify-otp", async (req, res) => {
   }
 });
 
+router.get("/test-brevo", async (req, res) => {
+  try {
+    const info = await transporter.sendMail({
+      from: process.env.EMAIL,
+      to: process.env.EMAIL,
+      subject: "Brevo Test",
+      text: "Brevo SMTP is working",
+    });
+
+    console.log("BREVO SUCCESS:", info.messageId);
+
+    res.json({
+      success: true,
+      message: "Email sent",
+    });
+
+  } catch (error) {
+    console.error("BREVO ERROR:", error);
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+});
 module.exports = router;
