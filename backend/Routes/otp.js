@@ -37,16 +37,14 @@ router.post("/send-otp", async (req, res) => {
     // Send the email
     console.log("About to send OTP to:", email);
 
-    const response = await resend.emails.send({
-      from: "onboarding@resend.dev",
+    await transporter.sendMail({
+      from: process.env.EMAIL,
       to: email,
       subject: "French Language Verification OTP",
       html: `
-<h2>French Language Verification</h2>
-<p>Your OTP is:</p>
-<h1>${otp}</h1>
-<p>This OTP is valid for 5 minutes.</p>
-`,
+    <h2>Your OTP is: ${otp}</h2>
+    <p>This OTP expires in 5 minutes.</p>
+  `,
     });
 
     console.log("Resend response:", response);
@@ -69,9 +67,11 @@ router.get("/test", (req, res) => {
 });
 router.get("/test-email", async (req, res) => {
   try {
+    console.log("EMAIL:", process.env.EMAIL);
+    console.log("EMAIL_PASS exists:", !!process.env.EMAIL_PASS);
     const info = await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER, // send to yourself first
+      from: process.env.EMAIL,
+      to: process.env.EMAIL, // send to yourself first
       subject: "Nodemailer Test",
       text: "Congratulations! Nodemailer is working.",
     });
