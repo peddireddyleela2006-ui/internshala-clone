@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 
 const User = require("../Model/User");
 const PasswordReset = require("../Model/PasswordReset");
-const resend = require("../config/resend");
+const sendEmail = require("../services/sendEmail");
 
 function generatePassword(length = 10) {
   const characters =
@@ -40,7 +40,7 @@ router.post("/request", async (req, res) => {
         { phone: identifier }
       ]
     });
-    const email = user.email;
+
     if (!user) {
       return res.status(404).json({
         success: false,
@@ -48,7 +48,9 @@ router.post("/request", async (req, res) => {
       });
     }
 
-    
+    const email = user.email;
+
+
     const previousReset = await PasswordReset.findOne({
       email,
     });
@@ -93,8 +95,7 @@ router.post("/request", async (req, res) => {
     });
 
 
-    const mailResponse = await resend.emails.send({
-      from: "onboarding@resend.dev",
+    await sendEmail({
       to: email,
       subject: "Password Reset",
       html: `
@@ -104,7 +105,7 @@ router.post("/request", async (req, res) => {
   `,
     });
 
-    console.log("RESEND RESPONSE:", mailResponse);
+    console.log("Password reset email sent");
 
 
     return res.json({
