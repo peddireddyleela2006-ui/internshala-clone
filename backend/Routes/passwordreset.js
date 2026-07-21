@@ -1,3 +1,4 @@
+const auth = require("../config/firebaseAdmin");
 const express = require("express");
 const router = express.Router();
 
@@ -79,7 +80,11 @@ router.post("/request", async (req, res) => {
 
 
     const newPassword = generatePassword();
+    const firebaseUser = await auth.getUserByEmail(email);
 
+    await auth.updateUser(firebaseUser.uid, {
+      password: newPassword,
+    });
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
 
