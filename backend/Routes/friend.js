@@ -299,4 +299,33 @@ message:err.message
 }
 
 });
+router.get("/list/:userId", async(req,res)=>{
+
+try{
+
+const user = await User.findById(
+req.params.userId
+)
+.populate(
+"friends",
+"name email"
+);
+
+
+res.json({
+success:true,
+friends:user.friends
+});
+
+
+}catch(err){
+
+res.status(500).json({
+success:false,
+message:err.message
+});
+
+}
+
+});
 module.exports = router;
