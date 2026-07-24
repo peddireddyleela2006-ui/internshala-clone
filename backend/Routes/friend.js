@@ -104,19 +104,19 @@ router.get("/requests/:userId", async (req, res) => {
 // =========================
 
 router.put("/accept/:requestId", async (req, res) => {
-
     try {
 
         const { requestId } = req.params;
 
-
         const request = await FriendRequest.findById(requestId);
+
+        console.log("REQUEST:", request);
 
 
         if (!request) {
             return res.status(404).json({
-                success: false,
-                message: "Friend request not found",
+                success:false,
+                message:"Friend request not found"
             });
         }
 
@@ -125,60 +125,48 @@ router.put("/accept/:requestId", async (req, res) => {
         const receiver = await User.findById(request.receiver);
 
 
-        if (!sender || !receiver) {
-            return res.status(404).json({
-                success: false,
-                message: "User not found",
-            });
-        }
+        console.log("SENDER:", sender._id);
+        console.log("RECEIVER:", receiver._id);
 
 
-        // Add each other as friends
-
-        if (!sender.friends.includes(receiver._id)) {
-            sender.friends.push(receiver._id);
-        }
-
-
-        if (!receiver.friends.includes(sender._id)) {
-            receiver.friends.push(sender._id);
-        }
+        sender.friends.push(receiver._id);
+        receiver.friends.push(sender._id);
 
 
         await sender.save();
         await receiver.save();
 
 
-        // update request status
-
         request.status = "accepted";
 
         await request.save();
 
 
-        res.status(200).json({
-            success: true,
-            message: "Friend request accepted",
+        console.log("UPDATED REQUEST:", request);
+
+
+        res.json({
+            success:true,
+            message:"Friend request accepted"
         });
 
 
-    } catch (err) {
+    } catch(err){
 
-        console.error(err);
+        console.log(err);
 
         res.status(500).json({
-            success: false,
-            message: err.message,
+            success:false,
+            message:err.message
         });
 
     }
-
 });
 // =========================
 // Reject Friend Request
 // =========================
 
-router.delete("/reject/:requestId", async (req, res) => {
+router.delete("/reject/:requestId", async (req, res) => {``
 
     try {
 
