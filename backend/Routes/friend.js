@@ -205,4 +205,31 @@ router.delete("/reject/:requestId", async (req, res) => {``
     }
 
 });
+// Get Friends List
+router.get("/list/:userId", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId)
+      .populate("friends", "name email");
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      friends: user.friends,
+    });
+
+  } catch (err) {
+    console.log(err);
+
+    res.status(500).json({
+      success:false,
+      message:err.message,
+    });
+  }
+});
 module.exports = router;
