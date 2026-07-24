@@ -81,9 +81,9 @@ router.get("/requests/:userId", async (req, res) => {
     try {
 
         const requests = await FriendRequest.find({
-    receiver: req.params.userId,
-    status: "pending",
-}).populate("sender", "name email");
+            receiver: req.params.userId,
+            status: "pending",
+        }).populate("sender", "name email");
 
         res.status(200).json({
             success: true,
@@ -104,70 +104,76 @@ router.get("/requests/:userId", async (req, res) => {
 // =========================
 
 router.put("/accept/:requestId", async (req, res) => {
-  try {
-    const { requestId } = req.params;
+    try {
+        const { requestId } = req.params;
 
-    const request = await FriendRequest.findById(requestId);
+        const request = await FriendRequest.findById(requestId);
 
-    if (!request) {
-      return res.status(404).json({
-        success: false,
-        message: "Friend request not found",
-      });
+        if (!request) {
+            return res.status(404).json({
+                success: false,
+                message: "Friend request not found",
+            });
+        }
+
+        if (!sender.friends.includes(receiver._id)) {
+            sender.friends.push(receiver._id);
+        }
+
+        if (!receiver.friends.includes(sender._id)) {
+            receiver.friends.push(sender._id);
+        }
+
+        if (!sender || !receiver) {
+            return res.status(404).json({
+                success: false,
+                message: "Users not found",
+            });
+        }
+
+        console.log("BEFORE:");
+        console.log("sender friends:", sender.friends);
+        console.log("receiver friends:", receiver.friends);
+
+
+        sender.friends.push(receiver._id);
+        receiver.friends.push(sender._id);
+
+
+        await sender.save();
+        await receiver.save();
+
+
+        request.status = "accepted";
+        await request.save();
+
+
+        console.log("AFTER:");
+        console.log("sender friends:", sender.friends);
+        console.log("receiver friends:", receiver.friends);
+
+
+        res.json({
+            success: true,
+            message: "Friend request accepted",
+        });
+
+
+    } catch (err) {
+        console.log(err);
+
+        res.status(500).json({
+            success: false,
+            message: err.message,
+        });
     }
-
-    const sender = await User.findById(request.sender);
-    const receiver = await User.findById(request.receiver);
-
-    if (!sender || !receiver) {
-      return res.status(404).json({
-        success: false,
-        message: "Users not found",
-      });
-    }
-
-    console.log("BEFORE:");
-    console.log("sender friends:", sender.friends);
-    console.log("receiver friends:", receiver.friends);
-
-
-    sender.friends.push(receiver._id);
-    receiver.friends.push(sender._id);
-
-
-    await sender.save();
-    await receiver.save();
-
-
-    request.status = "accepted";
-    await request.save();
-
-
-    console.log("AFTER:");
-    console.log("sender friends:", sender.friends);
-    console.log("receiver friends:", receiver.friends);
-
-
-    res.json({
-      success: true,
-      message: "Friend request accepted",
-    });
-
-
-  } catch (err) {
-    console.log(err);
-
-    res.status(500).json({
-      success: false,
-      message: err.message,
-    });
-  }
 });
 // =========================
 // Reject Friend Request
 // =========================
 
-router.delete("/reject/:requestId", async (req, res) => {``
+router.delete("/reject/:requestId", async (req, res) => {
+    ``
 
     try {
 
@@ -178,8 +184,8 @@ router.delete("/reject/:requestId", async (req, res) => {``
 
         if (!request) {
             return res.status(404).json({
-                success:false,
-                message:"Friend request not found"
+                success: false,
+                message: "Friend request not found"
             });
         }
 
@@ -188,18 +194,18 @@ router.delete("/reject/:requestId", async (req, res) => {``
 
 
         res.status(200).json({
-            success:true,
-            message:"Friend request rejected"
+            success: true,
+            message: "Friend request rejected"
         });
 
 
-    } catch(err){
+    } catch (err) {
 
         console.error(err);
 
         res.status(500).json({
-            success:false,
-            message:err.message
+            success: false,
+            message: err.message
         });
 
     }
@@ -207,29 +213,29 @@ router.delete("/reject/:requestId", async (req, res) => {``
 });
 // Get Friends List
 router.get("/list/:userId", async (req, res) => {
-  try {
-    const user = await User.findById(req.params.userId)
-      .populate("friends", "name email");
+    try {
+        const user = await User.findById(req.params.userId)
+            .populate("friends", "name email");
 
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: "User not found",
-      });
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found",
+            });
+        }
+
+        res.json({
+            success: true,
+            friends: user.friends,
+        });
+
+    } catch (err) {
+        console.log(err);
+
+        res.status(500).json({
+            success: false,
+            message: err.message,
+        });
     }
-
-    res.json({
-      success: true,
-      friends: user.friends,
-    });
-
-  } catch (err) {
-    console.log(err);
-
-    res.status(500).json({
-      success:false,
-      message:err.message,
-    });
-  }
 });
 module.exports = router;
