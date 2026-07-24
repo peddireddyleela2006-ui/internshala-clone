@@ -121,8 +121,20 @@ router.put("/accept/:requestId", async (req, res) => {
         }
 
 
-        const sender = await User.findById(request.sender);
-        const receiver = await User.findById(request.receiver);
+        console.log("BEFORE SENDER FRIENDS:", sender.friends);
+console.log("BEFORE RECEIVER FRIENDS:", receiver.friends);
+
+
+sender.friends.push(receiver._id);
+receiver.friends.push(sender._id);
+
+
+await sender.save();
+await receiver.save();
+
+
+console.log("AFTER SENDER FRIENDS:", sender.friends);
+console.log("AFTER RECEIVER FRIENDS:", receiver.friends);
 
 
         console.log("SENDER:", sender._id);
