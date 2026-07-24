@@ -104,75 +104,64 @@ router.get("/requests/:userId", async (req, res) => {
 // =========================
 
 router.put("/accept/:requestId", async (req, res) => {
-    try {
+  try {
+    const { requestId } = req.params;
 
-        const { requestId } = req.params;
+    const request = await FriendRequest.findById(requestId);
 
-        const request = await FriendRequest.findById(requestId);
-
-        console.log("REQUEST:", request);
-
-
-        if (!request) {
-            return res.status(404).json({
-                success:false,
-                message:"Friend request not found"
-            });
-        }
-
-
-        console.log("BEFORE SENDER FRIENDS:", sender.friends);
-console.log("BEFORE RECEIVER FRIENDS:", receiver.friends);
-
-
-sender.friends.push(receiver._id);
-receiver.friends.push(sender._id);
-
-
-await sender.save();
-await receiver.save();
-
-
-console.log("AFTER SENDER FRIENDS:", sender.friends);
-console.log("AFTER RECEIVER FRIENDS:", receiver.friends);
-
-
-        console.log("SENDER:", sender._id);
-        console.log("RECEIVER:", receiver._id);
-
-
-        sender.friends.push(receiver._id);
-        receiver.friends.push(sender._id);
-
-
-        await sender.save();
-        await receiver.save();
-
-
-        request.status = "accepted";
-
-        await request.save();
-
-
-        console.log("UPDATED REQUEST:", request);
-
-
-        res.json({
-            success:true,
-            message:"Friend request accepted"
-        });
-
-
-    } catch(err){
-
-        console.log(err);
-
-        res.status(500).json({
-            success:false,
-            message:err.message
-        });
-
+    if (!request) {
+      return res.status(404).json({
+        success: false,
+        message: "Friend request not found",
+      });
     }
+
+    const sender = await User.findById(request.sender);
+    const receiver = await User.findById(request.receiver);
+
+    if (!sender || !receiver) {
+      return res.status(404).json({
+        success: false,
+        message: "Users not found",
+      });
+    }
+
+    console.log("BEFORE:");
+    console.log("sender friends:", sender.friends);
+    console.log("receiver friends:", receiver.friends);
+
+
+    sender.friends.push(receiver._id);
+    receiver.friends.push(sender._id);
+
+
+    await sender.save();
+    await receiver.save();
+
+
+    request.status = "accepted";
+    await request.save();
+
+
+    console.log("AFTER:");
+    console.log("sender friends:", sender.friends);
+    console.log("receiver friends:", receiver.friends);
+
+
+    res.json({
+      success: true,
+      message: "Friend request accepted",
+    });
+
+
+  } catch (err) {
+    console.log(err);
+
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
 });
 // =========================
 // Reject Friend Request
