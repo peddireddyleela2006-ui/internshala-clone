@@ -78,6 +78,10 @@ const Signup = () => {
                     phone: formData.phone,
                     password: formData.password,
                     provider: "email",
+
+                    firebaseUid: firebaseUser.uid,
+                    photo: firebaseUser.photoURL || ""
+
                 }
             );
 
@@ -85,9 +89,9 @@ const Signup = () => {
                 login({
                     uid: firebaseUser.uid,
                     name: formData.name,
-                    email: formData.email,
+                    email: firebaseUser.email,
                     phone: formData.phone,
-
+                    photo: firebaseUser.photoURL || "",
                 })
             );
 
@@ -108,8 +112,23 @@ const Signup = () => {
         }
     };
     const handleGoogleSignup = async () => {
+
         try {
+
             const firebaseUser = await googleSignIn();
+
+
+            // Save Google user in MongoDB
+            await axios.post(
+                "https://internshala-clone-zril.onrender.com/api/user/sync",
+                {
+                    name: firebaseUser.displayName,
+                    email: firebaseUser.email,
+                    firebaseUid: firebaseUser.uid,
+                    photo: firebaseUser.photoURL,
+                }
+            );
+
 
             dispatch(
                 login({
@@ -120,13 +139,21 @@ const Signup = () => {
                 })
             );
 
+
             toast.success("Logged in successfully");
 
+
             router.push("/");
+
+
         } catch (error) {
+
             console.log(error);
+
             toast.error("Google Sign-In failed");
+
         }
+
     };
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">

@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
+    
     name: {
       type: String,
       required: true,
@@ -31,7 +32,11 @@ const userSchema = new mongoose.Schema(
     firebaseUid: {
       type: String,
       required: false
-    }
+    },
+    photo:{
+    type:String,
+    default:""
+},
   },
   {
     timestamps: true,

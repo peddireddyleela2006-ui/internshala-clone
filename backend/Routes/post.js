@@ -237,7 +237,12 @@ router.put("/like/:id", async (req, res) => {
 // =========================
 router.post("/comment/:id", async (req, res) => {
     try {
-        const { userId, userName, comment } = req.body;
+        const {
+            userId,
+            userName,
+            userPhoto,
+            comment
+        } = req.body;
 
         if (!userId || !userName || !comment) {
             return res.status(400).json({
@@ -258,6 +263,7 @@ router.post("/comment/:id", async (req, res) => {
         post.comments.push({
             userId,
             userName,
+            userPhoto,
             comment,
         });
 
