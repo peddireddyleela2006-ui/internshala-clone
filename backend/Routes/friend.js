@@ -174,4 +174,46 @@ router.put("/accept/:requestId", async (req, res) => {
     }
 
 });
+// =========================
+// Reject Friend Request
+// =========================
+
+router.delete("/reject/:requestId", async (req, res) => {
+
+    try {
+
+        const { requestId } = req.params;
+
+        const request = await FriendRequest.findById(requestId);
+
+
+        if (!request) {
+            return res.status(404).json({
+                success:false,
+                message:"Friend request not found"
+            });
+        }
+
+
+        await FriendRequest.findByIdAndDelete(requestId);
+
+
+        res.status(200).json({
+            success:true,
+            message:"Friend request rejected"
+        });
+
+
+    } catch(err){
+
+        console.error(err);
+
+        res.status(500).json({
+            success:false,
+            message:err.message
+        });
+
+    }
+
+});
 module.exports = router;
