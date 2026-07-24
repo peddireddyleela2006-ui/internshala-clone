@@ -26,15 +26,14 @@ const Navbar = () => {
     try {
       console.log("1");
 
-      const firebaseUser = await googleSignIn();
-
-      console.log("2");
+      const { firebaseUser, mongoUser } = await googleSignIn();
 
       dispatch(
         login({
+          _id: mongoUser._id,
           uid: firebaseUser.uid,
-          name: firebaseUser.displayName,
-          email: firebaseUser.email,
+          name: mongoUser.name,
+          email: mongoUser.email,
           photo: firebaseUser.photoURL,
         })
       );

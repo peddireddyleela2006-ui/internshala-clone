@@ -2,6 +2,8 @@ import axios from "axios";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "@/firebase/firebase";
 
+const API = "https://internshala-clone-zril.onrender.com/api";
+
 export const googleSignIn = async () => {
   const result = await signInWithPopup(auth, provider);
 
@@ -16,16 +18,26 @@ export const googleSignIn = async () => {
         phone: "",
         password: "",
         provider: "google",
+        firebaseUid: firebaseUser.uid,
+        photo: firebaseUser.photoURL || "",
       }
     );
-  }  catch (error: any) {
-  console.log("GOOGLE REGISTER ERROR:", error.response?.data);
-  console.log(error);
+  } catch (error: any) {
 
-  if (error.response?.data?.message !== "User already exists") {
-    throw error;
+    console.log("GOOGLE REGISTER ERROR:", error.response?.data);
+
+    if (error.response?.data?.message !== "User already exists") {
+      throw error;
+    }
   }
-}
 
-  return firebaseUser;
+  // Fetch MongoDB user
+  const res = await axios.get(
+    `${API}/user/email/${firebaseUser.email}`
+  );
+
+  return {
+    firebaseUser,
+    mongoUser: res.data.user,
+  };
 };

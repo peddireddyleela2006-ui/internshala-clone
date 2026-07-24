@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
-    
     name: {
       type: String,
       required: true,
@@ -22,26 +21,29 @@ const userSchema = new mongoose.Schema(
 
     password: {
       type: String,
-      required: false
+      required: false,
     },
 
     lastPasswordReset: {
       type: Date,
       default: null,
     },
+
     firebaseUid: {
       type: String,
-      required: false
+      required: false,
     },
-    photo:{
-    type:String,
-    default:""
-},
+
+    friends: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   {
     timestamps: true,
-  },
-
+  }
 );
 
 module.exports = mongoose.model("User", userSchema);
