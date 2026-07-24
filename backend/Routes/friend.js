@@ -236,30 +236,58 @@ router.get("/list/:userId", async (req, res) => {
     }
 });
 // Get all users
-router.get("/users/:userId", async (req,res)=>{
-    try{
+router.get("/users/:userId", async(req,res)=>{
 
-        const users = await User.find({
-            _id:{
-                $ne:req.params.userId
-            }
-        }).select("name email friends");
+try{
+
+const currentUser = await User.findById(req.params.userId);
 
 
-        res.json({
-            success:true,
-            users
-        });
-
-
-    }catch(err){
-
-        res.status(500).json({
-            success:false,
-            message:err.message
-        });
-
+const users = await User.find({
+    _id:{
+        $ne:req.params.userId
     }
+})
+.select("name email friends");
+
+
+
+const pendingRequests = await FriendRequest.find({
+    sender:req.params.userId,
+    status:"pending"
+});
+
+
+const sentIds = pendingRequests.map(
+    r=>r.receiver.toString()
+);
+
+
+
+res.json({
+
+success:true,
+
+users,
+
+sentRequests:sentIds,
+
+friends:currentUser.friends.map(
+    id=>id.toString()
+)
+
+});
+
+
+}catch(err){
+
+res.status(500).json({
+success:false,
+message:err.message
+});
+
+}
+
 });
 router.put("/remove/:userId/:friendId", async(req,res)=>{
 

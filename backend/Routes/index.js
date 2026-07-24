@@ -9,6 +9,8 @@ const user = require("./user");
 const passwordreset = require("./passwordreset");
 const loginHistory = require("./loginHistory");
 const post = require("./post");
+const chat = require("./chat");
+
 
 console.log("Password reset route loaded");
 
@@ -20,5 +22,5 @@ router.use("/user", user);
 router.use("/passwordreset", passwordreset);
 router.use("/loginhistory", loginHistory);
 router.use("/post", post);
-
+router.use("/chat", chat);
 module.exports = router;
