@@ -104,69 +104,66 @@ router.get("/requests/:userId", async (req, res) => {
 // =========================
 
 router.put("/accept/:requestId", async (req, res) => {
-    try {
-        const { requestId } = req.params;
+  try {
 
-        const request = await FriendRequest.findById(requestId);
+    const { requestId } = req.params;
 
-        if (!request) {
-            return res.status(404).json({
-                success: false,
-                message: "Friend request not found",
-            });
-        }
+    const request = await FriendRequest.findById(requestId);
 
-        if (!sender.friends.includes(receiver._id)) {
-            sender.friends.push(receiver._id);
-        }
-
-        if (!receiver.friends.includes(sender._id)) {
-            receiver.friends.push(sender._id);
-        }
-
-        if (!sender || !receiver) {
-            return res.status(404).json({
-                success: false,
-                message: "Users not found",
-            });
-        }
-
-        console.log("BEFORE:");
-        console.log("sender friends:", sender.friends);
-        console.log("receiver friends:", receiver.friends);
-
-
-        sender.friends.push(receiver._id);
-        receiver.friends.push(sender._id);
-
-
-        await sender.save();
-        await receiver.save();
-
-
-        request.status = "accepted";
-        await request.save();
-
-
-        console.log("AFTER:");
-        console.log("sender friends:", sender.friends);
-        console.log("receiver friends:", receiver.friends);
-
-
-        res.json({
-            success: true,
-            message: "Friend request accepted",
-        });
-
-
-    } catch (err) {
-        console.log(err);
-
-        res.status(500).json({
-            success: false,
-            message: err.message,
-        });
+    if (!request) {
+      return res.status(404).json({
+        success:false,
+        message:"Friend request not found"
+      });
     }
+
+
+    const senderUser = await User.findById(request.sender);
+    const receiverUser = await User.findById(request.receiver);
+
+
+    if (!senderUser || !receiverUser) {
+      return res.status(404).json({
+        success:false,
+        message:"Users not found"
+      });
+    }
+
+
+    // prevent duplicate friends
+    if (!senderUser.friends.includes(receiverUser._id)) {
+      senderUser.friends.push(receiverUser._id);
+    }
+
+    if (!receiverUser.friends.includes(senderUser._id)) {
+      receiverUser.friends.push(senderUser._id);
+    }
+
+
+    await senderUser.save();
+    await receiverUser.save();
+
+
+    request.status = "accepted";
+    await request.save();
+
+
+    res.json({
+      success:true,
+      message:"Friend request accepted"
+    });
+
+
+  } catch(err){
+
+    console.log(err);
+
+    res.status(500).json({
+      success:false,
+      message:err.message
+    });
+
+  }
 });
 // =========================
 // Reject Friend Request
