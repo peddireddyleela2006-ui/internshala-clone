@@ -99,4 +99,79 @@ router.get("/requests/:userId", async (req, res) => {
         });
     }
 });
+// =========================
+// Accept Friend Request
+// =========================
+
+router.put("/accept/:requestId", async (req, res) => {
+
+    try {
+
+        const { requestId } = req.params;
+
+
+        const request = await FriendRequest.findById(requestId);
+
+
+        if (!request) {
+            return res.status(404).json({
+                success: false,
+                message: "Friend request not found",
+            });
+        }
+
+
+        const sender = await User.findById(request.sender);
+        const receiver = await User.findById(request.receiver);
+
+
+        if (!sender || !receiver) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found",
+            });
+        }
+
+
+        // Add each other as friends
+
+        if (!sender.friends.includes(receiver._id)) {
+            sender.friends.push(receiver._id);
+        }
+
+
+        if (!receiver.friends.includes(sender._id)) {
+            receiver.friends.push(sender._id);
+        }
+
+
+        await sender.save();
+        await receiver.save();
+
+
+        // update request status
+
+        request.status = "accepted";
+
+        await request.save();
+
+
+        res.status(200).json({
+            success: true,
+            message: "Friend request accepted",
+        });
+
+
+    } catch (err) {
+
+        console.error(err);
+
+        res.status(500).json({
+            success: false,
+            message: err.message,
+        });
+
+    }
+
+});
 module.exports = router;
