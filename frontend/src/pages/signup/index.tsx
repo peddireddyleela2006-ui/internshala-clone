@@ -112,49 +112,50 @@ const Signup = () => {
         }
     };
     const handleGoogleSignup = async () => {
+    try {
 
-        try {
+        const firebaseUser = await googleSignIn();
 
-            const firebaseUser = await googleSignIn();
-
-
-            // Save Google user in MongoDB
-            await axios.post(
-                "https://internshala-clone-zril.onrender.com/api/user/sync",
-                {
-                    name: firebaseUser.displayName,
-                    email: firebaseUser.email,
-                    firebaseUid: firebaseUser.uid,
-                    photo: firebaseUser.photoURL,
-                }
-            );
+        console.log("Google User:", firebaseUser);
 
 
-            dispatch(
-                login({
-                    uid: firebaseUser.uid,
-                    name: firebaseUser.displayName,
-                    email: firebaseUser.email,
-                    photo: firebaseUser.photoURL,
-                })
-            );
+        await axios.post(
+            "https://internshala-clone-zril.onrender.com/api/user/sync",
+            {
+                name: firebaseUser.displayName,
+                email: firebaseUser.email,
+                firebaseUid: firebaseUser.uid,
+                photo: firebaseUser.photoURL,
+            }
+        );
 
 
-            toast.success("Logged in successfully");
+        console.log("User synced");
 
 
-            router.push("/");
+        dispatch(
+            login({
+                uid: firebaseUser.uid,
+                name: firebaseUser.displayName,
+                email: firebaseUser.email,
+                photo: firebaseUser.photoURL,
+            })
+        );
 
 
-        } catch (error) {
+        toast.success("Logged in successfully");
 
-            console.log(error);
+        router.push("/");
 
-            toast.error("Google Sign-In failed");
 
-        }
+    } catch (error) {
 
-    };
+        console.log("Google login error:", error);
+
+        toast.error("Google Sign-In failed");
+
+    }
+};
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
             <div className="text-black bg-white shadow-xl rounded-xl p-8 w-full max-w-md">
