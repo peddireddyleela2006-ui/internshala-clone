@@ -192,4 +192,76 @@ router.put("/like/:id", async (req, res) => {
     });
   }
 });
+// =========================
+// Add Comment
+// =========================
+router.post("/comment/:id", async (req, res) => {
+  try {
+    const { userId, userName, comment } = req.body;
+
+    if (!userId || !userName || !comment) {
+      return res.status(400).json({
+        success: false,
+        message: "All fields are required",
+      });
+    }
+
+    const post = await Post.findById(req.params.id);
+
+    if (!post) {
+      return res.status(404).json({
+        success: false,
+        message: "Post not found",
+      });
+    }
+
+    post.comments.push({
+      userId,
+      userName,
+      comment,
+    });
+
+    await post.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Comment added successfully",
+      comments: post.comments,
+    });
+  } catch (err) {
+    console.error(err);
+
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
+  }
+});
+// =========================
+// Get Comments
+// =========================
+router.get("/comments/:id", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    if (!post) {
+      return res.status(404).json({
+        success: false,
+        message: "Post not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      comments: post.comments,
+    });
+  } catch (err) {
+    console.error(err);
+
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
+  }
+});
 module.exports = router;
