@@ -3,45 +3,79 @@ const router = express.Router();
 
 const Post = require("../Model/Post");
 
-
+const cloudinary = require("../config/cloudinary");
+const upload = require("../middleware/upload");
+const streamifier = require("streamifier");
 // =========================
 // Create Post
 // =========================
-router.post("/create", async (req, res) => {
-  try {
-    const { userId, userName, caption, mediaUrl, mediaType } = req.body;
+router.post(
+  "/create",
+  upload.single("media"),
+  async (req, res) => {
+    try {
+      const { userId, userName, caption } = req.body;
 
-    if (!userId || !userName) {
-      return res.status(400).json({
+      if (!userId || !userName) {
+        return res.status(400).json({
+          success: false,
+          message: "userId and userName are required",
+        });
+      }
+
+      let mediaUrl = "";
+      let mediaType = "";
+
+      if (req.file) {
+        const uploadResult = await new Promise((resolve, reject) => {
+          const stream = cloudinary.uploader.upload_stream(
+            {
+              folder: "public-space",
+              resource_type: "auto",
+            },
+            (error, result) => {
+              if (error) return reject(error);
+              resolve(result);
+            }
+          );
+
+          streamifier.createReadStream(req.file.buffer).pipe(stream);
+        });
+
+        mediaUrl = uploadResult.secure_url;
+
+        if (req.file.mimetype.startsWith("image")) {
+          mediaType = "image";
+        } else if (req.file.mimetype.startsWith("video")) {
+          mediaType = "video";
+        }
+      }
+
+      const newPost = new Post({
+        userId,
+        userName,
+        caption,
+        mediaUrl,
+        mediaType,
+      });
+
+      await newPost.save();
+
+      res.status(201).json({
+        success: true,
+        message: "Post created successfully",
+        post: newPost,
+      });
+    } catch (err) {
+      console.error(err);
+
+      res.status(500).json({
         success: false,
-        message: "userId and userName are required",
+        message: err.message,
       });
     }
-
-    const newPost = new Post({
-      userId,
-      userName,
-      caption,
-      mediaUrl,
-      mediaType,
-    });
-
-    await newPost.save();
-
-    res.status(201).json({
-      success: true,
-      message: "Post created successfully",
-      post: newPost,
-    });
-  } catch (err) {
-    console.error(err);
-
-    res.status(500).json({
-      success: false,
-      message: "Server Error",
-    });
   }
-});
+);
 
 
 // =========================
