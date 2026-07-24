@@ -235,4 +235,68 @@ router.get("/list/:userId", async (req, res) => {
         });
     }
 });
+// Get all users
+router.get("/users/:userId", async (req,res)=>{
+    try{
+
+        const users = await User.find({
+            _id:{
+                $ne:req.params.userId
+            }
+        }).select("name email friends");
+
+
+        res.json({
+            success:true,
+            users
+        });
+
+
+    }catch(err){
+
+        res.status(500).json({
+            success:false,
+            message:err.message
+        });
+
+    }
+});
+router.put("/remove/:userId/:friendId", async(req,res)=>{
+
+try{
+
+const user = await User.findById(req.params.userId);
+const friend = await User.findById(req.params.friendId);
+
+
+user.friends = user.friends.filter(
+(id)=>id.toString() !== friend._id.toString()
+);
+
+
+friend.friends = friend.friends.filter(
+(id)=>id.toString() !== user._id.toString()
+);
+
+
+await user.save();
+await friend.save();
+
+
+res.json({
+ success:true,
+ message:"Friend removed"
+});
+
+
+}catch(err){
+
+res.status(500).json({
+success:false,
+message:err.message
+});
+
+}
+
+});
 module.exports = router;
