@@ -137,5 +137,59 @@ router.delete("/:id", async (req, res) => {
   }
 
 });
+// =========================
+// Like / Unlike Post
+// =========================
+router.put("/like/:id", async (req, res) => {
+  try {
+    const { userId } = req.body;
 
+    if (!userId) {
+      return res.status(400).json({
+        success: false,
+        message: "userId is required",
+      });
+    }
+
+    const post = await Post.findById(req.params.id);
+
+    if (!post) {
+      return res.status(404).json({
+        success: false,
+        message: "Post not found",
+      });
+    }
+
+    const alreadyLiked = post.likes.includes(userId);
+
+    if (alreadyLiked) {
+      post.likes = post.likes.filter((id) => id !== userId);
+
+      await post.save();
+
+      return res.status(200).json({
+        success: true,
+        message: "Post unliked",
+        totalLikes: post.likes.length,
+      });
+    }
+
+    post.likes.push(userId);
+
+    await post.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Post liked",
+      totalLikes: post.likes.length,
+    });
+  } catch (err) {
+    console.error(err);
+
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
+  }
+});
 module.exports = router;
