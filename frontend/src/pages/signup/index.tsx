@@ -113,7 +113,7 @@ const Signup = () => {
     };
     const handleGoogleSignup = async () => {
         try {
-            const firebaseUser = await googleSignIn();
+            const { firebaseUser, mongoUser } = await googleSignIn();
 
             dispatch(
                 login({

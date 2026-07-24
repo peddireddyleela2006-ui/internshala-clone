@@ -140,9 +140,7 @@ const Login = () => {
           return;
         }
       }
-      const firebaseUser =
-        await googleSignIn();
-
+      const { firebaseUser, mongoUser } = await googleSignIn();
 
       const browser = result.browser.name;
 
