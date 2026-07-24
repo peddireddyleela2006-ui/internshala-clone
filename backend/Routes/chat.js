@@ -54,5 +54,44 @@ router.post("/send", async (req, res) => {
 
     }
 });
+// =======================
+// Get Conversation
+// =======================
+router.get("/:user1/:user2", async (req, res) => {
+    try {
 
+        const { user1, user2 } = req.params;
+
+        const chats = await Chat.find({
+            $or: [
+                {
+                    sender: user1,
+                    receiver: user2
+                },
+                {
+                    sender: user2,
+                    receiver: user1
+                }
+            ]
+        })
+        .sort({ createdAt: 1 })
+        .populate("sender", "name")
+        .populate("receiver", "name");
+
+        res.status(200).json({
+            success: true,
+            chats
+        });
+
+    } catch (err) {
+
+        console.error(err);
+
+        res.status(500).json({
+            success: false,
+            message: err.message
+        });
+
+    }
+});
 module.exports = router;
