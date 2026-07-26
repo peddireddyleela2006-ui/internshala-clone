@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const Post = require("../Model/Post");
-
+const User = require("../Model/User");
 const cloudinary = require("../config/cloudinary");
 const upload = require("../middleware/upload");
 const streamifier = require("streamifier");
@@ -20,7 +20,47 @@ router.post(
                 userPhoto,
                 caption,
             } = req.body;
+            // Find user
+            const user = await User.findById(userId);
 
+            if (!user) {
+                return res.status(404).json({
+                    success: false,
+                    message: "User not found",
+                });
+            }
+
+            // Number of friends
+            const friendCount = user.friends.length;
+
+            // No friends → cannot post
+            if (friendCount === 0) {
+                return res.status(403).json({
+                    success: false,
+                    message: "You need at least one friend to post.",
+                });
+            }
+
+            // More than 10 friends → unlimited posts
+            if (friendCount <= 10) {
+
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                const postsToday = await Post.countDocuments({
+                    userId,
+                    createdAt: {
+                        $gte: today,
+                    },
+                });
+
+                if (postsToday >= friendCount) {
+                    return res.status(403).json({
+                        success: false,
+                        message: `Daily limit reached. You can post only ${friendCount} time(s) today.`,
+                    });
+                }
+            }
             if (!userId || !userName) {
                 return res.status(400).json({
                     success: false,
