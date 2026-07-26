@@ -20,10 +20,16 @@ router.post(
                 userPhoto,
                 caption,
             } = req.body;
-            return res.status(400).json({
-                success: false,
-                message: "Daily posting limit reached."
-            });
+            // return res.status(400).json({
+            //     success: false,
+            //     message: "Daily posting limit reached."
+            // });
+            if (!userId || !userName) {
+                return res.status(400).json({
+                    success: false,
+                    message: "userId and userName are required",
+                });
+            }
             // Find user
             const user = await User.findById(userId);
 
@@ -35,7 +41,7 @@ router.post(
             }
 
             // Number of friends
-            const friendCount = user.friends.length;
+            const friendCount = user.friends?.length || 0;
 
             // No friends → cannot post
             if (friendCount === 0) {
