@@ -39,10 +39,17 @@ const userSchema = new mongoose.Schema(
         {
           type: mongoose.Schema.Types.ObjectId,
           ref: "User",
-        }
+        },
       ],
-      default: []
-    }
+      default: [],
+    },
+
+    // NEW: link resume with user
+    resumeId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Resume",
+      default: null,
+    },
   },
   {
     timestamps: true,
