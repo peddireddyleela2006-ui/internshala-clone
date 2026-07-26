@@ -67,6 +67,29 @@ router.post("/create", async (req, res) => {
     });
   }
 });
+router.get("/:userId", async (req, res) => {
+  try {
+    const resume = await Resume.findOne({
+      userId: req.params.userId,
+    });
 
+    if (!resume) {
+      return res.status(404).json({
+        success: false,
+        message: "Resume not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      resume,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+});
 
 module.exports = router;
