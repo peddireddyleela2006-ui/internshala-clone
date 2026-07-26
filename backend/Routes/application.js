@@ -1,19 +1,43 @@
 const express = require("express");
 const router = express.Router();
 const Application = require('../Model/Application')
+const User = require("../Model/User");
 router.post('/', async (req, res) => {
     try {
         console.log(req.body);
+        // Find the user
+        const user = await User.findById(req.body.user);
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found",
+            });
+        }
+
+        // Check subscription limit
+        if (
+            user.subscription.applicationsAllowed !== -1 &&
+            user.subscription.applicationsUsed >=
+            user.subscription.applicationsAllowed
+        ) {
+            return res.status(403).json({
+                success: false,
+                message: "Application limit reached. Please upgrade your plan.",
+            });
+        }
         const applicationdata = new Application({
             company: req.body.company,
             category: req.body.category,
             coverLetter: req.body.coverLetter,
             user: req.body.user,
             Application: req.body.Application,
-            body:req.body.body,
-            
+            body: req.body.body,
+
         })
         const data = await applicationdata.save();
+        user.subscription.applicationsUsed += 1;
+        await user.save();
         res.status(201).json(data);
     } catch (error) {
         console.log(error);

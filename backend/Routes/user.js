@@ -54,6 +54,13 @@ router.post("/register", async (req, res) => {
       password: hashedPassword,
       firebaseUid: req.body.firebaseUid,
       photo: req.body.photo || "",
+
+      subscription: {
+        plan: "Free",
+        applicationsAllowed: 1,
+        applicationsUsed: 0,
+        expiryDate: null,
+      },
     });
 
     return res.status(201).json({
@@ -74,12 +81,19 @@ router.post("/sync", async (req, res) => {
 
   try {
 
-    const {
+    user = await User.create({
       name,
       email,
       firebaseUid,
-      photo
-    } = req.body;
+      photo,
+
+      subscription: {
+        plan: "Free",
+        applicationsAllowed: 1,
+        applicationsUsed: 0,
+        expiryDate: null,
+      },
+    });
 
 
     let user = await User.findOne({

@@ -43,6 +43,24 @@ const userSchema = new mongoose.Schema(
       ],
       default: [],
     },
+    subscription: {
+      plan: {
+        type: String,
+        default: "Free",
+      },
+      applicationsAllowed: {
+        type: Number,
+        default: 1,
+      },
+      applicationsUsed: {
+        type: Number,
+        default: 0,
+      },
+      expiryDate: {
+        type: Date,
+        default: null,
+      },
+    },
 
     // NEW: link resume with user
     resumeId: {
