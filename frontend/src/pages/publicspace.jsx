@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { selectuser } from "@/Feature/Userslice";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
-//const API = "https://internshala-clone-zril.onrender.com/api";
 
 const PublicSpace = () => {
     const user = useSelector(selectuser);
@@ -32,10 +31,12 @@ const PublicSpace = () => {
 
         } catch (err) {
             console.log(err);
-            toast.error("Failed to load posts");
+
+            toast.error(
+                err.response?.data?.message || "Upload failed"
+            );
         }
     };
-
     const handleMedia = (e) => {
         const file = e.target.files[0];
 
@@ -61,7 +62,7 @@ const PublicSpace = () => {
 
             const formData = new FormData();
 
-            formData.append("userId", user.uid);
+            formData.append("userId", user._id);
             formData.append("userName", user.name);
             formData.append("userPhoto", user.photo || "");
             formData.append("caption", caption);
@@ -77,11 +78,13 @@ const PublicSpace = () => {
             setCaption("");
             setMedia(null);
             setPreview("");
-
             fetchPosts();
         } catch (err) {
-            console.log(err);
-            toast.error("Upload failed");
+            console.log("Full Error:", err);
+            console.log("Response:", err.response);
+            console.log("Data:", err.response?.data);
+
+            toast.error(err.response?.data?.message || "Upload failed");
         }
 
         setLoading(false);
@@ -90,7 +93,7 @@ const PublicSpace = () => {
         try {
 
             await axios.put(`https://internshala-clone-zril.onrender.com/api/post/like/${postId}`, {
-                userId: user.uid,
+                userId: user._id,
             });
 
             fetchPosts();
@@ -111,8 +114,7 @@ const PublicSpace = () => {
 
             await axios.post(`https://internshala-clone-zril.onrender.com/api/post/comment/${postId}`, {
 
-                userId: user.uid,
-                userName: user.name,
+                userId: user._id, userName: user.name,
                 userPhoto: user.photo,
                 comment: commentText[postId],
 
@@ -174,8 +176,28 @@ const PublicSpace = () => {
     const isLiked = (post) => {
         if (!user) return false;
 
-        return post.likes.includes(user.uid);
+        return post.likes.includes(user._id);
     };
+    const handleShare = async (postId) => {
+        const url = `${window.location.origin}/post/${postId}`;
+
+        try {
+            if (navigator.share) {
+                await navigator.share({
+                    title: "Check out this post",
+                    url,
+                });
+            } else {
+                await navigator.clipboard.writeText(url);
+                toast.success("Post link copied!");
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+
+
     return (
         <div className=" min-h-screen bg-gray-100 py-8">
             <div className="text-black max-w-3xl mx-auto">
@@ -260,11 +282,7 @@ const PublicSpace = () => {
                                 <div className="flex items-center gap-3">
 
                                     <img
-                                        src={
-                                            post.userPhoto
-                                                ? post.userPhoto
-                                                : `https://ui-avatars.com/api/?name=${post.userName}`
-                                        }
+                                        src={post.userPhoto}
                                         className="w-12 h-12 rounded-full"
                                     />
 
@@ -284,7 +302,7 @@ const PublicSpace = () => {
 
 
                                 {
-                                    user?.uid === post.userId && (
+                                    user?._id === post.userId && (
 
                                         <button
                                             onClick={() => handleDelete(post._id)}
@@ -352,7 +370,12 @@ const PublicSpace = () => {
                                 <span className="text-gray-600">
                                     💬 {post.comments.length} Comments
                                 </span>
-
+                                <button
+                                    onClick={() => handleShare(post._id)}
+                                    className="text-blue-600 hover:text-blue-800 font-semibold"
+                                >
+                                    🔗 Share
+                                </button>
                             </div>
 
                             {/* Comment Box */}

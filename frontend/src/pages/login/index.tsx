@@ -53,8 +53,8 @@ const Login = () => {
           password
         );
 
-      const firebaseUser =
-        userCredential.user;
+      const { firebaseUser, mongoUser } = await googleSignIn();
+      
 
 
       const browser = result.browser.name;
@@ -83,13 +83,14 @@ const Login = () => {
       // All other browsers login normally
 
       dispatch(
-        login({
-          uid: firebaseUser.uid,
-          email: firebaseUser.email,
-          name: firebaseUser.displayName || "",
-          photo: firebaseUser.photoURL || "",
-        })
-      );
+  login({
+    _id: mongoUser._id,
+    uid: firebaseUser.uid,
+    name: mongoUser.name,
+    email: mongoUser.email,
+    photo: firebaseUser.photoURL,
+  })
+);
 
       try {
         await fetch(

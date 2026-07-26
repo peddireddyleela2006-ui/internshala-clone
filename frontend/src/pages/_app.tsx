@@ -16,15 +16,31 @@ export default function App({ Component, pageProps }: AppProps) {
     useEffect(() => {
       auth.onAuthStateChanged((authuser) => {
         if (authuser) {
-          dispatch(
-            login({
-              uid: authuser.uid,
-              photo: authuser.photoURL,
-              name: authuser.displayName,
-              email: authuser.email,
-              phoneNumber: authuser.phoneNumber,
-            })
-          );
+          const fetchMongoUser = async () => {
+            try {
+              const res = await fetch(
+                `https://internshala-clone-zril.onrender.com/api/user/email/${authuser.email}`
+              );
+
+              const data = await res.json();
+
+              dispatch(
+                login({
+                  _id: data.user._id,
+                  uid: authuser.uid,
+                  photo: authuser.photoURL,
+                  name: data.user.name,
+                  email: data.user.email,
+                  phoneNumber: data.user.phone,
+                })
+              );
+
+            } catch (error) {
+              console.log(error);
+            }
+          };
+
+          fetchMongoUser();
         } else {
           dispatch(logout());
         }
@@ -37,7 +53,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <AuthListener />
       <div className="bg-white">
-        <ToastContainer/>
+        <ToastContainer />
         <Navbar />
         <Component {...pageProps} />
         <Footer />

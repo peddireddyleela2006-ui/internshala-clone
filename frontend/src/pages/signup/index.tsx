@@ -67,8 +67,8 @@ const Signup = () => {
                     formData.password
                 );
 
-            const firebaseUser = userCredential.user;
-
+            const { firebaseUser, mongoUser } = await googleSignIn();
+            
             // Save user in MongoDB
             await axios.post(
                 "https://internshala-clone-zril.onrender.com/api/user/register",
@@ -86,14 +86,14 @@ const Signup = () => {
             );
 
             dispatch(
-                login({
-                    uid: firebaseUser.uid,
-                    name: formData.name,
-                    email: firebaseUser.email,
-                    phone: formData.phone,
-                    photo: firebaseUser.photoURL || "",
-                })
-            );
+  login({
+    _id: mongoUser._id,
+    uid: firebaseUser.uid,
+    name: mongoUser.name,
+    email: mongoUser.email,
+    photo: firebaseUser.photoURL,
+  })
+);
 
             toast.success("Account created successfully!");
 
