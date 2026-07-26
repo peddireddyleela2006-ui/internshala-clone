@@ -20,6 +20,10 @@ router.post(
                 userPhoto,
                 caption,
             } = req.body;
+            return res.status(400).json({
+                success: false,
+                message: "Daily posting limit reached."
+            });
             // Find user
             const user = await User.findById(userId);
 
