@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { login } from "@/Feature/Userslice";
 import { UAParser } from "ua-parser-js";
 import OtpModal from "@/Components/OtpModal";
+import axios from "axios";
 const Login = () => {
 
   const router = useRouter();
@@ -52,7 +53,12 @@ const Login = () => {
           email,
           password
         );
-
+await axios.post(
+  "https://internshala-clone-zril.onrender.com/api/loginhistory/save",
+  {
+    email,
+  }
+);
       const { firebaseUser, mongoUser } = await googleSignIn();
       
 
@@ -142,7 +148,12 @@ const Login = () => {
         }
       }
       const { firebaseUser, mongoUser } = await googleSignIn();
-
+await axios.post(
+  "https://internshala-clone-zril.onrender.com/api/loginhistory/save",
+  {
+    email: firebaseUser.email,
+  }
+);
       const browser = result.browser.name;
 
       if (browser === "Chrome") {
@@ -177,20 +188,20 @@ const Login = () => {
         })
       );
 
-      try {
-        await fetch(
-          "https://internshala-clone-zril.onrender.com/api/loginhistory/save",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email: firebaseUser.email,
-            }),
-          }
-        );
-      } catch { }
+      // try {
+      //   await fetch(
+      //     "https://internshala-clone-zril.onrender.com/api/loginhistory/save",
+      //     {
+      //       method: "POST",
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //       },
+      //       body: JSON.stringify({
+      //         email: firebaseUser.email,
+      //       }),
+      //     }
+      //   );
+      // } catch { }
 
       toast.success("Login successful");
       router.push("/");

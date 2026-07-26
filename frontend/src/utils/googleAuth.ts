@@ -35,7 +35,12 @@ export const googleSignIn = async () => {
   const res = await axios.get(
     `${API}/user/email/${firebaseUser.email}`
   );
-
+  await axios.post(
+    `${API}/loginhistory/save`,
+    {
+      email: firebaseUser.email,
+    }
+  );
   return {
     firebaseUser,
     mongoUser: res.data.user,
