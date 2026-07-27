@@ -1,5 +1,6 @@
 import Footer from "@/Components/Footer";
 import Navbar from "@/Components/Navbar";
+import Sidebar from "@/Components/Sidebar";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { store } from "../store/store";
@@ -52,12 +53,16 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <AuthListener />
-      <div className="bg-white">
-        <ToastContainer />
-        <Navbar />
+
+      <Sidebar />
+      <Navbar />
+      <main className="ml-64 bg-gray-50 min-h-screen">
         <Component {...pageProps} />
-        <Footer />
-      </div>
+      </main>
+
+      <Footer />
+
+      <ToastContainer />
     </Provider>
   );
 }

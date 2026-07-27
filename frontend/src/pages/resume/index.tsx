@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { auth } from "@/firebase/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 export default function Resume() {
 
     const router = useRouter();
@@ -17,8 +18,16 @@ export default function Resume() {
         photo: "",
     });
 
+    
+
     useEffect(() => {
-        fetchResume();
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                fetchResume();
+            }
+        });
+
+        return () => unsubscribe();
     }, []);
 
     const fetchResume = async () => {
@@ -47,14 +56,14 @@ export default function Resume() {
                 setIsEditing(true);
 
                 setFormData({
-                    name: resumeData.resume.name,
-                    email: resumeData.resume.email,
-                    phone: resumeData.resume.phone,
-                    education: resumeData.resume.education,
-                    skills: resumeData.resume.skills,
-                    experience: resumeData.resume.experience,
-                    about: resumeData.resume.about,
-                    photo: resumeData.resume.photo,
+                    name: resumeData.resume.name || "",
+                    email: resumeData.resume.email || "",
+                    phone: resumeData.resume.phone || "",
+                    education: resumeData.resume.education || "",
+                    skills: resumeData.resume.skills || "",
+                    experience: resumeData.resume.experience || "",
+                    about: resumeData.resume.about || "",
+                    photo: resumeData.resume.photo || "",
                 });
             }
         } catch (err) {
@@ -91,7 +100,7 @@ export default function Resume() {
             }
 
             const mongoUserId = userData.user._id;
-let response;
+            let response;
             if (isEditing) {
                 // UPDATE RESUME
                 response = await fetch(

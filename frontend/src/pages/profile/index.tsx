@@ -92,24 +92,24 @@ const index = () => {
 
           {/* Profile Content */}
           <div className="pt-16 pb-8 px-6">
-            
 
-              <div className="text-center">
-                <h1 className="text-3xl font-bold text-gray-800">
-                  {user?.name}
-                </h1>
 
-                <div className="mt-10 flex justify-center items-center text-gray-500">
-                  <Mail size={30} className="mr-2" />
+            <div className="text-center">
+              <h1 className="text-3xl font-bold text-gray-800">
+                {user?.name}
+              </h1>
 
-                  <h3 className="text-3xl font-bold text-gray-800">
+              <div className="mt-10 flex justify-center items-center text-gray-500">
+                <Mail size={30} className="mr-2" />
+
+                <h3 className="text-3xl font-bold text-gray-800">
                   {user?.email}
                 </h3>
-                </div>
               </div>
-              <div className="space-y-6">
-                {/* Quick Stats */}
-                {/* <div className="grid grid-cols-2 gap-4">
+            </div>
+            <div className="space-y-6">
+              {/* Quick Stats */}
+              {/* <div className="grid grid-cols-2 gap-4">
                   <div className="bg-blue-50 rounded-lg p-4 text-center">
                     <span className="text-blue-600 font-semibold text-2xl">
                       0
@@ -128,21 +128,83 @@ const index = () => {
                   </div>
                 </div> */}
 
-                {/* Actions */}
-                <div className="flex justify-center pt-4">
+              {/* Actions */}
+              <div className="flex justify-center pt-4">
 
-                  <Link
-                    href="/userapplication"
-                    className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200"
-                  >
-                    {t("profile.ViewApplications")}
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </Link>
+                <Link
+                  href="/userapplication"
+                  className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200"
+                >
+                  {t("profile.ViewApplications")}
+                  <ExternalLink className="ml-2 h-4 w-4" />
+                </Link>
+                {/* Resume Section */}
+
+                
+              </div>
+              <div>
+                <div className="mt-12">
+
+                  <div className="bg-white rounded-2xl shadow-md border border-gray-200 p-8">
+
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+
+                      <div>
+
+                        <div className="flex items-center gap-3">
+
+                          <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
+
+                            📄
+
+                          </div>
+
+                          <div>
+
+                            <h2 className="text-2xl font-bold text-gray-800">
+                              Resume
+                            </h2>
+
+                            <p className="text-gray-500">
+                              Manage your professional resume
+                            </p>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                      
+
+                    </div>
+
+                    <div className="mt-8 flex flex-wrap gap-4">
+
+                      <Link
+                        href="/resume/view"
+                        className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition"
+                      >
+                        View Resume
+                      </Link>
+
+                      <Link
+                        href="/resume"
+                        className="px-6 py-3 bg-gray-800 hover:bg-gray-900 text-white rounded-lg transition"
+                      >
+                        Edit Resume
+                      </Link>
+
+                    </div>
+
+                  </div>
+
                 </div>
               </div>
-              {/* Stats */}
+            </div>
+            {/* Stats */}
 
-              {/* <div className="grid md:grid-cols-2 gap-6 mt-10">
+            {/* <div className="grid md:grid-cols-2 gap-6 mt-10">
 
                 <div className="bg-blue-50 rounded-2xl p-6 shadow-sm border border-blue-100">
 
@@ -170,9 +232,9 @@ const index = () => {
 
               </div> */}
 
-              {/* Button */}
+            {/* Button */}
 
-              {/* <div className="flex justify-center mt-8">
+            {/* <div className="flex justify-center mt-8">
 
                 <Link
                   href="/userapplication"
@@ -184,110 +246,110 @@ const index = () => {
 
               </div> */}
 
-              {/* Login History */}
+            {/* Login History */}
 
-              <div className="mt-12">
+            <div className="mt-12">
 
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">
-                  Recent Login Activity
-                </h2>
+              <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                Recent Login Activity
+              </h2>
 
-                {loading ? (
+              {loading ? (
 
-                  <div className="text-gray-500">
-                    Loading...
-                  </div>
+                <div className="text-gray-500">
+                  Loading...
+                </div>
 
-                ) : loginHistory.length === 0 ? (
+              ) : loginHistory.length === 0 ? (
 
-                  <div className="bg-gray-100 rounded-xl p-6 text-center text-gray-500">
-                    No login history found.
-                  </div>
+                <div className="bg-gray-100 rounded-xl p-6 text-center text-gray-500">
+                  No login history found.
+                </div>
 
-                ) : (
+              ) : (
 
-                  <div className="space-y-5">
+                <div className="space-y-5">
 
-                    {loginHistory.map((item: any) => (
-                      <div
-                        key={item._id}
-                        className="bg-white border rounded-2xl shadow-sm hover:shadow-md transition p-6"
-                      >
+                  {loginHistory.map((item: any) => (
+                    <div
+                      key={item._id}
+                      className="bg-white border rounded-2xl shadow-sm hover:shadow-md transition p-6"
+                    >
 
-                        <div className="flex justify-between items-start">
+                      <div className="flex justify-between items-start">
 
-                          <div>
+                        <div>
 
-                            <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-2">
 
-                              {item.device === "Mobile" ? (
-                                <Smartphone
-                                  className="text-blue-600"
-                                  size={22}
-                                />
-                              ) : (
-                                <Monitor
-                                  className="text-blue-600"
-                                  size={22}
-                                />
-                              )}
+                            {item.device === "Mobile" ? (
+                              <Smartphone
+                                className="text-blue-600"
+                                size={22}
+                              />
+                            ) : (
+                              <Monitor
+                                className="text-blue-600"
+                                size={22}
+                              />
+                            )}
 
-                              <span className="font-bold text-lg text-gray-800">
-                                {item.browser}
-                              </span>
-
-                            </div>
-
-                            <p className="text-gray-500 mt-2">
-                              {item.operatingSystem} • {item.device}
-                            </p>
-
-                            <div className="flex items-center gap-2 mt-3 text-gray-600">
-
-                              <Globe size={17} />
-
-                              <span>
-                                {item.ipAddress.split(",")[0]}
-                              </span>
-
-                            </div>
+                            <span className="font-bold text-lg text-gray-800">
+                              {item.browser}
+                            </span>
 
                           </div>
 
-                          <div className="flex items-center text-gray-500">
+                          <p className="text-gray-500 mt-2">
+                            {item.operatingSystem} • {item.device}
+                          </p>
 
-                            <Clock3
-                              size={17}
-                              className="mr-2"
-                            />
+                          <div className="flex items-center gap-2 mt-3 text-gray-600">
 
-                            <span className="text-sm">
+                            <Globe size={17} />
 
-                              {new Date(item.loginTime).toLocaleString()}
-
+                            <span>
+                              {item.ipAddress.split(",")[0]}
                             </span>
 
                           </div>
 
                         </div>
 
+                        <div className="flex items-center text-gray-500">
+
+                          <Clock3
+                            size={17}
+                            className="mr-2"
+                          />
+
+                          <span className="text-sm">
+
+                            {new Date(item.loginTime).toLocaleString()}
+
+                          </span>
+
+                        </div>
+
                       </div>
-                    ))}
 
-                  </div>
+                    </div>
+                  ))}
 
-                )}
+                </div>
 
-              </div>
+              )}
 
             </div>
 
-            
-
           </div>
+
+
+
         </div>
       </div>
-    
+    </div>
+
   )
 }
 export default index;
