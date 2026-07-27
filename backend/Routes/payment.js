@@ -33,7 +33,7 @@ router.post("/create-order", async (req, res) => {
 });
 
 router.post("/verify-payment", async (req, res) => {
-    console.log("VERIFY PAYMENT BODY:",req.body);
+    console.log("VERIFY PAYMENT BODY:", req.body);
     try {
         const {
             razorpay_order_id,
@@ -78,7 +78,9 @@ router.post("/verify-payment", async (req, res) => {
                     expiryDate,
                 },
             },
-            { new: true }
+            {
+                returnDocument: "after",
+            }
         );
         const amount =
             plan === "Bronze"
