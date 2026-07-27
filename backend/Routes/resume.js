@@ -91,5 +91,31 @@ router.get("/:userId", async (req, res) => {
     });
   }
 });
+router.put("/:userId", async (req, res) => {
+  try {
+    const updatedResume = await Resume.findOneAndUpdate(
+      { userId: req.params.userId },
+      req.body,
+      { new: true }
+    );
 
+    if (!updatedResume) {
+      return res.status(404).json({
+        success: false,
+        message: "Resume not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      resume: updatedResume,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+});
 module.exports = router;

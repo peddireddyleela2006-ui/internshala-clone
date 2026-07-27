@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { auth } from "@/firebase/firebase";
+import { useRouter } from "next/router";
 import {
     Mail,
     Phone,
@@ -9,6 +10,8 @@ import {
     Code2,
 } from "lucide-react";
 export default function ResumeView() {
+    const router = useRouter();
+
     const [resume, setResume] = useState<any>(null);
 
     useEffect(() => {
@@ -111,13 +114,13 @@ export default function ResumeView() {
 
                     <div className="flex items-center gap-3 mb-6">
 
-    <User className="w-6 h-6 text-blue-600"/>
+                        <User className="w-6 h-6 text-blue-600" />
 
-    <h2 className="text-2xl font-bold text-gray-900">
-        About
-    </h2>
+                        <h2 className="text-2xl font-bold text-gray-900">
+                            About
+                        </h2>
 
-</div>
+                    </div>
 
                     <p className="text-gray-700 leading-8 whitespace-pre-wrap">
                         {resume.about || "No description added."}
@@ -217,16 +220,10 @@ transition
                             Download Resume
                         </button>
 
-                        <button className="
-bg-blue-600
-hover:bg-blue-700
-text-white
-font-semibold
-px-5
-py-3
-rounded-lg
-transition
-">
+                        <button
+                            onClick={() => router.push("/resume")}
+                            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-3 rounded-lg transition"
+                        >
                             Edit Resume
                         </button>
 

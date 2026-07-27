@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { auth } from "@/firebase/firebase";
 export default function Resume() {
 
     const router = useRouter();
-
+    const [isEditing, setIsEditing] = useState(false);
+    const [userId, setUserId] = useState("");
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -16,7 +17,50 @@ export default function Resume() {
         photo: "",
     });
 
+    useEffect(() => {
+        fetchResume();
+    }, []);
 
+    const fetchResume = async () => {
+        try {
+            const firebaseUser = auth.currentUser;
+
+            if (!firebaseUser?.email) return;
+
+            const userResponse = await fetch(
+                `https://internshala-clone-zril.onrender.com/api/user/email/${encodeURIComponent(firebaseUser.email)}`
+            );
+
+            const userData = await userResponse.json();
+
+            if (!userData.success) return;
+
+            setUserId(userData.user._id);
+
+            const resumeResponse = await fetch(
+                `https://internshala-clone-zril.onrender.com/api/resume/${userData.user._id}`
+            );
+
+            const resumeData = await resumeResponse.json();
+
+            if (resumeData.success) {
+                setIsEditing(true);
+
+                setFormData({
+                    name: resumeData.resume.name,
+                    email: resumeData.resume.email,
+                    phone: resumeData.resume.phone,
+                    education: resumeData.resume.education,
+                    skills: resumeData.resume.skills,
+                    experience: resumeData.resume.experience,
+                    about: resumeData.resume.about,
+                    photo: resumeData.resume.photo,
+                });
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
     const handleChange = (e: any) => {
         setFormData({
             ...formData,
@@ -28,25 +72,17 @@ export default function Resume() {
         e.preventDefault();
 
         try {
-            // Check if the user is logged in
             const firebaseUser = auth.currentUser;
 
-            if (!firebaseUser) {
+            if (!firebaseUser?.email) {
                 alert("Please login first");
                 return;
             }
 
-
-            if (!firebaseUser?.email) {
-                alert("User email not found");
-                return;
-            }
-
-            const email = firebaseUser.email;
-
             const userResponse = await fetch(
-                `https://internshala-clone-zril.onrender.com/api/user/email/${encodeURIComponent(email)}`
+                `https://internshala-clone-zril.onrender.com/api/user/email/${encodeURIComponent(firebaseUser.email)}`
             );
+
             const userData = await userResponse.json();
 
             if (!userData.success) {
@@ -54,28 +90,47 @@ export default function Resume() {
                 return;
             }
 
-            const userId = userData.user._id;
-
-            // Create resume
-            const response = await fetch(
-                "https://internshala-clone-zril.onrender.com/api/resume/create",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        userId,
-                        ...formData,
-                    }),
-                }
-            );
+            const mongoUserId = userData.user._id;
+let response;
+            if (isEditing) {
+                // UPDATE RESUME
+                response = await fetch(
+                    `https://internshala-clone-zril.onrender.com/api/resume/${mongoUserId}`,
+                    {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(formData),
+                    }
+                );
+            } else {
+                // CREATE RESUME
+                response = await fetch(
+                    "https://internshala-clone-zril.onrender.com/api/resume/create",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            userId: mongoUserId,
+                            ...formData,
+                        }),
+                    }
+                );
+            }
 
             const data = await response.json();
 
             if (data.success) {
-                alert("Resume created successfully");
-                router.push("/profile");
+                alert(
+                    isEditing
+                        ? "Resume updated successfully!"
+                        : "Resume created successfully!"
+                );
+
+                router.push("/resume/view");
             } else {
                 alert(data.message);
             }
@@ -92,7 +147,7 @@ export default function Resume() {
             <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-xl">
 
                 <h1 className="text-3xl font-bold mb-6 text-center">
-                    Create Resume
+                    Resume
                 </h1>
 
 
@@ -103,6 +158,7 @@ export default function Resume() {
                         name="name"
                         placeholder="Full Name"
                         className="border p-3 w-full rounded"
+                        value={formData.name}
                         onChange={handleChange}
                     />
 
@@ -111,6 +167,7 @@ export default function Resume() {
                         name="email"
                         placeholder="Email"
                         className="border p-3 w-full rounded"
+                        value={formData.email}
                         onChange={handleChange}
                     />
 
@@ -119,6 +176,7 @@ export default function Resume() {
                         name="phone"
                         placeholder="Phone"
                         className="border p-3 w-full rounded"
+                        value={formData.phone}
                         onChange={handleChange}
                     />
 
@@ -127,6 +185,7 @@ export default function Resume() {
                         name="education"
                         placeholder="Education / Qualification"
                         className="border p-3 w-full rounded"
+                        value={formData.education}
                         onChange={handleChange}
                     />
 
@@ -135,6 +194,7 @@ export default function Resume() {
                         name="skills"
                         placeholder="Skills"
                         className="border p-3 w-full rounded"
+                        value={formData.skills}
                         onChange={handleChange}
                     />
 
@@ -143,6 +203,7 @@ export default function Resume() {
                         name="experience"
                         placeholder="Experience"
                         className="border p-3 w-full rounded"
+                        value={formData.experience}
                         onChange={handleChange}
                     />
 
@@ -151,6 +212,7 @@ export default function Resume() {
                         name="about"
                         placeholder="About Me"
                         className="border p-3 w-full rounded"
+                        value={formData.about}
                         onChange={handleChange}
                     />
 
@@ -159,6 +221,7 @@ export default function Resume() {
                         name="photo"
                         placeholder="Photo URL"
                         className="border p-3 w-full rounded"
+                        value={formData.photo}
                         onChange={handleChange}
                     />
 
@@ -167,7 +230,7 @@ export default function Resume() {
                         type="submit"
                         className="bg-blue-600 text-white px-5 py-3 rounded w-full"
                     >
-                        Create Resume
+                        {isEditing ? "Update Resume" : "Create Resume"}
                     </button>
 
 
