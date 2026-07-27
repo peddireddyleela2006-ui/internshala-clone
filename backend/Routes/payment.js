@@ -89,19 +89,19 @@ router.post("/verify-payment", async (req, res) => {
 
         await sendEmail({
             to: updatedUser.email,
-            subject: "InternArea Subscription Activated",
+            subject: "Internera Subscription Activated",
             html: `
     <div style="font-family: Arial, sans-serif; max-width:600px; margin:auto; border:1px solid #ddd; border-radius:10px; overflow:hidden;">
       
       <div style="background:#2563eb; color:white; padding:20px; text-align:center;">
-        <h1>InternArea</h1>
+        <h1>Internera</h1>
         <h2>Payment Successful</h2>
       </div>
 
       <div style="padding:30px;">
         <p>Hi <strong>${updatedUser.name}</strong>,</p>
 
-        <p>Thank you for subscribing to <strong>InternArea</strong>. Your subscription has been activated successfully.</p>
+        <p>Thank you for subscribing to <strong>Internera</strong>. Your subscription has been activated successfully.</p>
 
         <table style="width:100%; border-collapse:collapse; margin-top:20px;">
           <tr>
@@ -133,7 +133,7 @@ router.post("/verify-payment", async (req, res) => {
         </table>
 
         <p style="margin-top:30px;">
-          Thank you for choosing InternArea.
+          Thank you for choosing Internera.
         </p>
 
         <p>
@@ -142,7 +142,7 @@ router.post("/verify-payment", async (req, res) => {
       </div>
 
       <div style="background:#f3f4f6; padding:15px; text-align:center; font-size:13px; color:#666;">
-        © ${new Date().getFullYear()} InternArea. All Rights Reserved.
+        © ${new Date().getFullYear()} Internera. All Rights Reserved.
       </div>
 
     </div>
