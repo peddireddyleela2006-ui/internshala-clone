@@ -232,7 +232,7 @@
   },
   "footer": {
     "brand": {
-      "name": "InternArea",
+      "name": "Internera",
       "description": "Mettre en relation les étudiants avec des opportunités de stages et d'emploi auprès des meilleures entreprises du monde."
     },
     "internships": {
@@ -270,7 +270,7 @@
       "community": "Communauté"
     },
     "android": "Obtenir l'application Android",
-    "copyright": "© 2026 InternArea. Tous droits réservés."
+    "copyright": "© 2026 Internera. Tous droits réservés."
   },
   "toast": {
     "loginSuccess": "Connexion réussie",

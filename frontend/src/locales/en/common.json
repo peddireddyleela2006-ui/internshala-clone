@@ -243,7 +243,7 @@
   },
   "footer": {
     "brand": {
-      "name": "InternArea",
+      "name": "Internera",
       "description": "Connecting students with internships and job opportunities from top companies worldwide."
     },
     "internships": {
@@ -281,7 +281,7 @@
       "community": "Community"
     },
     "android": "Get Android App",
-    "copyright": "© 2026 InternArea. All Rights Reserved."
+    "copyright": "© 2026 Internera. All Rights Reserved."
   },
   "toast": {
     "loginSuccess": "Logged in successfully",

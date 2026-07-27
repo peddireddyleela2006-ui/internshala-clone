@@ -243,7 +243,7 @@
   },
   "footer": {
     "brand": {
-      "name": "InternArea",
+      "name": "Internera",
       "description": "दुनिया भर की अग्रणी कंपनियों में इंटर्नशिप और नौकरी के अवसरों से छात्रों को जोड़ना।"
     },
     "internships": {
@@ -281,7 +281,7 @@
       "community": "समुदाय"
     },
     "android": "एंड्रॉइड ऐप प्राप्त करें",
-    "copyright": "© 2026 InternArea. सर्वाधिकार सुरक्षित।"
+    "copyright": "© 2026 Internera. सर्वाधिकार सुरक्षित।"
   },
   "toast": {
     "loginSuccess": "सफलतापूर्वक लॉग इन किया गया",

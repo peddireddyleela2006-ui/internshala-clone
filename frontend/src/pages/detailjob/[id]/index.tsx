@@ -121,8 +121,8 @@ import { useTranslation } from 'react-i18next';
 //   },
 // ];
 const index = () => {
-    const { t, i18n } = useTranslation();
-  
+  const { t, i18n } = useTranslation();
+
   const router = useRouter();
   const { id } = router.query;
   const [jobdata, setjob] = useState<any>([])
@@ -172,14 +172,26 @@ const index = () => {
         availability
       }
 
-      await axios.post(`https://internshala-clone-zril.onrender.com/api/application`, applicationdata);
+      const response = await axios.post(
+        "https://internshala-clone-zril.onrender.com/api/application",
+        applicationdata
+      );
 
-      toast.success(t("toast.applicationSubmitted"));
-      router.push("/job")
+      toast.success(response.data.message || t("toast.applicationSubmitted"));
+      router.push("/job");
+    }
+    catch (error: any) {
+      if (error.response?.status === 403) {
+        toast.error(error.response.data.message);
 
-    } catch (error) {
-      console.error(error);
-      toast.error(t("toast.applicationFailed"));
+        setTimeout(() => {
+          router.push("/subscription");
+        }, 1500);
+
+        return;
+      }
+
+      toast.error("Failed to submit application");
     }
   }
 
@@ -266,7 +278,7 @@ const index = () => {
             onClick={() => setIsModalOpen(true)}
             className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-150"
           >
-           {t("detail_job.ApplyNow")}
+            {t("detail_job.ApplyNow")}
           </button>
         </div>
       </div>

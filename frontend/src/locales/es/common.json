@@ -241,7 +241,7 @@
   },
   "footer": {
     "brand": {
-      "name": "InternArea",
+      "name": "Internera",
       "description": "Conectando a estudiantes con oportunidades de pasantías y empleo en empresas líderes de todo el mundo."
     },
     "internships": {
@@ -279,7 +279,7 @@
       "community": "Comunidad"
     },
     "android": "Obtener la aplicación para Android",
-    "copyright": "© 2026 InternArea. Todos los derechos reservados."
+    "copyright": "© 2026 Internera. Todos los derechos reservados."
   },
   "toast": {
     "loginSuccess": "Inicio de sesión realizado correctamente",

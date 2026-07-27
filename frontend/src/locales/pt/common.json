@@ -224,7 +224,7 @@
   },
   "footer": {
     "brand": {
-      "name": "InternArea",
+      "name": "Internera",
       "description": "Conectando estudantes a oportunidades de estágio e emprego nas principais empresas do mundo."
     },
     "internships": {
@@ -262,7 +262,7 @@
       "community": "Comunidade"
     },
     "android": "Obter o aplicativo para Android",
-    "copyright": "© 2026 InternArea. Todos os direitos reservados."
+    "copyright": "© 2026 Internera. Todos os direitos reservados."
   },
   "toast": {
     "loginSuccess": "Login realizado com sucesso",

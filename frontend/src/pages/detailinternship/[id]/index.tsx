@@ -117,13 +117,26 @@ const index = () => {
         availability
       }
 
-      await axios.post(`https://internshala-clone-zril.onrender.com/api/application`, applicationdata);
+      const response = await axios.post(
+        "https://internshala-clone-zril.onrender.com/api/application",
+        applicationdata
+      );
 
-      toast.success(t("toast.applicationSubmitted"));
-      router.push("/internship")
-    } catch (error) {
-      console.error(error);
-      toast.error(t("toast.applicationFailed"));
+      toast.success(response.data.message || t("toast.applicationSubmitted"));
+      router.push("/internship");
+    }
+    catch (error: any) {
+      if (error.response?.status === 403) {
+        toast.error(error.response.data.message);
+
+        setTimeout(() => {
+          router.push("/subscription");
+        }, 1500);
+
+        return;
+      }
+
+      toast.error("Failed to submit application");
     }
   }
 
