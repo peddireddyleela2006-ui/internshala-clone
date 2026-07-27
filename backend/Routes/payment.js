@@ -4,7 +4,7 @@ const router = express.Router();
 const crypto = require("crypto");
 const razorpay = require("../config/razorpay");
 const User = require("../Model/User");
-const sendEmail = require("../Services/sendEmail");
+const sendEmail = require("../services/sendEmail");
 
 router.post("/create-order", async (req, res) => {
     try {
