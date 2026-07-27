@@ -12,6 +12,7 @@ const loginHistory = require("./loginHistory");
 const post = require("./post");
 const chat = require("./chat");
 const resume = require("./resume");
+const payment = require("./payment");
 
 router.use("/admin", admin);
 router.use("/internship", intern);
@@ -23,5 +24,6 @@ router.use("/loginhistory", loginHistory);
 router.use("/post", post);
 router.use("/chat", chat);
 router.use("/resume", resume);
+router.use("/payment", payment);
 
 module.exports = router;
