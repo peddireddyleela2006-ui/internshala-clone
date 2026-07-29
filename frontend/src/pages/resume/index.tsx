@@ -7,6 +7,9 @@ export default function Resume() {
     const router = useRouter();
     const [isEditing, setIsEditing] = useState(false);
     const [userId, setUserId] = useState("");
+    const [showOtp, setShowOtp] = useState(false);
+    const [otp, setOtp] = useState("");
+    const [otpVerified, setOtpVerified] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -18,7 +21,7 @@ export default function Resume() {
         photo: "",
     });
 
-    
+
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -76,7 +79,137 @@ export default function Resume() {
             [e.target.name]: e.target.value,
         });
     };
+    const handleResumePaymentCheck = async () => {
 
+        try {
+
+            const firebaseUser = auth.currentUser;
+
+            if (!firebaseUser?.email) {
+                alert("Please login first");
+                return;
+            }
+
+
+            const userResponse = await fetch(
+                `https://internshala-clone-zril.onrender.com/api/user/email/${encodeURIComponent(firebaseUser.email)}`
+            );
+
+
+            const userData = await userResponse.json();
+
+
+            const subscription =
+                userData.user.subscription;
+
+
+
+            const premiumPlans = [
+                "Bronze",
+                "Silver",
+                "Gold"
+            ];
+
+
+            if (!premiumPlans.includes(subscription.plan)) {
+
+                alert(
+                    "Resume creation requires a premium subscription."
+                );
+
+                return;
+            }
+
+
+            // send OTP
+
+            const otpResponse = await fetch(
+                "https://internshala-clone-zril.onrender.com/api/otp/send-otp",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: firebaseUser.email
+                    })
+                });
+
+
+            const otpData = await otpResponse.json();
+
+
+            if (otpData.success) {
+
+                setShowOtp(true);
+
+            }
+
+
+        }
+        catch (error) {
+
+            console.log(error);
+
+        }
+
+    };
+    const verifyResumeOtp = async () => {
+
+        try {
+
+            const firebaseUser = auth.currentUser;
+
+            if (!firebaseUser?.email) {
+                alert("Please login first");
+                return;
+            }
+
+
+            const response = await fetch(
+                "https://internshala-clone-zril.onrender.com/api/otp/verify-otp",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: firebaseUser.email,
+                        otp,
+                    }),
+                }
+            );
+
+
+            const data = await response.json();
+
+
+            if (data.success) {
+
+                alert("OTP verified successfully!");
+
+                setOtpVerified(true);
+                setShowOtp(false);
+
+                // next step: open Razorpay ₹50 payment
+
+            }
+            else {
+
+                alert(data.message);
+
+            }
+
+
+        }
+        catch (error) {
+
+            console.log(error);
+            alert("OTP verification failed");
+
+        }
+
+    };
     const handleSubmit = async (e: any) => {
         e.preventDefault();
 
@@ -236,7 +369,8 @@ export default function Resume() {
 
 
                     <button
-                        type="submit"
+                        type="button"
+                        onClick={handleResumePaymentCheck}
                         className="bg-blue-600 text-white px-5 py-3 rounded w-full"
                     >
                         {isEditing ? "Update Resume" : "Create Resume"}
@@ -246,7 +380,43 @@ export default function Resume() {
                 </form>
 
             </div>
+            {showOtp && (
 
+                <div className="fixed inset-0 bg-black/40 flex items-center justify-center">
+
+                    <div className="bg-white rounded-xl p-6 w-96 shadow-lg">
+
+                        <h2 className="text-xl font-bold mb-4 text-center">
+                            Verify Email
+                        </h2>
+
+
+                        <p className="text-gray-600 text-sm mb-4 text-center">
+                            Enter the OTP sent to your registered email.
+                        </p>
+
+
+                        <input
+                            value={otp}
+                            onChange={(e) => setOtp(e.target.value)}
+                            placeholder="Enter OTP"
+                            className="border p-3 rounded w-full mb-4"
+                        />
+
+
+                        <button
+                            onClick={verifyResumeOtp}
+                            className="bg-blue-600 text-white w-full py-3 rounded"
+                        >
+                            Verify OTP
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+            )}
         </div>
     );
 }

@@ -9,7 +9,9 @@ import {
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "./LanguageSelector";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectuser } from "@/Feature/Userslice";
 
 export default function Sidebar() {
     const router = useRouter();
@@ -42,32 +44,92 @@ export default function Sidebar() {
             icon: Globe,
         },
     ];
-// Temporary values (replace with API data later)
-// const planName = "Free";
 
-// const applicationsRemaining = 1;
+    const user = useSelector(selectuser);
 
-// const applicationLimit = 1;
 
-// const usagePercentage =
-//   planName === "Gold"
-//     ? 100
-//     : ((applicationLimit - applicationsRemaining) / applicationLimit) * 100;
     const [subscription, setSubscription] = useState({
-  plan: "Free",
-  remaining: 1,
-  limit: 1,
-});
-const planName = subscription.plan;
+        plan: "Free",
+        remaining: 1,
+        limit: 1,
+    });
+    useEffect(() => {
 
-const applicationsRemaining = subscription.remaining;
+        const fetchSubscription = async () => {
 
-const usagePercentage =
-  subscription.plan === "Gold"
-    ? 100
-    : ((subscription.limit - subscription.remaining) /
-        subscription.limit) *
-      100;
+            if (!user?.email) return;
+
+
+            try {
+
+                const userResponse = await fetch(
+                    `https://internshala-clone-zril.onrender.com/api/user/email/${encodeURIComponent(user.email)}`
+                );
+
+
+                const userData = await userResponse.json();
+
+
+                if (!userData.success) return;
+
+
+                const mongoUser = userData.user;
+
+
+                const response = await fetch(
+                    `https://internshala-clone-zril.onrender.com/api/subscription/${mongoUser._id}`
+                );
+
+
+                const data = await response.json();
+
+
+                if (data.success && data.subscription) {
+
+                    const sub = data.subscription;
+
+
+                    setSubscription({
+
+                        plan: sub.plan,
+
+                        remaining:
+                            sub.applicationsAllowed -
+                            sub.applicationsUsed,
+
+                        limit:
+                            sub.applicationsAllowed
+
+                    });
+
+                }
+
+
+            } catch (error) {
+
+                console.log(
+                    "Subscription fetch error:",
+                    error
+                );
+
+            }
+
+        };
+
+
+        fetchSubscription();
+
+
+    }, [user]);
+    const planName = subscription.plan;
+
+    const applicationsRemaining = subscription.remaining;
+
+    const usagePercentage =
+        subscription.plan === "Gold"
+            ? 0
+            : ((subscription.limit - subscription.remaining) /
+                subscription.limit) * 100;
     return (
         <aside className="fixed left-0 top-0 h-screen w-64 bg-white border-r shadow-sm z-50">
 
@@ -101,14 +163,14 @@ const usagePercentage =
                             key={item.href}
                             href={item.href}
                             className={`flex items-center gap-3 px-4 py-3 rounded-xl transition ${router.pathname === item.href
-                                    ? "bg-blue-100 text-blue-700 font-semibold"
-                                    : "text-gray-700 hover:bg-blue-50"
+                                ? "bg-blue-100 text-blue-700 font-semibold"
+                                : "text-gray-700 hover:bg-blue-50"
                                 }`}
                         >
                             <Icon size={20} />
                             {item.title}
                         </Link>
-                        
+
                     );
                 })}
 
@@ -169,7 +231,7 @@ const usagePercentage =
 
                 </div>
                 <div className="pt-6">
-                    
+
                 </div>
 
             </div>

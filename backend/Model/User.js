@@ -46,20 +46,44 @@ const userSchema = new mongoose.Schema(
     subscription: {
       plan: {
         type: String,
+        enum: ["Free", "Bronze", "Silver", "Gold"],
         default: "Free",
       },
+
       applicationsAllowed: {
         type: Number,
         default: 1,
       },
+
       applicationsUsed: {
         type: Number,
         default: 0,
       },
+
       expiryDate: {
         type: Date,
         default: null,
       },
+
+      paymentId: {
+        type: String,
+        default: null,
+      },
+
+      orderId: {
+        type: String,
+        default: null,
+      },
+
+      invoiceNumber: {
+        type: String,
+        default: null,
+      },
+
+      purchasedAt: {
+        type: Date,
+        default: null,
+      }
     },
 
     // NEW: link resume with user

@@ -8,27 +8,62 @@ const sendEmail = require("../services/sendEmail");
 
 router.post("/create-order", async (req, res) => {
     try {
+
+        const now = new Date();
+
+        const indiaTime = new Date(
+            now.toLocaleString("en-US", {
+                timeZone: "Asia/Kolkata",
+            })
+        );
+
+
+        const hour = indiaTime.getHours();
+        const minutes = indiaTime.getMinutes();
+
+        const currentMinutes = hour * 60 + minutes;
+
+
+        // Allow only 10:00 AM - 11:00 AM IST
+        if (currentMinutes < 600 || currentMinutes >= 660) {
+
+            return res.status(403).json({
+                success: false,
+                message:
+                    "Payments are allowed only between 10:00 AM and 11:00 AM IST."
+            });
+
+        }
+
+
         const { amount } = req.body;
 
+
         const options = {
-            amount: amount * 100, // Razorpay expects paise
+            amount: amount * 100,
             currency: "INR",
-            receipt: `receipt_${Date.now()}`,
+            receipt: `receipt_${Date.now()}`
         };
+
 
         const order = await razorpay.orders.create(options);
 
+
         res.json({
             success: true,
-            order,
+            order
         });
+
+
     } catch (err) {
+
         console.error(err);
 
         res.status(500).json({
             success: false,
-            message: err.message,
+            message: err.message
         });
+
     }
 });
 

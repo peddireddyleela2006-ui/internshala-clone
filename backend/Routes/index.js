@@ -13,6 +13,7 @@ const post = require("./post");
 const chat = require("./chat");
 const resume = require("./resume");
 const payment = require("./payment");
+const subscriptionRoute = require("./subscription");
 
 router.use("/admin", admin);
 router.use("/internship", intern);
@@ -25,5 +26,6 @@ router.use("/post", post);
 router.use("/chat", chat);
 router.use("/resume", resume);
 router.use("/payment", payment);
+router.use("/subscription", subscriptionRoute);
 
 module.exports = router;
