@@ -5,12 +5,12 @@ import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
 const ForgotPassword = () => {
+      const { t } = useTranslation();
   const [identifier, setIdentifier] = useState("");
   const [loading, setLoading] = useState(false);
 
 
   const handleReset = async (e: React.FormEvent) => {
-    const { t } = useTranslation();
 
     e.preventDefault();
 
@@ -46,9 +46,7 @@ const ForgotPassword = () => {
   };
 
 
-  function t(arg0: string): React.ReactNode | Iterable<React.ReactNode> {
-    throw new Error("Function not implemented.");
-  }
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
