@@ -197,4 +197,49 @@ router.post("/verify-payment", async (req, res) => {
         });
     }
 });
+router.post("/create-resume-order", async(req,res)=>{
+
+    try{
+
+        const options = {
+
+            amount:5000, // ₹50
+
+            currency:"INR",
+
+            receipt:`resume_${Date.now()}`
+
+        };
+
+
+        const order =
+        await razorpay.orders.create(options);
+
+
+
+        res.json({
+
+            success:true,
+
+            order
+
+        });
+
+
+    }
+    catch(error){
+
+        console.log(error);
+
+        res.status(500).json({
+
+            success:false,
+
+            message:error.message
+
+        });
+
+    }
+
+});
 module.exports = router;
