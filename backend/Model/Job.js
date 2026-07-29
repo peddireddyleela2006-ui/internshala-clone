@@ -10,7 +10,6 @@ const JobSchema = new mongoose.Schema({
   aboutJob: String,
   whoCanApply: String,
 
-  // Change Array -> String
   perks: String,
 
   numberOfOpening: String,
@@ -19,7 +18,7 @@ const JobSchema = new mongoose.Schema({
 
   CTC: String,
 
-  // lowercase
+  
   StartDate: String,
 
   createAt: {

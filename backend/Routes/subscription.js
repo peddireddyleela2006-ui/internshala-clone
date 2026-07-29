@@ -3,7 +3,6 @@ const router = express.Router();
 
 const User = require("../Model/User");
 
-// GET current subscription
 router.get("/:userId", async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
@@ -28,7 +27,6 @@ router.get("/:userId", async (req, res) => {
   }
 });
 
-// UPDATE subscription after payment
 router.post("/update", async (req, res) => {
   try {
     const { userId, plan } = req.body;

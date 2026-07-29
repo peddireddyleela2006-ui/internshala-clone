@@ -15,6 +15,8 @@ import Link from "next/link";import axios from "axios";
 import { toast } from "react-toastify";
 import { selectuser } from "@/Feature/Userslice";
 import { useSelector } from "react-redux";
+import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 // const Applications = [
 //     {
 //         _id: "1",
@@ -52,6 +54,7 @@ const getStatusColor = (status: any) => {
     }
 };
 const index = () => {
+  const { t, i18n } = useTranslation();
     const [searchTerm, setsearchTerm] = useState("");
     const [filter, setFilter] = useState("all");
     const user=useSelector(selectuser)
@@ -106,9 +109,9 @@ const index = () => {
                 <div className="bg-white rounded-lg shadow-sm">
                     {/* Header */}
                     <div className="border-b border-gray-200 px-6 py-4">
-                        <h1 className="text-2xl font-bold text-gray-900">Applications</h1>
+                        <h1 className="text-2xl font-bold text-gray-900">{t("applications.title")}</h1>
                         <p className="mt-1 text-sm text-gray-500">
-                            Manage the Applications
+                            {t("applications.subt")}
                         </p>
                     </div>
 
@@ -121,7 +124,7 @@ const index = () => {
                                         type="text"
                                         value={searchTerm}
                                         onChange={(e) => setsearchTerm(e.target.value)}
-                                        placeholder="Search by company, category, or applicant..."
+                                        placeholder={t("applications.searchterm")}
                                         className="text-black w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                     <Mail className="absolute top-3 left-3 text-gray-400" />
@@ -135,7 +138,7 @@ const index = () => {
                                         : "bg-gray-100 text-gray-800"
                                         }`}
                                 >
-                                    All
+                                    {t("applications.All")}
                                 </button>
                                 <button
                                     onClick={() => setFilter("pending")}
@@ -144,7 +147,7 @@ const index = () => {
                                         : "bg-gray-100 text-gray-800"
                                         }`}
                                 >
-                                    Pending
+                                    {t("applications.Pending")}
                                 </button>
                                 <button
                                     onClick={() => setFilter("approved")}
@@ -153,7 +156,7 @@ const index = () => {
                                         : "bg-gray-100 text-gray-800"
                                         }`}
                                 >
-                                    Approved
+                                    {t("applications.Approved")}
                                 </button>
                                 <button
                                     onClick={() => setFilter("rejected")}
@@ -162,13 +165,13 @@ const index = () => {
                                         : "bg-gray-100 text-gray-800"
                                         }`}
                                 >
-                                    Rejected
+                                    {t("applications.Rejected")}
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div className="text-black text-xl p-4">
-                        Total Applications: {data.length}
+                        {t("applications.TotalApplications")}: {data.length}
                     </div>
                     {/* Applications List */}
                     <div className="overflow-x-auto">
@@ -179,25 +182,25 @@ const index = () => {
                                         scope="col"
                                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
-                                        Company & Category
+                                        {t("applications.Company&Category")}
                                     </th>
                                     <th
                                         scope="col"
                                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
-                                        Applicant
+                                        {t("applications.Applicant")}
                                     </th>
                                     <th
                                         scope="col"
                                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
-                                        Applied Date
+                                        {t("applications.AppliedDate")}
                                     </th>
                                     <th
                                         scope="col"
                                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
-                                        Status
+                                        {t("applications.Status")}
                                     </th>
                                 </tr>
                             </thead>

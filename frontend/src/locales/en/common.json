@@ -2,7 +2,8 @@
   "navbar": {
     "internships": "Internships",
     "jobs": "Jobs",
-    "login": "Continue with Google",
+    "Google": "Google",
+    "login": "Login",
     "admin": "Admin",
     "language": "Language",
     "search": "Search opportunities...",
@@ -138,6 +139,8 @@
     "Status": "Status"
   },
   "admin": {
+    "username": "Enter your username",
+    "password": "Enter your password",
     "AdminLogin": "Admin Login",
     "subt": "Access the admin dashboard to manage internships and applications",
     "Username": "Username",
@@ -299,5 +302,94 @@
     "Invalid": "invalid credentials",
     "FillCoverLetter": "Please fill the cover letter before sibmission",
     "availability": "Please inform your availability"
+  },
+  "Sidebar": {
+    "home": "Home",
+    "Internera": "Internera",
+    "subtitle": "Find your dream internship",
+    "Subscription": "Subscription",
+    "Plan": "Current Plan",
+    "applicationsremaining": "applications remaining",
+    "ManageSubscription": "Manage Subscription",
+    "friend": "Friends",
+    "publicspace": "Public Space"
+  },
+  "applications": {
+    "subt": "Manage the Applications",
+    "title": "Applications",
+    "searchterm": "Search by company, category, or applicant...",
+    "All": "All",
+    "Pending": "Pending",
+    "Approved": "Approved",
+    "Rejected": "Rejected",
+    "TotalApplications": "Total Applications",
+    "Company&Category": "Company & Category",
+    "Applicant": "Applicant",
+    "AppliedDate": "Applied Date",
+    "Status": "Status"
+  },
+  "friends": {
+    "Friends": "Friends",
+    "MyFriends": "My Friends",
+    "Nofriendsyet": "No friends yet",
+    "Chat": "Chat",
+    "FriendRequests": "Friend Requests",
+    "Nopendingrequests": "No pending requests",
+    "Accept": "Accept",
+    "Reject": "Reject",
+    "FindPeople": "Find People",
+    "Requested": "Requested",
+    "Send": "Send"
+  },
+  "publicspace": {
+    "caption": "What's on your mind?",
+    "image": "Upload Image or Video",
+    "supportivefiles": "PNG, JPG, MP4 supported",
+    "upload": "Uploading...",
+    "CreatePost": "Create Post",
+    "no": "No posts yet.",
+    "Delete": "Delete",
+    "Likes": "Likes",
+    "Comments": "Comments",
+    "Share": "Share",
+    "cmm": "Write a comment...",
+    "Comment": "Comment"
+  },
+  "prof": {
+    "Res": "Resume",
+    "subt": "Manage your professional resume",
+    "ViewResume": "View Resume",
+    "EditResume": "Edit Resume",
+    "recents": "Recent Login Activity",
+    "load": "Loading...",
+    "history": "No login history found."
+  },
+  "subscription": {
+    "title": "Choose Your Plan",
+    "subtitle": "Select the subscription that fits your internship application needs.",
+    "popular": "MOST POPULAR",
+    "month": "per month",
+    "plans": {
+      "free": "1 application/month",
+      "bronze": "3 applications/month",
+      "silver": "5 applications/month",
+      "gold": "Unlimited applications"
+    },
+    "resume": "Resume Builder",
+    "tracking": "Application Tracking",
+    "priority": "Priority Support",
+    "email": "Email Support",
+    "current": "Current Plan",
+    "choose": "Choose Plan"
+  },
+  "forgotPassword": {
+    "title": "Forgot Password",
+    "subtitle": "Enter your registered email to reset your password",
+    "placeholder": "Email or Phone Number",
+    "sending": "Sending...",
+    "reset": "Reset Password",
+    "back": "Back to Login",
+    "enterIdentifier": "Enter your email or phone number",
+    "failed": "Password reset failed"
   }
 }

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { selectuser } from "@/Feature/Userslice";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 interface Subscription {
   plan: string;
   applicationsAllowed: number;
@@ -11,30 +12,31 @@ interface Subscription {
 
 
 export default function Subscription() {
+  const { t } = useTranslation();
   const user = useSelector(selectuser);
   const plans = [
     {
       name: "Free",
       price: "₹0/month",
-      limit: "1 application/month",
+      limit: t("subscription.plans.free"),
       color: "border-gray-400",
     },
     {
       name: "Bronze",
       price: "₹100/month",
-      limit: "3 applications/month",
+      limit: t("subscription.plans.bronze"),
       color: "border-yellow-500",
     },
     {
       name: "Silver",
       price: "₹300/month",
-      limit: "5 applications/month",
+      limit: t("subscription.plans.silver"),
       color: "border-gray-500",
     },
     {
       name: "Gold",
       price: "₹1000/month",
-      limit: "Unlimited applications",
+      limit: t("subscription.plans.gold"),
       color: "border-amber-500",
     },
   ];
@@ -202,10 +204,11 @@ export default function Subscription() {
         {/* Heading */}
         <div className="text-center mb-14">
           <h1 className="text-5xl font-extrabold text-gray-900">
-            Choose Your Plan
+            {t("subscription.title")}
           </h1>
+
           <p className="mt-4 text-lg text-gray-600">
-            Select the subscription that fits your internship application needs.
+            {t("subscription.subtitle")}
           </p>
         </div>
 
@@ -224,7 +227,7 @@ export default function Subscription() {
                 {/* Recommended Badge */}
                 {plan.name === "Silver" && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs px-4 py-1 rounded-full font-semibold shadow">
-                    MOST POPULAR
+                    {t("subscription.popular")}
                   </span>
                 )}
 
@@ -239,7 +242,9 @@ export default function Subscription() {
                     {plan.price.replace("/month", "")}
                   </span>
 
-                  <p className="text-gray-500 mt-1">per month</p>
+                  <p className="text-gray-500 mt-1">
+                    {t("subscription.month")}
+                  </p>
                 </div>
 
                 {/* Divider */}
@@ -248,12 +253,14 @@ export default function Subscription() {
                 {/* Features */}
                 <ul className="space-y-4 text-gray-700 flex-1">
                   <li>✓ {plan.limit}</li>
-                  <li>✓ Resume Builder</li>
-                  <li>✓ Application Tracking</li>
+                  <li>✓ {t("subscription.resume")}</li>
+
+                  <li>✓ {t("subscription.tracking")}</li>
+
                   <li>
                     ✓ {plan.name === "Gold"
-                      ? "Priority Support"
-                      : "Email Support"}
+                      ? t("subscription.priority")
+                      : t("subscription.email")}
                   </li>
                 </ul>
 
@@ -266,7 +273,11 @@ export default function Subscription() {
                   }}
                   disabled={isCurrent}
                   className={isCurrent ? "bg-blue-600 text-white hover:bg-blue-700" : "border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"}>
-                  {isCurrent ? "Current Plan" : "Choose Plan"}
+                  {
+                    isCurrent
+                      ? t("subscription.current")
+                      : t("subscription.choose")
+                  }
                 </button>
               </div>
             )

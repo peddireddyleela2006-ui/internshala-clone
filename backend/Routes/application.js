@@ -45,7 +45,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-//to get all the data from the backend(every Application data) - get request
 router.get("/", async (req, res) => {
     try {
         const data = await Application.find();
@@ -55,7 +54,6 @@ router.get("/", async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" })
     }
 });
-//to get the data from the backend for a certain Application with match - get request
 router.get("/:id", async (req, res) => {
     try {
         const data = await Application.findById(req.params.id);
@@ -70,7 +68,6 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-//for pending(which is default) but for the other - {'approved','rejected'} 
 router.put("/:id", async (req, res) => {
     const { id } = req.params;
     const { action } = req.body;

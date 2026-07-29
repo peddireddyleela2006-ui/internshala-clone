@@ -3,9 +3,10 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { selectuser } from "@/Feature/Userslice";
 import { toast } from "react-toastify";
-
+import { useTranslation } from "react-i18next";
 
 const PublicSpace = () => {
+    const { t } = useTranslation();
     const user = useSelector(selectuser);
     const [commentText, setCommentText] = useState({});
     console.log("Redux User:", user);
@@ -208,21 +209,39 @@ const PublicSpace = () => {
                     <h1 className="text-3xl font-bold mb-6">
                         🌍 Public Space
                     </h1>
-
                     <textarea
                         rows={4}
                         value={caption}
                         onChange={(e) => setCaption(e.target.value)}
-                        placeholder="What's on your mind?"
+                        placeholder={t("publicspace.caption")}
                         className="w-full border border-black rounded-lg p-3 outline-none resize-none"
                     />
 
-                    <input
-                        type="file"
-                        accept="image/*,video/*"
-                        onChange={handleMedia}
-                        className="mt-4"
-                    />
+                    <label
+                        className="mt-0 flex flex-col items-center justify-center w-full h-20 
+             border-2 border-dashed border-gray-300 rounded-xl 
+             cursor-pointer bg-gray-50 hover:bg-gray-100 
+             transition duration-300"
+                    >
+                        <div className="flex flex-col items-center justify-center">
+                            
+
+                            <p className="text-sm text-gray-700 ">
+                                {t("publicspace.image")}
+                            </p>
+
+                            <p className="text-sm text-gray-500 mt-1">
+                                {t("publicspace.supportivefiles")}
+                            </p>
+                        </div>
+
+                        <input
+                            type="file"
+                            accept="image/*,video/*"
+                            onChange={handleMedia}
+                            className="hidden"
+                        />
+                    </label>
 
                     {preview && (
                         <div className="mt-4">
@@ -253,7 +272,7 @@ const PublicSpace = () => {
                         disabled={loading}
                         className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg"
                     >
-                        {loading ? "Uploading..." : "Create Post"}
+                        {loading ? t("publicspace.upload") : t("publicspace.CreatePost")}
                     </button>
 
                 </div>
@@ -263,7 +282,7 @@ const PublicSpace = () => {
                 {posts.length === 0 ? (
 
                     <div className="bg-white rounded-xl shadow-lg p-6 text-center text-gray-500">
-                        No posts yet.
+                        {t("publicspace.no")}
                     </div>
 
                 ) : (
@@ -308,7 +327,7 @@ const PublicSpace = () => {
                                             onClick={() => handleDelete(post._id)}
                                             className="text-red-500 hover:text-red-700 font-semibold"
                                         >
-                                            Delete
+                                            {t("publicspace.Delete")}
                                         </button>
 
                                     )
@@ -364,17 +383,17 @@ const PublicSpace = () => {
                                             : "text-gray-600 hover:text-red-500 font-semibold"
                                     }
                                 >
-                                    {isLiked(post) ? "❤️" : "🤍"} {post.likes.length} Likes
+                                    {isLiked(post) ? "❤️" : "🤍"} {post.likes.length} {t("publicspace.Likes")}
                                 </button>
 
                                 <span className="text-gray-600">
-                                    💬 {post.comments.length} Comments
+                                    💬 {post.comments.length} {t("publicspace.Comments")}
                                 </span>
                                 <button
                                     onClick={() => handleShare(post._id)}
                                     className="text-blue-600 hover:text-blue-800 font-semibold"
                                 >
-                                    🔗 Share
+                                    🔗 {t("publicspace.Share")}
                                 </button>
                             </div>
 
@@ -384,7 +403,7 @@ const PublicSpace = () => {
 
                                 <input
                                     type="text"
-                                    placeholder="Write a comment..."
+                                    placeholder={t("publicspace.cmm")}
                                     value={commentText[post._id] || ""}
                                     onChange={(e) =>
                                         setCommentText((prev) => ({
@@ -399,7 +418,7 @@ const PublicSpace = () => {
                                     onClick={() => handleComment(post._id)}
                                     className="bg-blue-600 text-white px-4 rounded-lg"
                                 >
-                                    Comment
+                                    {t("publicspace.Comment")}
                                 </button>
 
                             </div>

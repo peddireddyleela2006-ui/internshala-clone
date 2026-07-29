@@ -15,11 +15,11 @@ import { selectuser } from "@/Feature/Userslice";
 
 export default function Sidebar() {
     const router = useRouter();
-    const { t } = useTranslation();
+    const { t,i18n } = useTranslation();
 
     const menu = [
         {
-            title: "Home",
+            title: t("Sidebar.home"),
             href: "/",
             icon: Home,
         },
@@ -34,12 +34,12 @@ export default function Sidebar() {
             icon: Briefcase,
         },
         {
-            title: t("navbar.friends"),
+            title: t("Sidebar.friend"),
             href: "/friends",
             icon: Users,
         },
         {
-            title: t("navbar.publicspace"),
+            title: t("Sidebar.publicspace"),
             href: "/publicspace",
             icon: Globe,
         },
@@ -143,11 +143,11 @@ export default function Sidebar() {
 
                 <div>
                     <h1 className="text-2xl font-bold text-blue-600">
-                        Internera
+                        {t("Sidebar.Internera")}
                     </h1>
 
                     <p className="text-xl text-gray-500">
-                        Find your dream internship
+                        {t("Sidebar.subtitle")}
                     </p>
                 </div>
             </Link>
@@ -188,11 +188,11 @@ export default function Sidebar() {
                         <div>
 
                             <h3 className="font-semibold text-gray-800">
-                                Subscription
+                                {t("Sidebar.Subscription")}
                             </h3>
 
                             <p className="text-xs text-gray-500">
-                                Current Plan
+                                (t{"Sidebar.Plan"})
                             </p>
 
                         </div>
@@ -206,7 +206,7 @@ export default function Sidebar() {
                         </p>
 
                         <p className="text-sm text-gray-600">
-                            {applicationsRemaining} applications remaining
+                            {applicationsRemaining} {t("Sidebar.applicationsremaining")}
                         </p>
 
                     </div>
@@ -226,7 +226,7 @@ export default function Sidebar() {
                         href="/subscription"
                         className="mt-4 inline-flex text-blue-600 font-medium text-sm hover:underline"
                     >
-                        Manage Subscription →
+                        {t("Sidebar.ManageSubscription") }→
                     </Link>
 
                 </div>

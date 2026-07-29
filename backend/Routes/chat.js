@@ -4,9 +4,7 @@ const router = express.Router();
 const Chat = require("../Model/Chat");
 const User = require("../Model/User");
 
-// =======================
-// Send Message
-// =======================
+
 router.post("/send", async (req, res) => {
     try {
 
@@ -54,9 +52,7 @@ router.post("/send", async (req, res) => {
 
     }
 });
-// =======================
-// Get Conversation
-// =======================
+
 router.get("/:user1/:user2", async (req, res) => {
     try {
 

@@ -6,9 +6,7 @@ const User = require("../Model/User");
 const cloudinary = require("../config/cloudinary");
 const upload = require("../middleware/upload");
 const streamifier = require("streamifier");
-// =========================
-// Create Post
-// =========================
+
 router.post(
     "/create",
     upload.single("media"),
@@ -20,17 +18,13 @@ router.post(
                 userPhoto,
                 caption,
             } = req.body;
-            // return res.status(400).json({
-            //     success: false,
-            //     message: "Daily posting limit reached."
-            // });
+            
             if (!userId || !userName) {
                 return res.status(400).json({
                     success: false,
                     message: "userId and userName are required",
                 });
             }
-            // Find user
             const user = await User.findById(userId);
 
             if (!user) {
@@ -40,10 +34,8 @@ router.post(
                 });
             }
 
-            // Number of friends
             const friendCount = user.friends?.length || 0;
 
-            // No friends → cannot post
             if (friendCount === 0) {
                 return res.status(403).json({
                     success: false,
@@ -51,7 +43,6 @@ router.post(
                 });
             }
 
-            // More than 10 friends → unlimited posts
             if (friendCount <= 10) {
 
                 const today = new Date();
@@ -134,9 +125,7 @@ router.post(
 );
 
 
-// =========================
-// Get All Posts
-// =========================
+
 router.get("/", async (req, res) => {
     try {
 
@@ -161,9 +150,7 @@ router.get("/", async (req, res) => {
 });
 
 
-// =========================
-// Get Single Post
-// =========================
+
 router.get("/:id", async (req, res) => {
 
     try {
@@ -195,9 +182,7 @@ router.get("/:id", async (req, res) => {
 });
 
 
-// =========================
-// Delete Post
-// =========================
+
 router.delete("/:id", async (req, res) => {
 
     try {
@@ -227,9 +212,7 @@ router.delete("/:id", async (req, res) => {
     }
 
 });
-// =========================
-// Like / Unlike Post
-// =========================
+
 router.put("/like/:id", async (req, res) => {
     try {
         const { userId } = req.body;
@@ -282,9 +265,7 @@ router.put("/like/:id", async (req, res) => {
         });
     }
 });
-// =========================
-// Add Comment
-// =========================
+
 router.post("/comment/:id", async (req, res) => {
     try {
         const {
@@ -333,9 +314,7 @@ router.post("/comment/:id", async (req, res) => {
         });
     }
 });
-// =========================
-// Get Comments
-// =========================
+
 router.get("/comments/:id", async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);

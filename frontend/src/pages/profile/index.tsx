@@ -162,11 +162,11 @@ const index = () => {
                           <div>
 
                             <h2 className="text-2xl font-bold text-gray-800">
-                              Resume
+                              {t("prof.Res")}
                             </h2>
 
                             <p className="text-gray-500">
-                              Manage your professional resume
+                              {t("prof.subt")}
                             </p>
 
                           </div>
@@ -185,14 +185,14 @@ const index = () => {
                         href="/resume/view"
                         className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition"
                       >
-                        View Resume
+                        {t("prof.ViewResume")}
                       </Link>
 
                       <Link
                         href="/resume"
                         className="px-6 py-3 bg-gray-800 hover:bg-gray-900 text-white rounded-lg transition"
                       >
-                        Edit Resume
+                        {t("prof.EditResume")}
                       </Link>
 
                     </div>
@@ -202,68 +202,26 @@ const index = () => {
                 </div>
               </div>
             </div>
-            {/* Stats */}
 
-            {/* <div className="grid md:grid-cols-2 gap-6 mt-10">
-
-                <div className="bg-blue-50 rounded-2xl p-6 shadow-sm border border-blue-100">
-
-                  <h2 className="text-4xl font-bold text-blue-600">
-                    0
-                  </h2>
-
-                  <p className="text-blue-700 mt-2">
-                    {t("profile.ActiveApplications")}
-                  </p>
-
-                </div>
-
-                <div className="bg-green-50 rounded-2xl p-6 shadow-sm border border-green-100">
-
-                  <h2 className="text-4xl font-bold text-green-600">
-                    0
-                  </h2>
-
-                  <p className="text-green-700 mt-2">
-                    {t("profile.AcceptedApplications")}
-                  </p>
-
-                </div>
-
-              </div> */}
-
-            {/* Button */}
-
-            {/* <div className="flex justify-center mt-8">
-
-                <Link
-                  href="/userapplication"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl flex items-center gap-2 transition"
-                >
-                  {t("profile.ViewApplications")}
-                  <ExternalLink size={18} />
-                </Link>
-
-              </div> */}
-
+            
             {/* Login History */}
 
             <div className="mt-12">
 
               <h2 className="text-2xl font-bold text-gray-800 mb-6">
-                Recent Login Activity
+                {t("prof.reccents")}
               </h2>
 
               {loading ? (
 
                 <div className="text-gray-500">
-                  Loading...
+                  {t("prof.load")}
                 </div>
 
               ) : loginHistory.length === 0 ? (
 
                 <div className="bg-gray-100 rounded-xl p-6 text-center text-gray-500">
-                  No login history found.
+                  {t("prof.history")}
                 </div>
 
               ) : (

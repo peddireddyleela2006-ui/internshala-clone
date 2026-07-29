@@ -1,8 +1,10 @@
 {
   "navbar": {
+    "Google": "Google",
+"login": "Connexion",
     "internships": "Stages",
     "jobs": "Emplois",
-    "login": "Continuer avec Google",
+    
     "admin": "Administrateur",
     "language": "Langue",
     "search": "Rechercher des opportunités...",
@@ -29,11 +31,11 @@
       "details": "Voir les détails"
     },
     "stats": {
-  "companiesHiring": "entreprises qui recrutent",
-  "newOpenings": "nouvelles offres chaque jour",
-  "activeStudents": "étudiants actifs",
-  "learners": "apprenants"
-}
+      "companiesHiring": "entreprises qui recrutent",
+      "newOpenings": "nouvelles offres chaque jour",
+      "activeStudents": "étudiants actifs",
+      "learners": "apprenants"
+    }
   },
   "intern": {
     "Filters": "Filtres",
@@ -127,6 +129,8 @@
     "Status": "Statut"
   },
   "admin": {
+    "username": "Entrez votre nom d'utilisateur",
+"password": "Entrez votre mot de passe",
     "AdminLogin": "Connexion administrateur",
     "subt": "Accédez au tableau de bord d'administration pour gérer les stages et les candidatures",
     "Username": "Nom d'utilisateur",
@@ -288,5 +292,97 @@
     "Invalid": "Identifiants invalides",
     "FillCoverLetter": "Veuillez remplir la lettre de motivation avant de soumettre votre candidature",
     "availability": "Veuillez indiquer vos disponibilités"
-  }
+  },
+  "Sidebar": {
+    "home": "Accueil",
+    "Internera": "Internera",
+    "subtitle": "Trouvez votre stage idéal",
+    "Subscription": "Abonnement",
+    "Plan": "Plan actuel",
+    "applicationsremaining": "candidatures restantes",
+    "ManageSubscription": "Gérer l'abonnement",
+    "friend": "Amis",
+    "publicspace": "Espace public"
+  },
+  "applications": {
+  "subt": "Gérer les candidatures",
+  "title": "Candidatures",
+  "searchterm": "Rechercher par entreprise, catégorie ou candidat...",
+  "All": "Toutes",
+  "Pending": "En attente",
+  "Approved": "Approuvées",
+  "Rejected": "Rejetées",
+  "TotalApplications": "Total des candidatures",
+  "Company&Category": "Entreprise et catégorie",
+  "Applicant": "Candidat",
+  "AppliedDate": "Date de candidature",
+  "Status": "Statut"
+},
+"friends": {
+  "Friends": "Amis",
+  "MyFriends": "Mes amis",
+  "Nofriendsyet": "Aucun ami pour le moment",
+  "Chat": "Discussion",
+  "FriendRequests": "Demandes d'amis",
+  "Nopendingrequests": "Aucune demande en attente",
+  "Accept": "Accepter",
+  "Reject": "Refuser",
+  "FindPeople": "Trouver des personnes",
+  "Requested": "Demandé",
+  "Send": "Envoyer"
+},
+"publicspace": {
+  "caption": "Qu'avez-vous en tête ?",
+  "image": "Télécharger une image ou une vidéo",
+  "supportivefiles": "Formats pris en charge : PNG, JPG, MP4",
+  "upload": "Téléchargement...",
+  "CreatePost": "Créer une publication",
+  "no": "Aucune publication pour le moment.",
+  "Delete": "Supprimer",
+  "Likes": "J'aime",
+  "Comments": "Commentaires",
+  "Share": "Partager",
+  "cmm": "Écrire un commentaire...",
+  "Comment": "Commenter"
+},
+"prof": {
+  "Res": "CV",
+  "subt": "Gérez votre CV professionnel",
+  "ViewResume": "Voir le CV",
+  "EditResume": "Modifier le CV",
+  "recents": "Activité de connexion récente",
+  "load": "Chargement...",
+  "history": "Aucun historique de connexion trouvé."
+},
+"subscription": {
+  "title": "Choisissez votre plan",
+  "subtitle": "Sélectionnez l'abonnement qui correspond à vos besoins de candidature aux stages.",
+  "popular": "LE PLUS POPULAIRE",
+  "month": "par mois",
+
+  "plans": {
+    "free": "1 candidature/mois",
+    "bronze": "3 candidatures/mois",
+    "silver": "5 candidatures/mois",
+    "gold": "Candidatures illimitées"
+  },
+
+  "resume": "Créateur de CV",
+  "tracking": "Suivi des candidatures",
+  "priority": "Support prioritaire",
+  "email": "Support par e-mail",
+
+  "current": "Plan actuel",
+  "choose": "Choisir le plan"
+},
+"forgotPassword": {
+  "title": "Mot de passe oublié",
+  "subtitle": "Entrez votre e-mail enregistré pour réinitialiser votre mot de passe",
+  "placeholder": "E-mail ou numéro de téléphone",
+  "sending": "Envoi...",
+  "reset": "Réinitialiser le mot de passe",
+  "back": "Retour à la connexion",
+  "enterIdentifier": "Entrez votre e-mail ou numéro de téléphone",
+  "failed": "Échec de la réinitialisation du mot de passe"
+}
 }

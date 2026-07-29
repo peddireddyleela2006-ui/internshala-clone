@@ -5,12 +5,12 @@ import { useSelector } from "react-redux";
 
 import { selectuser } from "@/Feature/Userslice";
 import { toast } from "react-toastify";
-
+import { useTranslation } from "react-i18next";
 const API =
     "https://internshala-clone-zril.onrender.com/api";
 
 export default function Friends() {
-
+    const { t } = useTranslation();
     const user = useSelector(selectuser);
     const router = useRouter();
     const [users, setUsers] = useState<any[]>([]);
@@ -152,9 +152,6 @@ export default function Friends() {
 
     };
 
-    console.log("Friends:", friends);
-    console.log("Requests:", requests);
-    console.log("Users:", users);
 
     return (
 
@@ -164,9 +161,8 @@ export default function Friends() {
 
 
                 <h1 className="text-4xl font-bold mb-8">
-                    Friends
+                    {t("friends.Friends")}
                 </h1>
-
 
 
                 {/* FRIENDS */}
@@ -177,14 +173,14 @@ export default function Friends() {
                 <section className="bg-white rounded-xl shadow p-6 mb-8">
 
                     <h2 className="text-2xl font-semibold mb-5">
-                        My Friends
+                        {t("friends.MyFriends")}
                     </h2>
 
                     {
                         friends.length === 0 ? (
 
                             <p className="text-gray-500">
-                                No friends yet
+                                {t("friends.Nofriendsyet")}
                             </p>
 
                         ) : (
@@ -208,7 +204,6 @@ export default function Friends() {
                                                 <p className="text-gray-500 text-sm">
                                                     {friend.email}
                                                 </p>
-                                                console.log("Friend object:", friend);
                                             </div>
 
                                             <button
@@ -218,7 +213,7 @@ export default function Friends() {
                                                 }}
                                                 className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg"
                                             >
-                                                Chat
+                                                {t("friends.Chat")}
                                             </button>
                                         </div>
 
@@ -237,7 +232,7 @@ export default function Friends() {
                 <section className="bg-white rounded-xl shadow p-6 mb-8">
 
                     <h2 className="text-2xl font-semibold mb-5">
-                        Friend Requests
+                        {t("friends.FriendRequests")}
                     </h2>
 
 
@@ -245,7 +240,7 @@ export default function Friends() {
                         requests.length === 0 ? (
 
                             <p className="text-gray-500">
-                                No pending requests
+                                {t("friends.Nopendingrequests")}
                             </p>
 
                         ) : (
@@ -281,7 +276,7 @@ export default function Friends() {
                                                     onClick={() => acceptRequest(req._id)}
                                                     className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
                                                 >
-                                                    Accept
+                                                    {t("friends.Accept")}
                                                 </button>
 
 
@@ -290,7 +285,7 @@ export default function Friends() {
                                                     onClick={() => rejectRequest(req._id)}
                                                     className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
                                                 >
-                                                    Reject
+                                                    {t("friends.Reject")}
                                                 </button>
 
 
@@ -320,7 +315,7 @@ export default function Friends() {
 
 
                     <h2 className="text-2xl font-semibold mb-5">
-                        Find People
+                        {t("friends.FindPeople")}
                     </h2>
 
 
@@ -379,13 +374,13 @@ export default function Friends() {
                                         {
                                             friendIds.includes(person._id)
                                                 ?
-                                                "Friends"
+                                                t("friends.Friends")
                                                 :
                                                 sentRequests.includes(person._id)
                                                     ?
-                                                    "Requested"
+                                                    t("friends.Requested")
                                                     :
-                                                    "Send"
+                                                    t("friends.Send")
                                         }
 
                                     </button>

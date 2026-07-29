@@ -2,7 +2,8 @@
   "navbar": {
     "internships": "Pasantías",
     "jobs": "Trabajos",
-    "login": "Continuar con Google",
+    "Google": "Google",
+"login": "Iniciar sesión",
     "admin": "Administrador",
     "language": "Idioma",
     "search": "Buscar oportunidades...",
@@ -40,11 +41,11 @@
       "details": "Ver detalles"
     },
     "stats": {
-  "companiesHiring": "empresas contratando",
-  "newOpenings": "nuevas vacantes cada día",
-  "activeStudents": "estudiantes activos",
-  "learners": "estudiantes"
-}
+      "companiesHiring": "empresas contratando",
+      "newOpenings": "nuevas vacantes cada día",
+      "activeStudents": "estudiantes activos",
+      "learners": "estudiantes"
+    }
   },
   "intern": {
     "Filters": "Filtros",
@@ -138,6 +139,8 @@
     "Status": "Estado"
   },
   "admin": {
+    "username": "Introduce tu nombre de usuario",
+"password": "Introduce tu contraseña",
     "AdminLogin": "Inicio de sesión del administrador",
     "subt": "Acceda al panel de administración para gestionar las pasantías y las solicitudes",
     "Username": "Nombre de usuario",
@@ -297,5 +300,97 @@
     "Invalid": "Credenciales no válidas",
     "FillCoverLetter": "Por favor, complete la carta de presentación antes de enviar la solicitud",
     "availability": "Por favor, indique su disponibilidad"
-  }
+  },
+  "Sidebar": {
+    "home": "Inicio",
+    "Internera": "Internera",
+    "subtitle": "Encuentra tu pasantía ideal",
+    "Subscription": "Suscripción",
+    "Plan": "Plan actual",
+    "applicationsremaining": "solicitudes restantes",
+    "ManageSubscription": "Gestionar suscripción",
+    "friend": "Amigos",
+    "publicspace": "Espacio público"
+  },
+  "applications": {
+  "subt": "Gestionar las solicitudes",
+  "title": "Solicitudes",
+  "searchterm": "Buscar por empresa, categoría o solicitante...",
+  "All": "Todas",
+  "Pending": "Pendientes",
+  "Approved": "Aprobadas",
+  "Rejected": "Rechazadas",
+  "TotalApplications": "Solicitudes totales",
+  "Company&Category": "Empresa y categoría",
+  "Applicant": "Solicitante",
+  "AppliedDate": "Fecha de solicitud",
+  "Status": "Estado"
+},
+"friends": {
+  "Friends": "Amigos",
+  "MyFriends": "Mis amigos",
+  "Nofriendsyet": "Aún no tienes amigos",
+  "Chat": "Chat",
+  "FriendRequests": "Solicitudes de amistad",
+  "Nopendingrequests": "No hay solicitudes pendientes",
+  "Accept": "Aceptar",
+  "Reject": "Rechazar",
+  "FindPeople": "Encontrar personas",
+  "Requested": "Solicitado",
+  "Send": "Enviar"
+},
+"publicspace": {
+  "caption": "¿Qué tienes en mente?",
+  "image": "Subir imagen o video",
+  "supportivefiles": "Formatos compatibles: PNG, JPG, MP4",
+  "upload": "Subiendo...",
+  "CreatePost": "Crear publicación",
+  "no": "Aún no hay publicaciones.",
+  "Delete": "Eliminar",
+  "Likes": "Me gusta",
+  "Comments": "Comentarios",
+  "Share": "Compartir",
+  "cmm": "Escribe un comentario...",
+  "Comment": "Comentar"
+},
+"prof": {
+  "Res": "Currículum",
+  "subt": "Administra tu currículum profesional",
+  "ViewResume": "Ver currículum",
+  "EditResume": "Editar currículum",
+  "recents": "Actividad de inicio de sesión reciente",
+  "load": "Cargando...",
+  "history": "No se encontró historial de inicio de sesión."
+},
+"subscription": {
+  "title": "Elige tu plan",
+  "subtitle": "Selecciona la suscripción que se adapte a tus necesidades de solicitudes de prácticas.",
+  "popular": "MÁS POPULAR",
+  "month": "por mes",
+
+  "plans": {
+    "free": "1 solicitud/mes",
+    "bronze": "3 solicitudes/mes",
+    "silver": "5 solicitudes/mes",
+    "gold": "Solicitudes ilimitadas"
+  },
+
+  "resume": "Creador de currículum",
+  "tracking": "Seguimiento de solicitudes",
+  "priority": "Soporte prioritario",
+  "email": "Soporte por correo electrónico",
+
+  "current": "Plan actual",
+  "choose": "Elegir plan"
+},
+"forgotPassword": {
+  "title": "¿Olvidaste tu contraseña?",
+  "subtitle": "Ingresa tu correo registrado para restablecer tu contraseña",
+  "placeholder": "Correo electrónico o número de teléfono",
+  "sending": "Enviando...",
+  "reset": "Restablecer contraseña",
+  "back": "Volver al inicio de sesión",
+  "enterIdentifier": "Ingresa tu correo electrónico o número de teléfono",
+  "failed": "Error al restablecer la contraseña"
+}
 }

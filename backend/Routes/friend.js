@@ -69,13 +69,7 @@ router.post("/send-request", async (req, res) => {
 
     }
 });
-// =========================
-// Get Incoming Friend Requests
-// =========================
 
-// =========================
-// Get Incoming Friend Requests
-// =========================
 
 router.get("/requests/:userId", async (req, res) => {
     try {
@@ -99,9 +93,7 @@ router.get("/requests/:userId", async (req, res) => {
         });
     }
 });
-// =========================
-// Accept Friend Request
-// =========================
+
 
 router.put("/accept/:requestId", async (req, res) => {
   try {
@@ -165,9 +157,7 @@ router.put("/accept/:requestId", async (req, res) => {
 
   }
 });
-// =========================
-// Reject Friend Request
-// =========================
+
 
 router.delete("/reject/:requestId", async (req, res) => {
     ``
@@ -208,7 +198,6 @@ router.delete("/reject/:requestId", async (req, res) => {
     }
 
 });
-// Get Friends List
 router.get("/list/:userId", async (req, res) => {
     try {
         const user = await User.findById(req.params.userId)
@@ -235,7 +224,7 @@ router.get("/list/:userId", async (req, res) => {
         });
     }
 });
-// Get all users
+
 router.get("/users/:userId", async(req,res)=>{
 
 try{

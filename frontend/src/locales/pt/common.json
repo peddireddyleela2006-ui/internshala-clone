@@ -1,8 +1,9 @@
 {
   "navbar": {
+    "Google": "Google",
+"login": "Entrar",
     "internships": "Estágios",
     "jobs": "Empregos",
-    "login": "Continuar com Google",
     "admin": "Administrador",
     "language": "Idioma",
     "search": "Pesquisar oportunidades...",
@@ -40,11 +41,11 @@
       "details": "Ver detalhes"
     },
     "stats": {
-  "companiesHiring": "empresas contratando",
-  "newOpenings": "novas vagas todos os dias",
-  "activeStudents": "estudantes ativos",
-  "learners": "aprendizes"
-}
+      "companiesHiring": "empresas contratando",
+      "newOpenings": "novas vagas todos os dias",
+      "activeStudents": "estudantes ativos",
+      "learners": "aprendizes"
+    }
   },
   "intern": {
     "Filters": "Filtros",
@@ -119,6 +120,8 @@
     "Status": "Status"
   },
   "admin": {
+    "username": "Digite seu nome de usuário",
+"password": "Digite sua senha",
     "AdminLogin": "Login do administrador",
     "subt": "Acesse o painel administrativo para gerenciar estágios e candidaturas",
     "Username": "Nome de usuário",
@@ -280,5 +283,88 @@
     "Invalid": "Credenciais inválidas",
     "FillCoverLetter": "Por favor, preencha a carta de apresentação antes de enviar a candidatura",
     "availability": "Por favor, informe sua disponibilidade"
-  }
+  },
+  "Sidebar": {
+
+    "home": "Início",
+    "Internera": "Internera",
+    "subtitle": "Encontre o estágio dos seus sonhos",
+    "Subscription": "Assinatura",
+    "Plan": "Plano atual",
+    "applicationsremaining": "candidaturas restantes",
+    "ManageSubscription": "Gerenciar assinatura",
+    "friend": "Amigos",
+    "publicspace": "Espaço público"
+  },
+  "applications": {
+  "subt": "Gerenciar candidaturas",
+  "title": "Candidaturas",
+  "searchterm": "Pesquisar por empresa, categoria ou candidato...",
+  "All": "Todas",
+  "Pending": "Pendentes",
+  "Approved": "Aprovadas",
+  "Rejected": "Rejeitadas",
+  "TotalApplications": "Total de candidaturas",
+  "Company&Category": "Empresa e categoria",
+  "Applicant": "Candidato",
+  "AppliedDate": "Data da candidatura",
+  "Status": "Status"
+},
+"friends": {
+  "Friends": "Amigos",
+  "MyFriends": "Meus amigos",
+  "Nofriendsyet": "Ainda não há amigos",
+  "Chat": "Conversar",
+  "FriendRequests": "Solicitações de amizade",
+  "Nopendingrequests": "Nenhuma solicitação pendente",
+  "Accept": "Aceitar",
+  "Reject": "Rejeitar",
+  "FindPeople": "Encontrar pessoas",
+  "Requested": "Solicitado",
+  "Send": "Enviar"
+},
+"publicspace": {
+  "caption": "No que você está pensando?",
+  "image": "Enviar imagem ou vídeo",
+  "supportivefiles": "Formatos suportados: PNG, JPG, MP4",
+  "upload": "Enviando...",
+  "CreatePost": "Criar publicação",
+  "no": "Ainda não há publicações.",
+  "Delete": "Excluir",
+  "Likes": "Curtidas",
+  "Comments": "Comentários",
+  "Share": "Compartilhar",
+  "cmm": "Escreva um comentário...",
+  "Comment": "Comentar"
+},
+"prof": {
+  "Res": "Currículo",
+  "subt": "Gerencie seu currículo profissional",
+  "ViewResume": "Ver currículo",
+  "EditResume": "Editar currículo",
+  "recents": "Atividade de login recente",
+  "load": "Carregando...",
+  "history": "Nenhum histórico de login encontrado."
+},
+"subscription": {
+  "title": "Escolha seu plano",
+  "subtitle": "Selecione a assinatura que atende às suas necessidades de candidatura a estágios.",
+  "popular": "MAIS POPULAR",
+  "month": "por mês",
+
+  "plans": {
+    "free": "1 candidatura/mês",
+    "bronze": "3 candidaturas/mês",
+    "silver": "5 candidaturas/mês",
+    "gold": "Candidaturas ilimitadas"
+  },
+
+  "resume": "Criador de currículo",
+  "tracking": "Acompanhamento de candidaturas",
+  "priority": "Suporte prioritário",
+  "email": "Suporte por e-mail",
+
+  "current": "Plano atual",
+  "choose": "Escolher plano"
+}
 }

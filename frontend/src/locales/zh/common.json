@@ -2,11 +2,12 @@
   "navbar": {
     "internships": "实习",
     "jobs": "工作",
-    "login": "使用 Google 继续",
     "admin": "管理员",
     "language": "语言",
     "search": "搜索机会...",
-    "Logout": "退出登录"
+    "Logout": "退出登录",
+    "Google": "Google",
+    "login": "登录"
   },
   "home": {
     "hero": {
@@ -40,11 +41,11 @@
       "details": "查看详情"
     },
     "stats": {
-  "companiesHiring": "正在招聘的公司",
-  "newOpenings": "每天新增职位",
-  "activeStudents": "活跃学生",
-  "learners": "学习者"
-}
+      "companiesHiring": "正在招聘的公司",
+      "newOpenings": "每天新增职位",
+      "activeStudents": "活跃学生",
+      "learners": "学习者"
+    }
   },
   "intern": {
     "Filters": "筛选条件",
@@ -138,6 +139,8 @@
     "Status": "状态"
   },
   "admin": {
+    "username": "输入您的用户名",
+    "password": "输入您的密码",
     "AdminLogin": "管理员登录",
     "subt": "访问管理控制台以管理实习和申请",
     "Username": "用户名",
@@ -299,5 +302,94 @@
     "Invalid": "凭据无效",
     "FillCoverLetter": "请在提交申请前填写求职信",
     "availability": "请说明您的可用时间"
-  }
+  },
+  "Sidebar": {
+    "home": "首页",
+    "Internera": "Internera",
+    "subtitle": "寻找您理想的实习机会",
+    "Subscription": "订阅",
+    "Plan": "当前计划",
+    "applicationsremaining": "剩余申请次数",
+    "ManageSubscription": "管理订阅",
+    "friend": "朋友",
+    "publicspace": "公共空间"
+  },
+  "applications": {
+    "subt": "管理申请",
+    "title": "申请记录",
+    "searchterm": "按公司、类别或申请人搜索...",
+    "All": "全部",
+    "Pending": "待处理",
+    "Approved": "已批准",
+    "Rejected": "已拒绝",
+    "TotalApplications": "申请总数",
+    "Company&Category": "公司与类别",
+    "Applicant": "申请人",
+    "AppliedDate": "申请日期",
+    "Status": "状态"
+  },
+  "friends": {
+    "Friends": "朋友",
+    "MyFriends": "我的朋友",
+    "Nofriendsyet": "还没有朋友",
+    "Chat": "聊天",
+    "FriendRequests": "好友请求",
+    "Nopendingrequests": "没有待处理的请求",
+    "Accept": "接受",
+    "Reject": "拒绝",
+    "FindPeople": "寻找用户",
+    "Requested": "已请求",
+    "Send": "发送"
+  },
+  "publicspace": {
+    "caption": "你在想什么？",
+    "image": "上传图片或视频",
+    "supportivefiles": "支持格式：PNG、JPG、MP4",
+    "upload": "上传中...",
+    "CreatePost": "创建帖子",
+    "no": "暂无帖子。",
+    "Delete": "删除",
+    "Likes": "点赞",
+    "Comments": "评论",
+    "Share": "分享",
+    "cmm": "写下评论...",
+    "Comment": "评论"
+  },
+  "prof": {
+    "Res": "简历",
+    "subt": "管理您的职业简历",
+    "ViewResume": "查看简历",
+    "EditResume": "编辑简历",
+    "recents": "最近登录活动",
+    "load": "加载中...",
+    "history": "未找到登录历史记录。"
+  },
+  "subscription": {
+    "title": "选择您的计划",
+    "subtitle": "选择适合您实习申请需求的订阅计划。",
+    "popular": "最受欢迎",
+    "month": "每月",
+    "plans": {
+      "free": "每月1次申请",
+      "bronze": "每月3次申请",
+      "silver": "每月5次申请",
+      "gold": "无限申请"
+    },
+    "resume": "简历创建工具",
+    "tracking": "申请追踪",
+    "priority": "优先支持",
+    "email": "电子邮件支持",
+    "current": "当前计划",
+    "choose": "选择计划"
+  },
+  "forgotPassword": {
+  "title": "忘记密码",
+  "subtitle": "输入您注册的邮箱以重置密码",
+  "placeholder": "邮箱或电话号码",
+  "sending": "发送中...",
+  "reset": "重置密码",
+  "back": "返回登录",
+  "enterIdentifier": "请输入您的邮箱或电话号码",
+  "failed": "密码重置失败"
+}
 }

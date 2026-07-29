@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 const ForgotPassword = () => {
   const [identifier, setIdentifier] = useState("");
@@ -9,10 +10,12 @@ const ForgotPassword = () => {
 
 
   const handleReset = async (e: React.FormEvent) => {
+    const { t } = useTranslation();
+
     e.preventDefault();
 
     if (!identifier) {
-      toast.error("Enter your email or phone number");
+      toast.error(t("forgotPassword.enterIdentifier"));
       return;
     }
 
@@ -34,7 +37,7 @@ const ForgotPassword = () => {
 
       toast.error(
         error.response?.data?.message ||
-        "Password reset failed"
+        t("forgotPassword.failed")
       );
 
     } finally {
@@ -43,17 +46,21 @@ const ForgotPassword = () => {
   };
 
 
+  function t(arg0: string): React.ReactNode | Iterable<React.ReactNode> {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
 
       <div className="bg-white shadow-xl rounded-xl p-8 w-full max-w-md">
 
         <h1 className="text-3xl font-bold text-center mb-4 text-black">
-          Forgot Password
+          {t("forgotPassword.title")}
         </h1>
 
         <p className="text-gray-600 text-center mb-6">
-          Enter your registered email to reset your password
+          {t("forgotPassword.subtitle")}
         </p>
 
 
@@ -72,7 +79,11 @@ const ForgotPassword = () => {
             type="submit"
             className="w-full bg-blue-600 text-white py-3 rounded-lg"
           >
-            {loading ? "Sending..." : "Reset Password"}
+            {
+              loading
+                ? t("forgotPassword.sending")
+                : t("forgotPassword.reset")
+            }
           </button>
 
         </form>
@@ -83,7 +94,7 @@ const ForgotPassword = () => {
             href="/login"
             className="text-blue-600"
           >
-            Back to Login
+            {t("forgotPassword.back")}
           </Link>
         </p>
 

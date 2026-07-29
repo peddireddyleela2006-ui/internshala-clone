@@ -210,8 +210,11 @@ export default function Resume() {
         }
 
     };
-    const handleSubmit = async (e: any) => {
-        e.preventDefault();
+    const handleSubmit = async (e?: any) => {
+
+        if (e) {
+            e.preventDefault();
+        }
 
         try {
             const firebaseUser = auth.currentUser;
@@ -282,115 +285,114 @@ export default function Resume() {
         }
     };
 
-const loadRazorpay = () => {
+    const loadRazorpay = () => {
 
-    return new Promise((resolve)=>{
+        return new Promise((resolve) => {
 
-        const script = document.createElement("script");
+            const script = document.createElement("script");
 
-        script.src =
-        "https://checkout.razorpay.com/v1/checkout.js";
-
-
-        script.onload = () => resolve(true);
-
-        script.onerror = () => resolve(false);
+            script.src =
+                "https://checkout.razorpay.com/v1/checkout.js";
 
 
-        document.body.appendChild(script);
+            script.onload = () => resolve(true);
 
-    });
-
-};
-const startResumePayment = async()=>{
+            script.onerror = () => resolve(false);
 
 
-    const loaded = await loadRazorpay();
+            document.body.appendChild(script);
 
-
-    if(!loaded){
-
-        alert("Unable to load Razorpay");
-
-        return;
-
-    }
-
-
-
-    const response = await fetch(
-        "https://internshala-clone-zril.onrender.com/api/payment/create-resume-order",
-        {
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            }
-        }
-    );
-
-
-
-    const data = await response.json();
-
-
-
-    if(!data.success){
-
-        alert(data.message);
-
-        return;
-
-    }
-
-
-
-    const options = {
-
-
-        key:"rzp_test_TINxzUdH8DEjaJ",
-
-        amount:data.order.amount,
-
-        currency:data.order.currency,
-
-
-        name:"Internera",
-
-        description:"Resume Creation Fee",
-
-
-        order_id:data.order.id,
-
-
-        handler:function(response:any){
-
-
-            alert(
-              "Payment successful! Now create your resume."
-            );
-
-
-            // Next step:
-            // call handleSubmit()
-
-        },
-
-
-        theme:{
-            color:"#2563eb"
-        }
+        });
 
     };
+    const startResumePayment = async () => {
+
+
+        const loaded = await loadRazorpay();
+
+
+        if (!loaded) {
+
+            alert("Unable to load Razorpay");
+
+            return;
+
+        }
 
 
 
-    const paymentObject =
-    new (window as any).Razorpay(options);
+        const response = await fetch(
+            "https://internshala-clone-zril.onrender.com/api/payment/create-resume-order",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+        );
 
 
-    paymentObject.open();
 
-};
+        const data = await response.json();
+
+
+
+        if (!data.success) {
+
+            alert(data.message);
+
+            return;
+
+        }
+
+
+
+        const options = {
+
+
+            key: "rzp_test_TINxzUdH8DEjaJ",
+
+            amount: data.order.amount,
+
+            currency: data.order.currency,
+
+
+            name: "Internera",
+
+            description: "Resume Creation Fee",
+
+
+            order_id: data.order.id,
+
+
+            handler: async function (response: any) {
+
+                alert(
+                    "Payment successful! Creating your resume..."
+                );
+
+
+                await handleSubmit();
+
+
+            },
+
+
+            theme: {
+                color: "#2563eb"
+            }
+
+        };
+
+
+
+        const paymentObject =
+            new (window as any).Razorpay(options);
+
+
+        paymentObject.open();
+
+    };
     return (
         <div className="min-h-screen flex justify-center text-black items-center bg-gray-100">
 
@@ -478,7 +480,11 @@ const startResumePayment = async()=>{
 
                     <button
                         type="button"
-                        onClick={handleResumePaymentCheck}
+                        onClick={
+                            isEditing
+                                ? handleSubmit
+                                : handleResumePaymentCheck
+                        }
                         className="bg-blue-600 text-white px-5 py-3 rounded w-full"
                     >
                         {isEditing ? "Update Resume" : "Create Resume"}

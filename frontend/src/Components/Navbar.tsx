@@ -100,11 +100,11 @@ const Navbar = () => {
 
             <div>
               <h1 className="text-2xl font-bold text-blue-600">
-                Internera
+                {t("Sidebar.Internera")}
               </h1>
 
               <p className="text-xl text-gray-500">
-                Find your dream internship
+                {t("Sidebar.subtitle")}
               </p>
             </div>
           </Link>
@@ -162,7 +162,7 @@ const Navbar = () => {
                   href="/login"
                   className="px-5 py-2 rounded-full bg-gray-100 text-gray-700 font-medium hover:bg-blue-100 hover:text-blue-600 transition-all duration-300 shadow-sm"
                 >
-                  Login
+                  {t("navbar.login")}
                 </Link>
 
                 {/* Google */}
@@ -190,7 +190,7 @@ const Navbar = () => {
                   </svg>
 
                   <span className="font-medium text-gray-700">
-                    Google
+                    {t("navbar.Google")}
                   </span>
                 </button>
 
